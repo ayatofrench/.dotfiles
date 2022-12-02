@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/home/secretninjaman/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  catppuccin = {
+    loaded = true,
+    path = "/home/secretninjaman/.local/share/nvim/site/pack/packer/start/catppuccin",
+    url = "https://github.com/catppuccin/nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/secretninjaman/.local/share/nvim/site/pack/packer/start/cmp-buffer",
@@ -104,6 +109,11 @@ _G.packer_plugins = {
     path = "/home/secretninjaman/.local/share/nvim/site/pack/packer/start/cmp-path",
     url = "https://github.com/hrsh7th/cmp-path"
   },
+  ["cmp-vsnip"] = {
+    loaded = true,
+    path = "/home/secretninjaman/.local/share/nvim/site/pack/packer/start/cmp-vsnip",
+    url = "https://github.com/hrsh7th/cmp-vsnip"
+  },
   cmp_luasnip = {
     loaded = true,
     path = "/home/secretninjaman/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
@@ -113,6 +123,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/secretninjaman/.local/share/nvim/site/pack/packer/start/git-worktree.nvim",
     url = "https://github.com/ThePrimeagen/git-worktree.nvim"
+  },
+  gruvbox = {
+    loaded = true,
+    path = "/home/secretninjaman/.local/share/nvim/site/pack/packer/start/gruvbox",
+    url = "https://github.com/gruvbox-community/gruvbox"
   },
   harpoon = {
     loaded = true,
@@ -133,6 +148,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/secretninjaman/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
     url = "https://github.com/glepnir/lspsaga.nvim"
+  },
+  ["lualine.nvim"] = {
+    loaded = true,
+    path = "/home/secretninjaman/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
@@ -203,6 +223,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/secretninjaman/.local/share/nvim/site/pack/packer/start/refactoring.nvim",
     url = "https://github.com/ThePrimeagen/refactoring.nvim"
+  },
+  ["rose-pine"] = {
+    loaded = true,
+    path = "/home/secretninjaman/.local/share/nvim/site/pack/packer/start/rose-pine",
+    url = "https://github.com/rose-pine/neovim"
   },
   ["rust-tools.nvim"] = {
     loaded = true,

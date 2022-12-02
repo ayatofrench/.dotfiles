@@ -1,1 +1,1 @@
-../../.dotfiles/nvim/.config/nvim/init.lua
+require("secretninjaman")

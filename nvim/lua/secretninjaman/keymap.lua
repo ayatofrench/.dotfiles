@@ -49,7 +49,7 @@ wk.register({
 
     ["<cr>"] = {"<cmd>Ttoggle<CR>", "toggle terminal"},
 
-    e = {"<cmd>NvimToggleTree<CR>", "toggle explorer"},    
+    e = {"<cmd>NvimTreeToggle<CR>", "toggle explorer"},    
     c = {
         name = "+create",
         t = {"<cmd>tabnew<cr>", "new tab"},

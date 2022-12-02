@@ -1,1 +1,1 @@
-../../../../.dotfiles/nvim/.config/nvim/lua/secretninjaman/nvim-comment.lua
+require("nvim_comment").setup()

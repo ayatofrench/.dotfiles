@@ -1,1 +1,8 @@
-../../../../.dotfiles/nvim/.config/nvim/lua/secretninjaman/init.lua
+require("secretninjaman.set")
+require("secretninjaman.packer")
+require("secretninjaman.cmp")
+require("secretninjaman.mason")
+require("secretninjaman.rust-tools")
+require("secretninjaman.nvim-tree")
+require("secretninjaman.nvim-comment")
+require("secretninjaman.keymap")

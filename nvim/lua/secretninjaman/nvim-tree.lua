@@ -1,1 +1,1 @@
-../../../../.dotfiles/nvim/.config/nvim/lua/secretninjaman/nvim-tree.lua
+require("nvim-tree").setup()
