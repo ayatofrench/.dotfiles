@@ -29,11 +29,8 @@ return require("packer").startup(function(use)
 
     use("hrsh7th/cmp-nvim-lua")
     use("hrsh7th/cmp-nvim-lsp-signature-help")
-    use("hrsh7th/cmp-vsnip")
     use("hrsh7th/cmp-path")
     use("hrsh7th/cmp-buffer")
-    use("hrsh7th/vim-vsnip")
-
 
     -- use("tzachar/cmp-tabnine", { run = "./install.sh" })
     use("onsails/lspkind-nvim")
@@ -78,6 +75,7 @@ return require("packer").startup(function(use)
     use("folke/tokyonight.nvim")
     use({"catppuccin/nvim", as = "catppuccin" })
     use({ 'rose-pine/neovim', as = 'rose-pine' })
+    use({"nvim-tree/nvim-web-devicons" })
 
     use("nvim-treesitter/nvim-treesitter", {
         run = ":TSUpdate"

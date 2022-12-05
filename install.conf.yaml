@@ -7,6 +7,8 @@
 
 - link:
     ~/.config/nvim: 
+    ~/.tmux.conf:
+      path: tmux/.tmux.conf
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

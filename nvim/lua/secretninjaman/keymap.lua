@@ -1,8 +1,6 @@
 
 local M = {}
 
-
-
 local function bind(op, outer_opts)
   outer_opts = outer_opts or {noremap = true}
     return function(lhs, rhs, opts)
@@ -17,8 +15,8 @@ end
 
 local wk = require("which-key")
 local cmp = require("cmp")
-t = require('telescope.builtin')
-t_ext = require('telescope').extensions
+t = require("telescope.builtin")
+t_ext = require("telescope").extensions
 
 
 
@@ -161,17 +159,13 @@ wk.register({
     -- go
 
     g = {
-
         name = "+go",
-
         D = {"<cmd>lua vim.lsp.buf.declaration()<CR>", "declaration"},
-
         d = {"<cmd>lua vim.lsp.buf.definition()<CR>", "definition"},
-
         i = {"<cmd>lua vim.lsp.buf.implementation()<CR>", "implementation"},
-
         t = {"<cmd>lua vim.lsp.buf.type_definition()<CR>", "type definition"},
-
+        j = {"<cmd>lua vim.diagnostic.goto_next<CR>", "go to next error"},
+        k = {"<cmd>lua vim.diagnostic.goto_prev<CR>", "go to prev error"},
     },
 
 
