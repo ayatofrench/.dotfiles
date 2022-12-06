@@ -12,6 +12,7 @@ return require("packer").startup(function(use)
     use("nvim-lua/plenary.nvim")
     use("nvim-lua/popup.nvim")
     use("nvim-telescope/telescope.nvim")
+    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
     use({
         'nvim-lualine/lualine.nvim',
