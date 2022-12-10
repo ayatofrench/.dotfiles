@@ -44,6 +44,8 @@ return require("packer").startup(function(use)
     use("saadparwaiz1/cmp_luasnip")
     use("MunifTanjim/prettier.nvim")
     use("simrat39/rust-tools.nvim")
+    use("windwp/nvim-ts-autotag")
+    use("slim-template/vim-slim")
 
     -- Primeagen packages
     use("ThePrimeagen/git-worktree.nvim")
