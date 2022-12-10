@@ -17,7 +17,8 @@ local wk = require("which-key")
 local cmp = require("cmp")
 t = require("telescope.builtin")
 t_ext = require("telescope").extensions
-
+h_mark = require("harpoon.mark")
+h_ui = require("harpoon.ui")
 
 
 -- Normal mode, no <leader> prefix
@@ -26,7 +27,11 @@ wk.register({
     ["gd"] = {"<cmd>lua vim.lsp.buf.definition()<CR>", "go to definition"},
     ["gt"] = {"next tab"},
     ["gT"] = {"previous tab"},
-    -- ["<C-p>"] = {
+    ["<C-e>"] = {"<cmd>lua h_ui.toggle_quick_menu()<CR>", "harpoon ui toggle"},
+    ["<C-a>"] = {"<cmd>lua h_ui.nav_file(1)<CR>", "harpoon ui toggle"},
+    ["<C-s>"] = {"<cmd>lua h_ui.nav_file(2)<CR>", "harpoon ui toggle"},
+    ["<C-d>"] = {"<cmd>lua h_ui.nav_file(3)<CR>", "harpoon ui toggle"},
+    ["<C-f>"] = {"<cmd>lua h_ui.nav_file(4)<CR>", "harpoon ui toggle"},
 })
 
 
@@ -47,7 +52,7 @@ wk.register({
 
     ["<cr>"] = {"<cmd>Ttoggle<CR>", "toggle terminal"},
 
-    e = {"<cmd>NvimTreeToggle<CR>", "toggle explorer"},    
+    a = {"<cmd>lua h_mark.add_file()<CR>", "add file to harpoon"},
     c = {
         name = "+create",
         t = {"<cmd>tabnew<cr>", "new tab"},

@@ -9,6 +9,8 @@
     ~/.config/nvim: 
     ~/.tmux.conf:
       path: tmux/.tmux.conf
+    ~/.alacritty.yml:
+      path: alacritty.yml
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

@@ -5,9 +5,9 @@ vim.opt.relativenumber = true
 
 vim.opt.errorbells = false
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
+vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
 vim.opt.smartindent = true
@@ -33,8 +33,8 @@ vim.opt.isfname:append("@-@")
 -- Give more space for displaying messages.
 vim.opt.cmdheight = 1
 
-vim.g.loaded_netrw = 1
-vim.g.loaed_netrwPlugin = 1
+-- vim.g.loaded_netrw = 1
+-- vim.g.loaed_netrwPlugin = 1
 
 -- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 -- delays and poor user experience.
