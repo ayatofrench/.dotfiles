@@ -26,7 +26,31 @@ mason_lsp.setup({
   automatic_installation = true,
 })
 
-lspconfig.sumneko_lua.setup {
+local capabilities = require("cmp_nvim_lsp").default_capabilities(
+  vim.lsp.protocol.make_client_capabilities()
+)
+
+local function on_attach(client)
+  if client.server_capabilities.documentFormattingProvider then
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = 0,
+      callback = function()
+        vim.lsp.buf.format()
+      end,
+    })
+  end
+end
+
+local function config(_config)
+  return vim.tbl_deep_extend("force", {
+    capabilities = capabilities,
+    on_attach = on_attach,
+  },
+    _config or {}
+  )
+end
+
+lspconfig.sumneko_lua.setup(config({
   settings = {
     Lua = {
       runtime = {
@@ -48,29 +72,86 @@ lspconfig.sumneko_lua.setup {
       },
     },
   },
-}
+}))
 
-lspconfig.tsserver.setup {}
+lspconfig.tsserver.setup(config())
 
-lspconfig.solargraph.setup {
+lspconfig.solargraph.setup(config({
   settings = {
     solargraph = {
       commandPath = '/Users/ayato.french/.rvm/gems/ruby-2.5.3/bin/solargraph',
       diagnostics = true,
-      completion = true
+      completion = true,
+      flags = {
+        debounce_text_changes = 150
+      },
+      initializationOptions = {
+        formatting = true
+      }
     }
   },
   root_dir = lspconfig.util.root_pattern("Gemfile", ".git"),
-}
+}))
+
+local formatting = null_ls.builtins.formatting
+local diagnostics = null_ls.builtins.diagnostics
+local conditional = function(fn)
+  local utils = require("null-ls.utils").make_conditional_utils()
+  return fn(utils)
+end
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 null_ls.setup({
+  root_dir = function()
+    return vim.fn.getcwd()
+  end,
   sources = {
-    null_ls.builtins.diagnostics.eslint.with({
+    diagnostics.eslint.with({
       diagnostics_format = '[eslint] #{m}\n(#{c})'
     }),
-    null_ls.builtins.diagnostics.fish
+    -- formatting.rubocop.with({
+    --   command = "bundle",
+    --   args = vim.list_extend(
+    --     { "exec", "rubocop", "-c", ".new_rubocop_rules.yml", "--force-exclusion" },
+    --     formatting.rubocop._opts.args
+    --   ),
+    -- }),
+    null_ls.builtins.diagnostics.rubocop.with({
+      command = "bundle",
+      args = vim.list_extend(
+        { "exec", "rubocop", "-c", ".new_rubocop_rules.yml", "--force-exclusion" },
+        null_ls.builtins.diagnostics.rubocop._opts.args
+      ),
+    })
   },
+
+  -- Here we set a conditional to call the rubocop formatter. If we have a Gemfile in the project, we call "bundle exec rubocop", if not we only call "rubocop".
+  -- conditional(function(utils)
+  --   vim.notify(utils.root_has_file("Gemfile"), vim.log.levels.INFO)
+  --   return utils.root_has_file("Gemfile")
+  --       and formatting.rubocop.with({
+  --         command = "bundle",
+  --         args = vim.list_extend(
+  --           { "exec", "rubocop" },
+  --           formatting.rubocop._opts.args
+  --         ),
+  --       })
+  --       or formatting.rubocop
+  -- end),
+
+  -- Same as above, but with diagnostics.rubocop to make sure we use the proper rubocop version for the project
+  -- conditional(function(utils)
+  --   return utils.root_has_file("Gemfile")
+  --       and null_ls.builtins.diagnostics.rubocop.with({
+  --         command = "bundle",
+  --         args = vim.list_extend(
+  --           { "exec", "rubocop" },
+  --           null_ls.builtins.diagnostics.rubocop._opts.args
+  --         ),
+  --       })
+  --       or null_ls.builtins.diagnostics.rubocop
+  -- end),
+
   on_attach = function(client, bufnr)
     vim.notify("null-ls attached", vim.log.levels.INFO)
     if client.supports_method("textDocument/formatting") then
@@ -79,8 +160,10 @@ null_ls.setup({
         group = augroup,
         buffer = bufnr,
         callback = function()
-          -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
-          vim.lsp.buf.formatting_sync()
+          vim.lsp.buf.format({
+            bufnr = bufnr,
+            timeout = 5000
+          })
         end,
       })
     end
@@ -99,3 +182,5 @@ prettier.setup {
     "scss",
   }
 }
+
+require("fidget").setup {}
