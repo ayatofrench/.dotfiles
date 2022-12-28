@@ -13,10 +13,12 @@ lsp.servers = {
   "html",
   "jsonls",
   "rust_analyzer",
+  "gopls",
   "sumneko_lua",
   "tailwindcss",
   "tsserver",
   "yamlls",
+  "zls",
 }
 ---
 mason.setup()
@@ -75,6 +77,10 @@ lspconfig.sumneko_lua.setup(config({
 }))
 
 lspconfig.tsserver.setup(config())
+
+lspconfig.gopls.setup(config())
+
+lspconfig.zls.setup(config())
 
 lspconfig.solargraph.setup(config({
   settings = {
