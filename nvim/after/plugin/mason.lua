@@ -15,6 +15,7 @@ lsp.servers = {
   "rust_analyzer",
   "gopls",
   "sumneko_lua",
+  "svelte",
   "tailwindcss",
   "tsserver",
   "yamlls",
@@ -79,6 +80,8 @@ lspconfig.sumneko_lua.setup(config({
 lspconfig.tsserver.setup(config())
 
 lspconfig.gopls.setup(config())
+
+lspconfig.svelte.setup(config())
 
 lspconfig.zls.setup(config())
 

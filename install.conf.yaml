@@ -8,6 +8,7 @@
 - link:
     ~/.config/nvim: 
     ~/.config/wezterm:
+    ~/.config/fish:
     ~/.tmux.conf:
       path: tmux/.tmux.conf
     ~/.alacritty.yml:
