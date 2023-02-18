@@ -3,6 +3,7 @@ local mason_lsp = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
 local null_ls = require("null-ls")
 local prettier = require("prettier")
+local rt = require("rust-tools")
 local is_mac = vim.fn.has("macunix") == 1
 
 local lsp = {}
@@ -16,7 +17,9 @@ lsp.servers = {
   "sumneko_lua",
   "tailwindcss",
   "tsserver",
+  "eslint",
   "yamlls",
+  "zls",
 }
 ---
 mason.setup()
@@ -75,11 +78,12 @@ lspconfig.sumneko_lua.setup(config({
 }))
 
 lspconfig.tsserver.setup(config())
+lspconfig.eslint.setup(config())
 
 lspconfig.solargraph.setup(config({
   settings = {
     solargraph = {
-      commandPath = '/Users/ayato.french/.rvm/gems/ruby-2.5.3/bin/solargraph',
+      -- commandPath = '/Users/ayato.french/.asdf/shims/solargraph',
       diagnostics = true,
       completion = true,
       flags = {
@@ -90,8 +94,20 @@ lspconfig.solargraph.setup(config({
       }
     }
   },
-  root_dir = lspconfig.util.root_pattern("Gemfile", ".git"),
+  -- root_dir = lspconfig.util.root_pattern("Gemfile", ".git"),
 }))
+
+rt.setup({
+  server = {
+    on_attach = function(_, bufnr)
+      -- Hover actions
+      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+      -- Code action groups
+      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+    end,
+  },
+})
+
 
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
@@ -106,9 +122,10 @@ null_ls.setup({
     return vim.fn.getcwd()
   end,
   sources = {
-    diagnostics.eslint.with({
-      diagnostics_format = '[eslint] #{m}\n(#{c})'
-    }),
+    -- diagnostics.eslint_d.with({
+    --   diagnostics_format = '[eslint] #{m}\n(#{c})'
+    -- }),
+    -- formatting.eslint_d,
     -- formatting.rubocop.with({
     --   command = "bundle",
     --   args = vim.list_extend(
@@ -116,12 +133,29 @@ null_ls.setup({
     --     formatting.rubocop._opts.args
     --   ),
     -- }),
-    null_ls.builtins.diagnostics.rubocop.with({
+    -- diagnostics.rubocop.with({
+    --   command = "bundle",
+    --   args = vim.list_extend(
+    --     { "exec", "rubocop", "-c", ".new_rubocop_rules.yml", "--force-exclusion" },
+    --     diagnostics.rubocop._opts.args
+    --   ),
+    -- }),
+    diagnostics.rubocop.with({
       command = "bundle",
-      args = vim.list_extend(
-        { "exec", "rubocop", "-c", ".new_rubocop_rules.yml", "--force-exclusion" },
-        null_ls.builtins.diagnostics.rubocop._opts.args
-      ),
+      args = function()
+        local utils = require("null-ls.utils").make_conditional_utils()
+        if (utils.root_has_file(".new_rubocop_rules.yml")) then
+          return vim.list_extend(
+            { "exec", "rubocop", "-c", ".new_rubocop_rules.yml", "--force-exclusion" },
+            diagnostics.rubocop._opts.args
+          )
+        else
+          return vim.list_extend(
+            { "exec", "rubocop" },
+            diagnostics.rubocop._opts.args
+          )
+        end
+      end,
     })
   },
 
@@ -153,7 +187,6 @@ null_ls.setup({
   -- end),
 
   on_attach = function(client, bufnr)
-    vim.notify("null-ls attached", vim.log.levels.INFO)
     if client.supports_method("textDocument/formatting") then
       vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
       vim.api.nvim_create_autocmd("BufWritePre", {
@@ -162,7 +195,7 @@ null_ls.setup({
         callback = function()
           vim.lsp.buf.format({
             bufnr = bufnr,
-            timeout = 5000
+            timeout = 10000
           })
         end,
       })
@@ -171,7 +204,7 @@ null_ls.setup({
 })
 
 prettier.setup {
-  bin = 'prettierd',
+  bin = 'prettier',
   filetypes = {
     "css",
     "javascript",
