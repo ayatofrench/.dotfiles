@@ -14,7 +14,9 @@ lsp.servers = {
   "html",
   "jsonls",
   "rust_analyzer",
+  "gopls",
   "sumneko_lua",
+  "svelte",
   "tailwindcss",
   "tsserver",
   "eslint",
@@ -79,6 +81,12 @@ lspconfig.sumneko_lua.setup(config({
 
 lspconfig.tsserver.setup(config())
 lspconfig.eslint.setup(config())
+
+lspconfig.gopls.setup(config())
+
+lspconfig.svelte.setup(config())
+
+lspconfig.zls.setup(config())
 
 lspconfig.solargraph.setup(config({
   settings = {
