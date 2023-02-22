@@ -1,6 +1,6 @@
 require("secretninjaman.set")
-require("secretninjaman.packer")
 require("secretninjaman.keymap")
+require("secretninjaman.packer")
 
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd

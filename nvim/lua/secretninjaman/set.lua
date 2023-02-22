@@ -49,5 +49,4 @@ vim.opt.colorcolumn = "100"
 
 vim.opt.clipboard = "unnamedplus"
 
-vim.g.mapleader = " "
 
