@@ -36,3 +36,5 @@ for _, lsp in ipairs(settings.servers) do
     -- },
   })
 end
+
+require("fidget").setup({})

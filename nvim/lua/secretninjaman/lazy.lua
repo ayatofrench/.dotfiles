@@ -12,13 +12,13 @@ return require("lazy").setup({
   "nvim-lua/plenary.nvim",
   "nvim-lua/popup.nvim",
 
-  {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    build = "make",
-    cond = function()
-      return vim.fn.executable("make") == 1
-    end,
-  },
+  -- {
+  --   "nvim-telescope/telescope-fzf-native.nvim",
+  --   build = "make",
+  --   cond = function()
+  --     return vim.fn.executable("make") == 1
+  --   end,
+  -- },
 
   -- use("tzachar/cmp-tabnine", { build = "./install.sh" })
   "nvim-lua/lsp_extensions.nvim",
