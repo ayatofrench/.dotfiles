@@ -2,8 +2,43 @@ local M = {}
 
 M.theme = "catppucin"
 
+M.treesitter_parsers = {
+  "bash",
+  "c",
+  "cmake",
+  "cpp",
+  "comment",
+  "dockerfile",
+  "fish",
+  "go",
+  "graphql",
+  "help",
+  "html",
+  "javascript",
+  "json",
+  "markdown",
+  "norg",
+  "proto",
+  "python",
+  "regex",
+  "ruby",
+  "rust",
+  "scss",
+  "sql",
+  "svelte",
+  "toml",
+  "tsx",
+  "typescript",
+  "vim",
+  "yaml",
+  "zig",
+}
+
 M.servers = {
   -- LSP
+  "astro",
+  "clangd",
+  "cmake",
   "cssls",
   "html",
   "jsonls",
@@ -15,14 +50,17 @@ M.servers = {
   "solargraph",
   --  "pyre",
   "lua_ls",
-  "sqlls",
+  "sqls",
   "yamlls",
   "taplo",
+  "vimls",
+  "zls",
   -- -- Formatter
-  -- "black",
+  --  "black",
   -- "prettier",
   -- "stylua",
-  -- -- Linter
+  -- Linter
+  -- "rubocop",
   -- "eslint_d",
   -- "shellcheck",
   -- "tflint",

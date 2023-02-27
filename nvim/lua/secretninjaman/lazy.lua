@@ -22,8 +22,13 @@ return require("lazy").setup({
 
   -- use("tzachar/cmp-tabnine", { build = "./install.sh" })
   "nvim-lua/lsp_extensions.nvim",
-  "glepnir/lspsaga.nvim",
   "simrat39/symbols-outline.nvim",
+  {
+    "ray-x/lsp_signature.nvim",
+    config = function()
+      require("lsp_signature").setup()
+    end
+  },
 
   {
     "atusy/leap-ast.nvim",
@@ -40,6 +45,20 @@ return require("lazy").setup({
   "ThePrimeagen/refactoring.nvim",
 
   "mbbill/undotree",
+
+  -- mini nvim modules
+  {
+    "echasnovski/mini.starter",
+    config = function ()
+      require("mini.starter").setup({})
+    end
+  },
+  {
+    "echasnovski/mini.surround",
+    config = function ()
+      require("mini.surround").setup({})
+    end
+  },
 
   -- Lua
 

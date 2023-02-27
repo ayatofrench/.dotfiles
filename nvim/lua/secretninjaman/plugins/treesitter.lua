@@ -1,3 +1,4 @@
+local settings = require("secretninjaman.settings")
 -- Treesitter Plugin Setup
 
 -- require('nvim-treesitter.configs').setup {
@@ -32,7 +33,7 @@ local M = {
   },
   config = function()
     require("nvim-treesitter.configs").setup({
-      ensure_installed = "all",
+      ensure_installed = settings.treesitter_parsers,
       ignore_install = {}, -- List of parsers to ignore installing
       highlight = {
         enable = true, -- false will disable the whole extension
