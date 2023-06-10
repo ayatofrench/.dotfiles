@@ -15,9 +15,9 @@ return require("lazy").setup({
   -- {
   --   "nvim-telescope/telescope-fzf-native.nvim",
   --   build = "make",
-  --   cond = function()
-  --     return vim.fn.executable("make") == 1
-  --   end,
+  -- cond = function()
+  --   return vim.fn.executable("make") == 1
+  -- end,
   -- },
 
   -- use("tzachar/cmp-tabnine", { build = "./install.sh" })
@@ -27,7 +27,7 @@ return require("lazy").setup({
     "ray-x/lsp_signature.nvim",
     config = function()
       require("lsp_signature").setup()
-    end
+    end,
   },
 
   {
@@ -49,15 +49,15 @@ return require("lazy").setup({
   -- mini nvim modules
   {
     "echasnovski/mini.starter",
-    config = function ()
+    config = function()
       require("mini.starter").setup({})
-    end
+    end,
   },
   {
     "echasnovski/mini.surround",
-    config = function ()
+    config = function()
       require("mini.surround").setup({})
-    end
+    end,
   },
 
   -- Lua

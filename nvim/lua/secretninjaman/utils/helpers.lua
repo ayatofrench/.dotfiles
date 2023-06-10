@@ -1,5 +1,5 @@
-local cmd = vim.cmd
-local fn = vim.fn
+-- local cmd = vim.cmd
+-- local fn = vim.fn
 
 local M = {}
 
@@ -37,6 +37,25 @@ M.escapePair = function()
   else
     vim.api.nvim_win_set_cursor(0, { row, col + 1 })
   end
+end
+
+--- Function to merge/join tables
+--- @param ... table List of tables to be merged
+--- @return table Merged table
+M.mergeTables = function(...)
+  local result = {}
+
+  for _, tbl in ipairs({ ... }) do
+    for k, v in pairs(tbl) do
+      if type(k) ~= "number" then
+        result[k] = v
+      else
+        table.insert(result, v)
+      end
+    end
+  end
+
+  return result
 end
 
 return M

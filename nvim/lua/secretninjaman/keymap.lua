@@ -3,10 +3,7 @@ local M = {}
 local function bind(op, outer_opts)
   outer_opts = outer_opts or { noremap = true }
   return function(lhs, rhs, opts)
-    opts = vim.tbl_extend("force",
-      outer_opts,
-      opts or {}
-    )
+    opts = vim.tbl_extend("force", outer_opts, opts or {})
     vim.keymap.set(op, lhs, rhs, opts)
   end
 end
@@ -17,7 +14,6 @@ t = require("telescope.builtin")
 t_ext = require("telescope").extensions
 h_mark = require("harpoon.mark")
 h_ui = require("harpoon.ui")
-
 
 -- Normal mode, no <leader> prefix
 
@@ -31,8 +27,6 @@ wk.register({
   ["<C-l>"] = { "<cmd>lua h_ui.nav_file(3)<CR>", "harpoon ui toggle" },
   ["<C-;>"] = { "<cmd>lua h_ui.nav_file(4)<CR>", "harpoon ui toggle" },
 })
-
-
 
 -- Normal mode, <leader> prefix
 
@@ -51,10 +45,10 @@ wk.register({
   ["<cr>"] = { "<cmd>Ttoggle<CR>", "toggle terminal" },
 
   a = { "<cmd>lua h_mark.add_file()<CR>", "add file to harpoon" },
-  c = {
-    name = "+create",
-    t = { "<cmd>tabnew<cr>", "new tab" },
-  },
+  -- c = {
+  --   name = "+create",
+  --   t = { "<cmd>tabnew<cr>", "new tab" },
+  -- },
 
   -- open
 
@@ -68,10 +62,7 @@ wk.register({
     gb = { "<cmd>lua t.git_branches()<CR>", "git branch" },
 
     gc = { "<cmd>lua t.git_commits()<CR>", "git commit" },
-
   },
-
-
 
   -- find
 
@@ -80,28 +71,16 @@ wk.register({
     name = "+find",
 
     f = { "<cmd>lua t.current_buffer_fuzzy_find()<CR>", "in file" },
-
     -- for syntax documentation see https://docs.rs/regex/1.5.4/regex/#syntax
-
     d = { "<cmd>lua t.live_grep()<CR>", "in directory" },
-
     w = { "<cmd>lua t.grep_string()<CR>", "word" },
-
     s = { "<cmd>lua t.lsp_document_symbols()<CR>", "document symbols" },
-
     S = { "<cmd>lua t.lsp_workspace_symbols()<CR>", "workspace symbols" },
-
     q = { "<cmd>lua t.quickfix()<CR>", "in quickfix list" },
-
     h = { "<cmd>lua t.help_tags()<CR>", "in help" },
-
     r = { "<cmd>lua t.lsp_references()<CR>", "references" },
-
     t = { "<cmd>lua t_ext.todo.todo()<CR>", "todos" },
-
   },
-
-
 
   -- window
 
@@ -130,10 +109,7 @@ wk.register({
     z = { "<cmd>ZenMode<CR>", "toggle zen mode" },
 
     t = { "<cmd>wincmd T<CR>", "breakout into new tab" },
-
   },
-
-
 
   -- quit
 
@@ -154,10 +130,7 @@ wk.register({
     T = { "<cmd>tabonly<CR>", "all other tabs" },
 
     q = { "<cmd>cclose<CR>", "quickfix list" },
-
   },
-
-
 
   -- go
 
@@ -170,8 +143,6 @@ wk.register({
     j = { "<cmd>lua vim.diagnostic.goto_next<CR>", "go to next error" },
     k = { "<cmd>lua vim.diagnostic.goto_prev<CR>", "go to prev error" },
   },
-
-
 
   -- show
 
@@ -186,15 +157,12 @@ wk.register({
     d = {
 
       function()
-
         require("gitsigns.actions").diffthis()
 
         vim.cmd("windo set foldcolumn=0")
-
       end,
 
-      "git diff"
-
+      "git diff",
     },
 
     D = { "<cmd>Dirbuf<CR>", "directory buffer" },
@@ -214,10 +182,7 @@ wk.register({
     t = { "<cmd>TodoTrouble<CR>", "todos" },
 
     r = { "<cmd>lua vim.lsp.buf.references()<CR>", "lsp references" },
-
   },
-
-
 
   -- run
 
@@ -229,13 +194,10 @@ wk.register({
 
     w = { "<cmd>lua require('spectre').open_visual({select_word=true})<CR><bar><cmd>wincmd T<CR>", "replace word" },
 
-    a = { "<cmd>lua t.lsp_code_actions(require('telescope.themes').get_cursor({}))<CR>", "code action" },
+    a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "code action" },
 
     r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "rename" },
-
   },
-
-
 
   -- terminal
 
@@ -244,10 +206,7 @@ wk.register({
     name = "+terminal",
 
     c = { "<cmd>T clear<CR>", "clear" },
-
   },
-
-
 
   -- diff
 
@@ -258,10 +217,7 @@ wk.register({
     g = { "<cmd>diffget<cr>", "get" },
 
     p = { "<cmd>diffput<cr>", "put" },
-
   },
-
-
 
   -- next
 
@@ -276,47 +232,42 @@ wk.register({
     t = { "<cmd>lua require('trouble').next({skip_groups = true, jump = true})<cr>", "trouble" },
 
     c = { "<cmd>lua require('gitsigns.actions').next_hunk()<CR>", "change" },
-
   },
 
   -- previous
 
   p = {
-
     name = "+previous",
-
     e = { "<cmd>silent lua vim.lsp.diagnostic.goto_prev()<cr>", "error" },
-
     q = { "<cmd>cprevious<cr>", "quickfix item" },
-
     t = { "<cmd>lua require('trouble').previous({skip_groups = true, jump = true})<cr>", "trouble" },
-
     c = { "<cmd>lua require('gitsigns.actions').prev_hunk()<CR>", "change" },
-
   },
-
 }, { prefix = "<leader>" })
-
-
 
 -- visual mode, <leader> prefix
 
 wk.register({
-
   d = {
-
     name = "+diff",
-
     g = { "<cmd>'<,'>diffget<cr>", "get" },
-
     p = { "<cmd>'<,'>diffput<cr>", "put" },
-
   },
-
 }, { prefix = "<leader>", mode = "v" })
 
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+local yank_group = augroup("HighlightYank", {})
 
-
-
+autocmd("TextYankPost", {
+  group = yank_group,
+  pattern = "*",
+  callback = function()
+    vim.highlight.on_yank({
+      higroup = "IncSearch",
+      timeout = 40,
+    })
+  end,
+})
 
 return M

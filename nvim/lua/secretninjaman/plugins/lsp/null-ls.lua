@@ -2,10 +2,6 @@ local null_ls = require("null-ls")
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
--- local conditional = function(fn)
---   local utils = require("null-ls.utils").make_conditional_utils()
---   return fn(utils)
--- end
 
 null_ls.setup({
   root_dir = function()
@@ -13,10 +9,10 @@ null_ls.setup({
   end,
   sources = {
     formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "2" } }),
-    formatting.prettier.with({
-      extra_args = { "--single-quote", "false" },
-    }),
+    formatting.prettierd,
     formatting.rustfmt,
+    formatting.gofmt,
+    formatting.goimports,
     formatting.rubocop.with({
       command = "bundle",
       args = vim.list_extend(
@@ -24,26 +20,12 @@ null_ls.setup({
         formatting.rubocop._opts.args
       ),
     }),
-    diagnostics.eslint.with({
-      diagnostics_format = "[eslint] #{m}\n(#{c})",
-    }),
     diagnostics.rubocop.with({
       command = "bundle",
       args = vim.list_extend(
         { "exec", "rubocop", "-c", ".new_rubocop_rules.yml", "--force-exclusion" },
         diagnostics.rubocop._opts.args
       ),
-      -- args = function()
-      --   local utils = require("null-ls.utils").make_conditional_utils()
-      --   -- if utils.root_has_file(".new_rubocop_rules.yml") then
-      --     return vim.list_extend(
-      --       { "exec", "rubocop", "-c", ".new_rubocop_rules.yml", "--force-exclusion" },
-      --       diagnostics.rubocop._opts.args
-      --     )
-      --   -- else
-      --   --   return vim.list_extend({ "exec", "rubocop" }, diagnostics.rubocop._opts.args)
-      --   -- end
-      -- end,
     }),
   },
 

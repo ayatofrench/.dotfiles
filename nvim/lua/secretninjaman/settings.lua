@@ -34,7 +34,7 @@ M.treesitter_parsers = {
   "zig",
 }
 
-M.servers = {
+M.lps_servers = {
   -- LSP
   "astro",
   "clangd",
@@ -45,18 +45,20 @@ M.servers = {
   "rust_analyzer",
   "gopls",
   "tsserver",
+  -- "denols",
   "svelte",
   "tailwindcss",
   "solargraph",
-  --  "pyre",
+  "eslint",
+  "pyright",
   "lua_ls",
-  "sqls",
+  "sqlls",
   "yamlls",
   "taplo",
   "vimls",
   "zls",
   -- -- Formatter
-  --  "black",
+  -- "black",
   -- "prettier",
   -- "stylua",
   -- Linter
@@ -65,6 +67,13 @@ M.servers = {
   -- "shellcheck",
   -- "tflint",
   -- "yamllint",
+}
+
+M.null_ls_tools = {
+  "black",
+  "stylua",
+  "mypy",
+  "ruff",
 }
 
 M.telescope_file_ignore_patterns = {

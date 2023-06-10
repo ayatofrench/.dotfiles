@@ -52,7 +52,7 @@ local M = {
       endwise = {
         enable = true,
       },
-      indent = { enable = true },
+      -- indent = { enable = true },
       autopairs = { enable = true },
       textobjects = {
         select = {

@@ -7,6 +7,7 @@ local M = {
     "onsails/lspkind-nvim",
     { "folke/neodev.nvim", config = true },
     "j-hui/fidget.nvim",
+    "simrat39/inlay-hints.nvim",
   },
   config = function()
     require("secretninjaman.plugins.lsp.lsp")
