@@ -50,7 +50,7 @@ local M = {
         },
       },
       endwise = {
-        enable = true,
+        enable = false,
       },
       -- indent = { enable = true },
       autopairs = { enable = true },

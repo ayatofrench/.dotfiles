@@ -9,16 +9,30 @@ null_ls.setup({
   end,
   sources = {
     formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "2" } }),
-    formatting.prettierd,
     formatting.rustfmt,
     formatting.gofmt,
     formatting.goimports,
+    formatting.prettier.with({
+      extra_args = { "--single-quote", "false" },
+    }),
     formatting.rubocop.with({
       command = "bundle",
-      args = vim.list_extend(
-        { "exec", "rubocop", "-c", ".new_rubocop_rules.yml", "--force-exclusion" },
-        formatting.rubocop._opts.args
-      ),
+      args = vim.list_extend({ "exec", "rubocop", "-x" }, formatting.rubocop._opts.args),
+      diagnostics.rubocop.with({
+        command = "bundle",
+        args = vim.list_extend({ "exec", "rubocop", "-l" }, diagnostics.rubocop._opts.args),
+      }),
+      -- args = function()
+      --   local utils = require("null-ls.utils").make_conditional_utils()
+      --   -- if utils.root_has_file(".new_rubocop_rules.yml") then
+      --     return vim.list_extend(
+      --       { "exec", "rubocop", "-c", ".new_rubocop_rules.yml", "--force-exclusion" },
+      --       diagnostics.rubocop._opts.args
+      --     )
+      --   -- else
+      --   --   return vim.list_extend({ "exec", "rubocop" }, diagnostics.rubocop._opts.args)
+      --   -- end
+      -- end,
     }),
     diagnostics.rubocop.with({
       command = "bundle",
@@ -26,6 +40,9 @@ null_ls.setup({
         { "exec", "rubocop", "-c", ".new_rubocop_rules.yml", "--force-exclusion" },
         diagnostics.rubocop._opts.args
       ),
+    }),
+    diagnostics.eslint.with({
+      diagnostics_format = "[eslint] #{m}\n(#{c})",
     }),
   },
 

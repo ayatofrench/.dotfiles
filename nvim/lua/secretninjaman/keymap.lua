@@ -82,6 +82,10 @@ wk.register({
     t = { "<cmd>lua t_ext.todo.todo()<CR>", "todos" },
   },
 
+  m = {
+    c = { "<cmd>lua require('secretninjaman.plugins.lsp.utils').toggle_codeium()<cr>", "Toggle format on save" },
+  },
+
   -- window
 
   w = {

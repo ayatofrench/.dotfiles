@@ -4,14 +4,20 @@ fish_add_path PATH="$GOPATH/bin:$GOROOT/bin:$PATH"
 
 fish_add_path NVM_DIR="~/.nvm"
 # pnpm
-fish_add_path PNPM_HOME="/home/secretninjaman/.local/share/pnpm"
-fish_add_path PATH="$PNPM_HOME:$PATH"
+fish_add_path ~/.local/share/pnpm
 # pnpm end
 
 # rust/cargo
 fish_add_path ~/.cargo/bin
 
+# fish_add_path /home/secretninjaman/.local/bin/zig
+fish_add_path -m ~/.local/bin
 # alias nvim="$HOME/./nvim.appimage"
+
+# deno
+set -x DENO_INSTALL /home/secretninjaman/.deno
+set -x PATH $DENO_INSTALL/bin:$PATH
+
 alias vim="nvim"
 alias vi="nvim"
 
@@ -91,4 +97,15 @@ function ssh_agent_init
     # ssh-add -l
 end
 
+function storePathForWindowsTerminal --on-variable PWD
+  if test -n "$WT_SESSION"
+    printf "\e]9;9;%s\e\\" (wslpath -w "$PWD")
+  end
+end
+
 ssh_agent_init
+
+source /opt/asdf-vm/asdf.fish
+
+# Turso
+export PATH="/home/secretninjaman/.turso:$PATH"

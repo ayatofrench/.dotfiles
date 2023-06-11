@@ -1,5 +1,7 @@
 local M = {}
 
+M.nvim_workspace = os.getenv("NVIM_WORKSPACE") or "personal"
+
 M.theme = "catppucin"
 
 M.treesitter_parsers = {
@@ -18,6 +20,7 @@ M.treesitter_parsers = {
   "json",
   "markdown",
   "norg",
+  -- "odin",
   "proto",
   "python",
   "regex",
@@ -44,9 +47,11 @@ M.lps_servers = {
   "jsonls",
   "rust_analyzer",
   "gopls",
+  -- "denols",
   "tsserver",
   -- "denols",
   "svelte",
+  "prismals",
   "tailwindcss",
   "solargraph",
   "eslint",
@@ -56,6 +61,7 @@ M.lps_servers = {
   "yamlls",
   "taplo",
   "vimls",
+  "ols",
   "zls",
   -- -- Formatter
   -- "black",
