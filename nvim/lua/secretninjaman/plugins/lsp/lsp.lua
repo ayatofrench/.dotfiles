@@ -55,7 +55,7 @@ for _, lsp in ipairs(settings.lps_servers) do
   })
 end
 
-require("fidget").setup({})
+-- require("fidget").setup({})
 require("inlay-hints").setup({
   -- renderer to use
   -- possible options are dynamic, eol, virtline and custom

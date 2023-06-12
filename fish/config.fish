@@ -12,6 +12,7 @@ fish_add_path ~/.cargo/bin
 
 # fish_add_path /home/secretninjaman/.local/bin/zig
 fish_add_path -m ~/.local/bin
+fish_add_path -m ~/.local/bin/scripts
 # alias nvim="$HOME/./nvim.appimage"
 
 # deno
