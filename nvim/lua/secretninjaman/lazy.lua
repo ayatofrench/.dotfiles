@@ -20,15 +20,14 @@ return require("lazy").setup({
   -- end,
   -- },
 
-  -- use("tzachar/cmp-tabnine", { build = "./install.sh" })
   "nvim-lua/lsp_extensions.nvim",
   "simrat39/symbols-outline.nvim",
-  {
-    "ray-x/lsp_signature.nvim",
-    config = function()
-      require("lsp_signature").setup()
-    end,
-  },
+  -- {
+  --   "ray-x/lsp_signature.nvim",
+  --   config = function()
+  --     require("lsp_signature").setup()
+  --   end,
+  -- },
 
   {
     "atusy/leap-ast.nvim",
@@ -38,6 +37,8 @@ return require("lazy").setup({
   -- "MunifTanjim/prettier.nvim",
   -- "windwp/nvim-ts-autotag",
   "slim-template/vim-slim",
+
+  "tjdevries/cyclist.vim",
 
   -- Primeagen packages
   "ThePrimeagen/git-worktree.nvim",
