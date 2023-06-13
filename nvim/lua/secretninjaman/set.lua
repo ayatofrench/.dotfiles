@@ -24,14 +24,12 @@ vim.opt.incsearch = true
 
 vim.opt.termguicolors = true
 
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 10
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
-
-
 -- Give more space for displaying messages.
-vim.opt.cmdheight = 1
+vim.opt.cmdheight = 0
 
 -- vim.g.loaded_netrw = 1
 -- vim.g.loaed_netrwPlugin = 1
@@ -48,5 +46,3 @@ vim.opt.shortmess:append("c")
 vim.opt.colorcolumn = "100"
 
 vim.opt.clipboard = "unnamedplus"
-
-

@@ -3,7 +3,8 @@ local M = {
   config = function()
     require("lualine").setup({
       options = {
-        icons_enanled = false,
+        -- icons_enabled = false,
+        theme = "auto",
       },
     })
   end,
