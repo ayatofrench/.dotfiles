@@ -25,10 +25,9 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
+vim.smoothscroll = true
 vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
-
-
 
 -- Give more space for displaying messages.
 vim.opt.cmdheight = 1
@@ -39,7 +38,7 @@ vim.opt.cmdheight = 1
 -- Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 -- delays and poor user experience.
 
-vim.opt.updatetime = 50
+vim.opt.updatetime = 100
 
 -- Don't pass messages to |ins-completion-menu|.
 
@@ -48,5 +47,3 @@ vim.opt.shortmess:append("c")
 vim.opt.colorcolumn = "100"
 
 vim.opt.clipboard = "unnamedplus"
-
-

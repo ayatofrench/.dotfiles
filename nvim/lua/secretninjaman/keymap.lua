@@ -15,12 +15,15 @@ t_ext = require("telescope").extensions
 h_mark = require("harpoon.mark")
 h_ui = require("harpoon.ui")
 
+vim.keymap.set("o", "m", "<C-U>lua require('tsht').nodes()<CR>", { silent = true })
+vim.keymap.set("x", "m", function()
+  require("tsht").nodes()
+end, { silent = true, noremap = true })
+
 -- Normal mode, no <leader> prefix
 
 wk.register({
   ["gd"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", "go to definition" },
-  ["gt"] = { "next tab" },
-  ["gT"] = { "previous tab" },
   ["<C-e>"] = { "<cmd>lua h_ui.toggle_quick_menu()<CR>", "harpoon ui toggle" },
   ["<C-j>"] = { "<cmd>lua h_ui.nav_file(1)<CR>", "harpoon ui toggle" },
   ["<C-k>"] = { "<cmd>lua h_ui.nav_file(2)<CR>", "harpoon ui toggle" },
@@ -129,10 +132,6 @@ wk.register({
 
     B = { "<cmd>BufOnly!<CR>", "all other buffers" },
 
-    t = { "<cmd>tabclose<CR>", "tab" },
-
-    T = { "<cmd>tabonly<CR>", "all other tabs" },
-
     q = { "<cmd>cclose<CR>", "quickfix list" },
   },
 
@@ -169,7 +168,7 @@ wk.register({
       "git diff",
     },
 
-    D = { "<cmd>Dirbuf<CR>", "directory buffer" },
+    D = { "<cmd>NeoTreeShow<CR>", "directory buffer" },
 
     e = { "<cmd>lua vim.diagnostic.open_float()<CR>", "line errors" },
 
