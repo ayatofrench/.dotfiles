@@ -47,6 +47,7 @@ null_ls.setup({
       diagnostics_format = "[eslint] #{m}\n(#{c})",
     }),
     diagnostics.ruff,
+    diagnostics.misspell,
   },
 
   -- Here we set a conditional to call the rubocop formatter. If we have a Gemfile in the project, we call "bundle exec rubocop", if not we only call "rubocop".

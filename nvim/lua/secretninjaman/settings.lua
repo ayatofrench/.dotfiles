@@ -75,11 +75,14 @@ M.lps_servers = {
   -- "yamllint",
 }
 
-M.null_ls_tools = {
+M.mason_tools = {
   "black",
   "stylua",
   -- "mypy",
   "ruff",
+  "misspell",
+  "shellcheck",
+  "yamllint",
 }
 
 M.telescope_file_ignore_patterns = {
