@@ -71,23 +71,24 @@ end
 --- Config
 ---------------------------------------------------------------
 local config = {
-  background = {
-    {
-      source = {
-        File = wezterm.config_dir .. "/backdrops/grand_teton.jpeg",
-      },
-    },
-    {
-      source = { Color = "#1f1f28" },
-      height = "100%",
-      width = "100%",
-      opacity = 0.9,
-    },
-  },
+  front_end = "WebGpu",
+  -- background = {
+  --   {
+  --     source = {
+  --       File = wezterm.config_dir .. "/backdrops/grand_teton.jpeg",
+  --     },
+  --   },
+  --   {
+  --     source = { Color = "#1f1f28" },
+  --     height = "100%",
+  --     width = "100%",
+  --     opacity = 0.9,
+  --   },
+  -- },
   -- font = wezterm.font("Cica"),
   -- font_size = 10.0,
-  font = wezterm.font("JetBrains Mono"),
-  font_size = 18.0,
+  font = wezterm.font("JetBrainsMono Nerd Font"),
+  font_size = 22.0,
   -- font_rules = {
   -- 	{
   -- 		italic = true,
@@ -119,9 +120,9 @@ local config = {
   -- adjust_window_size_when_changing_font_size = false,
   -- selection_word_boundary = " \t\n{}[]()\"'`,;:│=&!%",
   window_padding = {
-    left = 0,
-    right = 0,
-    top = 0,
+    left = 5,
+    right = 5,
+    top = 5,
     bottom = 0,
   },
   use_fancy_tab_bar = false,
@@ -139,7 +140,7 @@ local config = {
   exit_behavior = "CloseOnCleanExit",
   tab_bar_at_bottom = false,
   window_close_confirmation = "AlwaysPrompt",
-  -- window_background_opacity = 0.88,
+  window_background_opacity = 0.70,
   -- window_decorations = "NONE",
   -- disable_default_key_bindings = true,
   -- visual_bell = {

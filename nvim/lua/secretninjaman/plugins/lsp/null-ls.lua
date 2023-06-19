@@ -8,6 +8,8 @@ null_ls.setup({
     return vim.fn.getcwd()
   end,
   sources = {
+    formatting.black,
+    formatting.ruff,
     formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "2" } }),
     formatting.rustfmt,
     formatting.gofmt,
@@ -44,6 +46,7 @@ null_ls.setup({
     diagnostics.eslint.with({
       diagnostics_format = "[eslint] #{m}\n(#{c})",
     }),
+    diagnostics.ruff,
   },
 
   -- Here we set a conditional to call the rubocop formatter. If we have a Gemfile in the project, we call "bundle exec rubocop", if not we only call "rubocop".

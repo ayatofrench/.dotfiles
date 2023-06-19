@@ -78,7 +78,7 @@ M.lps_servers = {
 M.null_ls_tools = {
   "black",
   "stylua",
-  "mypy",
+  -- "mypy",
   "ruff",
 }
 
