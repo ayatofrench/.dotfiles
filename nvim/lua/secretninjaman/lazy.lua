@@ -65,13 +65,7 @@ return require("lazy").setup({
 
   {
     "folke/which-key.nvim",
-    config = function()
-      require("which-key").setup({
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      })
-    end,
+    lazy = true,
   },
   -- Colorscheme section
 
@@ -79,12 +73,6 @@ return require("lazy").setup({
   "folke/tokyonight.nvim",
   { "rose-pine/neovim", name = "rose-pine" },
   { "nvim-tree/nvim-web-devicons" },
-
-  -- "mfussenegger/nvim-dap",
-
-  -- "rcarriga/nvim-dap-ui",
-
-  -- "theHamsta/nvim-dap-virtual-text",
 
   "ThePrimeagen/vim-be-good",
 
