@@ -14,6 +14,7 @@ end
 
 M.toggle_codeium = function()
   CODEIUM_ACTIVE = not CODEIUM_ACTIVE
+  vim.g.codeium_enabled = CODEIUM_ACTIVE
   require("secretninjaman.utils.helpers").notify(
     string.format("Codeium %s", CODEIUM_ACTIVE and "on" or "off"),
     1,

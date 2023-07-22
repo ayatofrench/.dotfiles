@@ -21,6 +21,7 @@ M.treesitter_parsers = {
   "markdown",
   "norg",
   -- "odin",
+  "ocaml",
   "proto",
   "python",
   "regex",
@@ -62,6 +63,7 @@ M.lps_servers = {
   "taplo",
   "vimls",
   "ols",
+  "ocamllsp",
   "zls",
   -- -- Formatter
   -- "black",
