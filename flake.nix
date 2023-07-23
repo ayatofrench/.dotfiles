@@ -1,5 +1,5 @@
 {
-  description = "AJ's Nix Config";
+  description = "Nix Config";
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
@@ -15,14 +15,16 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in {
-      homeConfigurations.aj = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+      homeConfigurations = {
+        aj = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
 
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [
-          ./.dotfiles/home-manager/home.nix 
-        ];
+          # Specify your home configuration modules here, for example,
+          # the path to your home.nix.
+          modules = [
+            ./.dotfiles/home-manager/home.nix
+          ];
+        };
       };
     };
 }
