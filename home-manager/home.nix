@@ -4,7 +4,7 @@
     home = {
         username = "aj";
         homeDirectory = "/home/aj";
-        stateVersion = "master";
+        stateVersion = "23.05";
     };
 
     home.username = "aj";
