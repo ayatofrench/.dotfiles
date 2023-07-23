@@ -8,5 +8,5 @@
       neofetch
     ];
 
-    programs.home-manager.enble = true;
+    programs.home-manager.enable = true;
 }
