@@ -6,9 +6,9 @@
 - clean: ['~']
 
 - link:
+    ~/.config/awesome:
     ~/.config/nvim: 
     ~/.config/wezterm:
-    ~/.config/fish:
     ~/.tmux.conf:
       path: tmux/.tmux.conf
     ~/.alacritty.yml:
@@ -16,6 +16,8 @@
     ~/.config/zellij:
     ~/.local/bin/scripts:
       path: scripts/
+    ~/.local/share/fonts:
+      path: fonts/
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
