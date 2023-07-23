@@ -3,7 +3,7 @@
 {
     home.username = "aj";
     home.homeDirectory = "/home/aj/";
-    home.stateVersion = "master";
+    home.stateVersion = "23.05";
     home.packages = with pkgs; [
       neofetch
     ];
