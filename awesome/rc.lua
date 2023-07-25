@@ -70,6 +70,8 @@ end
 
 run_once({ "alacritty", "unclutter -root" }) -- comma-separated entries
 
+awful.spawn.with_shell("picom")
+
 -- This function implements the XDG autostart specification
 --[[
 awful.spawn.with_shell(

@@ -18,6 +18,8 @@
       path: scripts/
     ~/.local/share/fonts:
       path: fonts/
+    ~/.Xresources:
+      path: .Xresources
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
