@@ -54,7 +54,7 @@ M.lps_servers = {
   "svelte",
   "prismals",
   "tailwindcss",
-  "solargraph",
+  -- "solargraph",
   "eslint",
   "pyright",
   "lua_ls",
