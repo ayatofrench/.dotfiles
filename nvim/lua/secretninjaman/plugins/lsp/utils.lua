@@ -24,12 +24,12 @@ end
 
 function M.lsp_on_attach(client)
   -- disable formatting for LSP clients as this is handled by null-ls
-  client.server_capabilities.documentFormattingProvider = false
-  client.server_capabilities.documentRangeFormattingProvider = false
+  -- client.server_capabilities.documentFormattingProvider = false
+  -- client.server_capabilities.documentRangeFormattingProvider = false
 
-  if client.server_capabilities.signatureHelpProvider then
-    require("secretninjaman.plugins.lsp.ui.signature").setup(client)
-  end
+  -- if client.server_capabilities.signatureHelpProvider then
+  --   require("secretninjaman.plugins.lsp.ui.signature").setup(client)
+  -- end
 end
 
 return M

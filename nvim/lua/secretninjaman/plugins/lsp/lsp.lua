@@ -17,7 +17,7 @@ capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 for _, lsp in ipairs(settings.lps_servers) do
   nvim_lsp[lsp].setup({
     on_attach = function(client, bufnr)
-      utils.lsp_on_attach(client)
+      -- utils.lsp_on_attach(client)
 
       if lsp == "lua_ls" then
         inlay.on_attach(client, bufnr)
@@ -41,17 +41,15 @@ for _, lsp in ipairs(settings.lps_servers) do
     --
     --   return dir
     -- end,
-    capabilities = capabilities,
+    capabilities = function()
+      if lsp == "clangd" then
+        capabilities.offsetEncoding = { "utf-16" }
+      end
+
+      return capabilities
+    end,
     flags = { debounce_text_changes = 150 },
     settings = lsp_servers[lsp],
-    -- settings = {
-    --   json = languages.json,
-    --   Lua = languages.lua,
-    --   ltex = languages.ltx,
-    --   redhat = { telemetry = { enabled = false } },
-    --   texlab = languages.tex,
-    --   yaml = languages.yaml,
-    -- },
   })
 end
 

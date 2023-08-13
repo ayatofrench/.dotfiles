@@ -12,14 +12,6 @@ return require("lazy").setup({
   "nvim-lua/plenary.nvim",
   "nvim-lua/popup.nvim",
 
-  -- {
-  --   "nvim-telescope/telescope-fzf-native.nvim",
-  --   build = "make",
-  -- cond = function()
-  --   return vim.fn.executable("make") == 1
-  -- end,
-  -- },
-
   "nvim-lua/lsp_extensions.nvim",
   "simrat39/symbols-outline.nvim",
   -- {
@@ -69,7 +61,7 @@ return require("lazy").setup({
   },
   -- Colorscheme section
 
-  "gruvbox-community/gruvbox",
+  { "gruvbox-community/gruvbox", name = "gruvbox" },
   "folke/tokyonight.nvim",
   { "rose-pine/neovim", name = "rose-pine" },
   { "nvim-tree/nvim-web-devicons" },

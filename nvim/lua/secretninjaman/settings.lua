@@ -5,6 +5,7 @@ M.nvim_workspace = os.getenv("NVIM_WORKSPACE") or "personal"
 M.theme = "catppucin"
 
 M.treesitter_parsers = {
+  "astro",
   "bash",
   "c",
   "cmake",
@@ -59,7 +60,7 @@ M.lps_servers = {
   "eslint",
   "pyright",
   "lua_ls",
-  "sqlls",
+  -- "sqlls",
   "yamlls",
   "taplo",
   "vimls",
