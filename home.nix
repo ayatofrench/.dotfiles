@@ -74,7 +74,7 @@
           sessionVariables = { ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "underline"; };
           initExtra = ''
               alias ls='echo; ${pkgs.exa}/bin/exa'
-              ${builtins.readFile /home/aj/.dotfiles/.zshrc}
+              ${builtins.readFile .zshrc}
           '';
           envExtra = ''
               export PATH="$PATH:/usr/local/bin"
@@ -102,7 +102,7 @@
           {
               "starship.toml".text =
                 ''format = "$directory$git_branch$line_break$cmd_duration$character"''
-                + builtins.readFile /home/aj/.dotfiles/starship.toml;
+                + builtins.readFile starship.toml;
           }
       ];
 
