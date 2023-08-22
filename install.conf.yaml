@@ -16,8 +16,6 @@
     ~/.config/zellij:
     ~/.local/bin/scripts:
       path: scripts/
-    ~/.local/share/fonts:
-      path: fonts/
     ~/.Xresources:
       path: .Xresources
 

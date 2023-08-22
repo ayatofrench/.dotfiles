@@ -15,6 +15,10 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 for _, lsp in ipairs(settings.lps_servers) do
+  if lsp == "clangd" then
+    capabilities.offsetEncoding = { "utf-16" }
+  end
+
   nvim_lsp[lsp].setup({
     on_attach = function(client, bufnr)
       -- utils.lsp_on_attach(client)
@@ -41,13 +45,7 @@ for _, lsp in ipairs(settings.lps_servers) do
     --
     --   return dir
     -- end,
-    capabilities = function()
-      if lsp == "clangd" then
-        capabilities.offsetEncoding = { "utf-16" }
-      end
-
-      return capabilities
-    end,
+    capabilities = capabilities,
     flags = { debounce_text_changes = 150 },
     settings = lsp_servers[lsp],
   })

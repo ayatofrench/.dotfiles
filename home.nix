@@ -18,16 +18,21 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    bat
     btop
+    direnv
     exa
     fd
     fzf
     go
     htop
+    lazygit
     neofetch
     ripgrep
     stylua
     zf
+
+    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -46,14 +51,14 @@
     # '')
   ];
   
-  home.programs = {
+  programs = {
       home-manager.enable = true;
 
       go.enable = true;
 
       starship = {
           enable = true;
-          enableZshIntegration = false;
+          enableZshIntegration = true;
       };
 
       zoxide.enable = true;
@@ -96,13 +101,13 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
   };
+   
+  fonts.fontconfig.enable = true;
   
-  home.xdg.configFile = with lib;
+  xdg.configFile = with lib;
       mkMerge [
           {
-              "starship.toml".text =
-                ''format = "$directory$git_branch$line_break$cmd_duration$character"''
-                + builtins.readFile ./starship.toml;
+              "starship.toml".text = builtins.readFile ./starship.toml;
           }
       ];
 
