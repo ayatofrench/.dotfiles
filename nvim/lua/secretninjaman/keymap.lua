@@ -53,6 +53,11 @@ wk.register({
   --   t = { "<cmd>tabnew<cr>", "new tab" },
   -- },
 
+  c = {
+    name = "copy",
+    r = { "<cmd>lua require('secretninjaman.utils.helpers').copy_relative_path()<CR>", "copy relative path" },
+  },
+
   -- open
 
   o = {

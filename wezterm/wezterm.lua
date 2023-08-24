@@ -72,19 +72,19 @@ end
 ---------------------------------------------------------------
 local config = {
   front_end = "WebGpu",
-  -- background = {
-  --   {
-  --     source = {
-  --       File = wezterm.config_dir .. "/backdrops/grand_teton.jpeg",
-  --     },
-  --   },
-  --   {
-  --     source = { Color = "#1f1f28" },
-  --     height = "100%",
-  --     width = "100%",
-  --     opacity = 0.9,
-  --   },
-  -- },
+  background = {
+    {
+      source = {
+        File = wezterm.config_dir .. "/backdrops/grand_teton.jpeg",
+      },
+    },
+    {
+      source = { Color = "#1f1f28" },
+      height = "100%",
+      width = "100%",
+      opacity = 0.9,
+    },
+  },
   -- font = wezterm.font("Cica"),
   -- font_size = 10.0,
   font = wezterm.font("JetBrainsMono Nerd Font"),
@@ -140,7 +140,7 @@ local config = {
   exit_behavior = "CloseOnCleanExit",
   tab_bar_at_bottom = false,
   window_close_confirmation = "AlwaysPrompt",
-  window_background_opacity = 0.70,
+  -- window_background_opacity = 0.70,
   -- window_decorations = "NONE",
   -- disable_default_key_bindings = true,
   -- visual_bell = {

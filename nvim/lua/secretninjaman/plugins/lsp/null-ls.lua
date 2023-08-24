@@ -15,7 +15,7 @@ null_ls.setup({
     formatting.gofmt,
     formatting.goimports,
     formatting.prettier.with({
-      extra_args = { "--single-quote", "false" },
+      extra_filetypes = { "astro" },
     }),
     formatting.rubocop.with({
       command = "bundle",
@@ -43,7 +43,7 @@ null_ls.setup({
         diagnostics.rubocop._opts.args
       ),
     }),
-    diagnostics.eslint.with({
+    diagnostics.eslint_d.with({
       diagnostics_format = "[eslint] #{m}\n(#{c})",
     }),
     diagnostics.ruff,

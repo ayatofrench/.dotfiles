@@ -78,6 +78,8 @@ M.lps_servers = {
 M.mason_tools = {
   "black",
   "stylua",
+  "prettierd",
+  "eslint_d",
   -- "mypy",
   "ruff",
   "misspell",
