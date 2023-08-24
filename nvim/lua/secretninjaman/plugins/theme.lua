@@ -11,9 +11,19 @@ local M = {
   name = "catppuccin",
   config = function()
     require("nvim-web-devicons").setup()
-    vim.cmd.colorscheme("catppuccin")
+    vim.cmd.colorscheme("gruvbox")
     ColorMyPencils()
   end,
 }
+-- local M = {
+--   "gruvbox-community/gruvbox",
+--   priority = 1000,
+--   name = "gruvbox",
+--   config = function()
+--     require("nvim-web-devicons").setup()
+--     vim.cmd.colorscheme("gruvbox")
+--     ColorMyPencils()
+--   end,
+-- }
 
 return M

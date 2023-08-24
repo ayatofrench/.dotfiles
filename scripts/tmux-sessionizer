@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(fd . ~/projects -d 1 -t d | zf)
+    selected=$(fd . ~/personal ~/.dotfiles -d 2 -t d | zf)
 fi
 
 if [[ -z $selected ]]; then
@@ -21,9 +21,9 @@ echo $selected_name
 # /*     exit 0 */
 # /* fi */
 
-# zellij options --session-name $selected_name action new-pane --cwd $selected
+zellij options --session-name $selected_name --default-cwd $selected
 # zellij attach --create $selected_name
-zellij run --cwd $selected -- vim
+# zellij run --cwd $selected -- nvim
 # /* if ! zellij has-session -t=$selected_name 2> /dev/null; then */
 # /*     zellij --session $selected_name -c $selected */
 # /* fi */

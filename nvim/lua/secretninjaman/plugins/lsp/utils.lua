@@ -14,6 +14,7 @@ end
 
 M.toggle_codeium = function()
   CODEIUM_ACTIVE = not CODEIUM_ACTIVE
+  vim.g.codeium_enabled = CODEIUM_ACTIVE
   require("secretninjaman.utils.helpers").notify(
     string.format("Codeium %s", CODEIUM_ACTIVE and "on" or "off"),
     1,
@@ -23,12 +24,12 @@ end
 
 function M.lsp_on_attach(client)
   -- disable formatting for LSP clients as this is handled by null-ls
-  client.server_capabilities.documentFormattingProvider = false
-  client.server_capabilities.documentRangeFormattingProvider = false
+  -- client.server_capabilities.documentFormattingProvider = false
+  -- client.server_capabilities.documentRangeFormattingProvider = false
 
-  if client.server_capabilities.signatureHelpProvider then
-    require("secretninjaman.plugins.lsp.ui.signature").setup(client)
-  end
+  -- if client.server_capabilities.signatureHelpProvider then
+  --   require("secretninjaman.plugins.lsp.ui.signature").setup(client)
+  -- end
 end
 
 return M

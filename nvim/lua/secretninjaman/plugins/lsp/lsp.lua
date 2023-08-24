@@ -15,9 +15,13 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 for _, lsp in ipairs(settings.lps_servers) do
+  if lsp == "clangd" then
+    capabilities.offsetEncoding = { "utf-16" }
+  end
+
   nvim_lsp[lsp].setup({
     on_attach = function(client, bufnr)
-      utils.lsp_on_attach(client)
+      -- utils.lsp_on_attach(client)
 
       if lsp == "lua_ls" then
         inlay.on_attach(client, bufnr)
@@ -44,14 +48,6 @@ for _, lsp in ipairs(settings.lps_servers) do
     capabilities = capabilities,
     flags = { debounce_text_changes = 150 },
     settings = lsp_servers[lsp],
-    -- settings = {
-    --   json = languages.json,
-    --   Lua = languages.lua,
-    --   ltex = languages.ltx,
-    --   redhat = { telemetry = { enabled = false } },
-    --   texlab = languages.tex,
-    --   yaml = languages.yaml,
-    -- },
   })
 end
 
