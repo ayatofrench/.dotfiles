@@ -17,3 +17,5 @@ require("secretninjaman.set")
 require("secretninjaman.globals")
 require("secretninjaman.lazy")
 require("secretninjaman.keymap")
+
+vim.opt.rtp:append("~/personal/projects/lsp-debug-tools.nvim")

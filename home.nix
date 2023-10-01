@@ -32,6 +32,11 @@
     stylua
     zf
 
+    ## Rust
+    rustc
+    cargo
+
+    # Fonts
     (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
@@ -112,6 +117,6 @@
       ];
 
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = "nvim";
   };
 }

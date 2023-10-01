@@ -34,4 +34,10 @@ export PATH="$HOME/.turso:$PATH"
 export PATH="/home/aj/.local/share/fnm:$PATH"
 eval "`fnm env`"
 
+export FLYCTL_INSTALL="$HOME/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
+
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
 eval "$(direnv hook zsh)"
