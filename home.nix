@@ -21,7 +21,7 @@
     bat
     btop
     direnv
-    exa
+    eza
     fd
     fzf
     go
@@ -30,6 +30,7 @@
     neofetch
     ripgrep
     stylua
+    zellij
     zf
 
     ## Rust
@@ -58,6 +59,12 @@
   
   programs = {
       home-manager.enable = true;
+
+      direnv = {
+        enable = true;
+        enableBashIntegration = true; # see note on other shells below
+        nix-direnv.enable = true;
+      };
 
       go.enable = true;
 
