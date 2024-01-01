@@ -6,15 +6,27 @@ function ColorMyPencils()
 end
 
 local M = {
-  "catppuccin/nvim",
+  "craftzdog/solarized-osaka.nvim",
+  name = "solarized-osaka",
+  lazy = false,
   priority = 1000,
-  name = "catppuccin",
+  opts = {},
   config = function()
     require("nvim-web-devicons").setup()
-    vim.cmd.colorscheme("gruvbox")
-    ColorMyPencils()
+    vim.cmd.colorscheme("solarized-osaka")
   end,
 }
+
+-- local M = {
+--   "catppuccin/nvim",
+--   priority = 1000,
+--   name = "catppuccin",
+--   config = function()
+--     require("nvim-web-devicons").setup()
+--     vim.cmd.colorscheme("solarized-osaka")
+--     -- ColorMyPencils()
+--   end,
+-- }
 -- local M = {
 --   "gruvbox-community/gruvbox",
 --   priority = 1000,

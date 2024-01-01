@@ -1,161 +1,41 @@
+-- Pull in the wezterm API
 local wezterm = require("wezterm")
-local act = wezterm.action
+local hslUtil = require("hsl")
+local hsl = hslUtil.hslToHex
 
--- /etc/ssh/sshd_config
--- AcceptEnv TERM_PROGRAM_VERSION COLORTERM TERM TERM_PROGRAM WEZTERM_REMOTE_PANE
--- sudo systemctl reload sshd
+-- This table will hold the configuration.
+local config = {}
 
----------------------------------------------------------------
---- functions
----------------------------------------------------------------
-local function enable_wayland()
-  local wayland = os.getenv("XDG_SESSION_TYPE")
-  if wayland == "wayland" then
-    return true
-  end
-  return false
+-- In newer versions of wezterm, use the config_builder which will
+-- help provide clearer error messages
+if wezterm.config_builder then
+  config = wezterm.config_builder()
 end
 
----------------------------------------------------------------
---- Merge the Config
----------------------------------------------------------------
--- local function insert_ssh_domain_from_ssh_config(c)
--- 	if c.ssh_domains == nil then
--- 		c.ssh_domains = {}
--- 	end
--- 	for host, config in pairs(wezterm.enumerate_ssh_hosts()) do
--- 		table.insert(c.ssh_domains, {
--- 			name = host,
--- 			remote_address = config.hostname .. ":" .. config.port,
--- 			username = config.user,
--- 			multiplexing = "None",
--- 			assume_shell = "Posix",
--- 		})
--- 	end
--- 	return c
--- end
+config.default_prog = { "/home/aj/.nix-profile/bin/fish", "-l" }
 
---- load local_config
--- Write settings you don't want to make public, such as ssh_domains
--- package.path = os.getenv("HOME") .. "/.local/share/wezterm/?.lua;" .. package.path
--- local function load_local_config(module)
--- 	local m = package.searchpath(module, package.path)
--- 	if m == nil then
--- 		return {}
--- 	end
--- 	return dofile(m)
--- 	-- local ok, _ = pcall(require, "local")
--- 	-- if not ok then
--- 	-- 	return {}
--- 	-- end
--- 	-- return require("local")
--- end
+-- This is where you actually apply your config choices
 
--- local local_config = load_local_config("local")
-
--- local local_config = {
--- 	ssh_domains = {
--- 		{
--- 			-- This name identifies the domain
--- 			name = "my.server",
--- 			-- The address to connect to
--- 			remote_address = "192.168.8.31",
--- 			-- The username to use on the remote host
--- 			username = "katayama",
--- 		},
--- 	},
--- }
--- return local_config
-
----------------------------------------------------------------
---- Config
----------------------------------------------------------------
-local config = {
-  front_end = "WebGpu",
-  background = {
-    {
-      source = {
-        File = wezterm.config_dir .. "/backdrops/grand_teton.jpeg",
-      },
-    },
-    {
-      source = { Color = "#1f1f28" },
-      height = "100%",
-      width = "100%",
-      opacity = 0.9,
-    },
-  },
-  -- font = wezterm.font("Cica"),
-  -- font_size = 10.0,
-  font = wezterm.font("JetBrainsMono Nerd Font"),
-  font_size = 22.0,
-  -- font_rules = {
-  -- 	{
-  -- 		italic = true,
-  -- 		font = wezterm.font("Cica", { italic = true }),
-  -- 	},
-  -- 	{
-  -- 		italic = true,
-  -- 		intensity = "Bold",
-  -- 		font = wezterm.font("Cica", { weight = "Bold", italic = true }),
-  -- 	},
-  -- },
-  check_for_updates = false,
-  use_ime = true,
-  -- ime_preedit_rendering = "System",
-  use_dead_keys = false,
-  warn_about_missing_glyphs = false,
-  -- enable_kitty_graphics = false,
-  animation_fps = 1,
-  cursor_blink_ease_in = "Constant",
-  cursor_blink_ease_out = "Constant",
-  cursor_blink_rate = 0,
-  -- enable_wayland = enable_wayland(),
-  -- https://github.com/wez/wezterm/issues/1772
-  enable_wayland = false,
-  -- color_scheme = "nordfox",
-  -- color_scheme_dirs = { os.getenv("HOME") .. "/.config/wezterm/colors/" },
-  -- hide_tab_bar_if_only_one_tab = false,
-  enable_tab_bar = false,
-  -- adjust_window_size_when_changing_font_size = false,
-  -- selection_word_boundary = " \t\n{}[]()\"'`,;:│=&!%",
-  window_padding = {
-    left = 5,
-    right = 5,
-    top = 5,
-    bottom = 0,
-  },
-  use_fancy_tab_bar = false,
-  -- colors = {
-  -- 	tab_bar = {
-  -- 		background = scheme.background,
-  -- 		new_tab = { bg_color = "#2e3440", fg_color = scheme.ansi[8], intensity = "Bold" },
-  -- 		new_tab_hover = { bg_color = scheme.ansi[1], fg_color = scheme.brights[8], intensity = "Bold" },
-  -- 		-- format-tab-title
-  -- 		-- active_tab = { bg_color = "#121212", fg_color = "#FCE8C3" },
-  -- 		-- inactive_tab = { bg_color = scheme.background, fg_color = "#FCE8C3" },
-  -- 		-- inactive_tab_hover = { bg_color = scheme.ansi[1], fg_color = "#FCE8C3" },
-  -- 	},
-  -- },
-  exit_behavior = "CloseOnCleanExit",
-  tab_bar_at_bottom = false,
-  window_close_confirmation = "AlwaysPrompt",
-  -- window_background_opacity = 0.70,
-  -- window_decorations = "NONE",
-  -- disable_default_key_bindings = true,
-  -- visual_bell = {
-  -- 	fade_in_function = "EaseIn",
-  -- 	fade_in_duration_ms = 150,
-  -- 	fade_out_function = "EaseOut",
-  -- 	fade_out_duration_ms = 150,
-  -- },
-  -- separate <Tab> <C-i>
-  -- enable_csi_u_key_encoding = true,
-  -- leader = { key = "Space", mods = "CTRL|SHIFT" },
-  -- keys = keybinds.create_keybinds(),
-  -- key_tables = keybinds.key_tables,
-  -- mouse_bindings = keybinds.mouse_bindings,
+-- For example, changing the color scheme:
+config.colors = {
+  -- For this to work there needs to be a Bigint lib to convert to hex
+  -- background = hsl(186, 8, 65),
+  background = "#00141a",
 }
 
--- local merged_config = utils.merge_tables(config, local_config)
+config.font = wezterm.font("Fragment Mono")
+-- config.font = wezterm.font(os.getenv("FONT"))
+-- config.font = wezterm.font("Mononoki Nerd Font")
+-- config.font = wezterm.font("Recursive Mono Linear Static")
+-- config.font = wezterm.font("CommitMono")
+-- config.font = wezterm.font("Iosevka Comfy")
+-- config.font = wezterm.font("Hack Nerd Font")
+-- config.font = wezterm.font("JetBrainsMono Nerd Font")
+-- config.font = wezterm.font("VictorMono Nerd Font")
+config.font_size = 20
+
+config.window_decorations = "NONE"
+config.enable_tab_bar = false
+
+-- and finally, return the configuration to wezterm
 return config

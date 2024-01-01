@@ -2,7 +2,7 @@ local M = {}
 
 M.nvim_workspace = os.getenv("NVIM_WORKSPACE") or "personal"
 
-M.theme = "catppucin"
+M.theme = "solarized-osaka"
 
 M.treesitter_parsers = {
   "astro",
@@ -12,6 +12,7 @@ M.treesitter_parsers = {
   "cpp",
   "comment",
   "dockerfile",
+  "elixir",
   "fish",
   "go",
   "graphql",
@@ -44,8 +45,9 @@ M.lps_servers = {
   -- LSP
   "astro",
   "clangd",
-  "cmake",
+  -- "cmake",
   "cssls",
+  "elixirls",
   "html",
   "jsonls",
   "rust_analyzer",
@@ -142,5 +144,6 @@ M.telescope_file_ignore_patterns = {
   "smalljre_*/*",
   "target/",
   "vendor/*",
+  "zig-cache/*",
 }
 return M

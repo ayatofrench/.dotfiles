@@ -67,4 +67,16 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
+export PATH="$HOME/.cargo/bin:$PATH"
+
+## Autocomplete
+# append completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
+
+# . "$HOME/.asdf/asdf.sh"
+. $(dirname $(dirname $(readlink -f $(which asdf))))/share/asdf-vm/asdf.sh
+
+eval "$(opam env)"
 eval "$(direnv hook zsh)"

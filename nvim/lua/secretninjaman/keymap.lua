@@ -12,8 +12,8 @@ local wk = require("which-key")
 local cmp = require("cmp")
 t = require("telescope.builtin")
 t_ext = require("telescope").extensions
-h_mark = require("harpoon.mark")
-h_ui = require("harpoon.ui")
+-- h_mark = require("harpoon.mark")
+-- h_ui = require("harpoon.ui")
 
 vim.keymap.set("o", "m", "<C-U>lua require('tsht').nodes()<CR>", { silent = true })
 vim.keymap.set("x", "m", function()
@@ -24,11 +24,11 @@ end, { silent = true, noremap = true })
 
 wk.register({
   ["gd"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", "go to definition" },
-  ["<C-e>"] = { "<cmd>lua h_ui.toggle_quick_menu()<CR>", "harpoon ui toggle" },
-  ["<C-j>"] = { "<cmd>lua h_ui.nav_file(1)<CR>", "harpoon ui toggle" },
-  ["<C-k>"] = { "<cmd>lua h_ui.nav_file(2)<CR>", "harpoon ui toggle" },
-  ["<C-l>"] = { "<cmd>lua h_ui.nav_file(3)<CR>", "harpoon ui toggle" },
-  ["<C-;>"] = { "<cmd>lua h_ui.nav_file(4)<CR>", "harpoon ui toggle" },
+  -- ["<C-e>"] = { "<cmd>lua h_ui.toggle_quick_menu()<CR>", "harpoon ui toggle" },
+  -- ["<C-j>"] = { "<cmd>lua h_ui.nav_file(1)<CR>", "harpoon ui toggle" },
+  -- ["<C-k>"] = { "<cmd>lua h_ui.nav_file(2)<CR>", "harpoon ui toggle" },
+  -- ["<C-l>"] = { "<cmd>lua h_ui.nav_file(3)<CR>", "harpoon ui toggle" },
+  -- ["<C-;>"] = { "<cmd>lua h_ui.nav_file(4)<CR>", "harpoon ui toggle" },
 })
 
 -- Normal mode, <leader> prefix
@@ -47,7 +47,7 @@ wk.register({
 
   ["<cr>"] = { "<cmd>Ttoggle<CR>", "toggle terminal" },
 
-  a = { "<cmd>lua h_mark.add_file()<CR>", "add file to harpoon" },
+  -- a = { "<cmd>lua h_mark.add_file()<CR>", "add file to harpoon" },
   -- c = {
   --   name = "+create",
   --   t = { "<cmd>tabnew<cr>", "new tab" },

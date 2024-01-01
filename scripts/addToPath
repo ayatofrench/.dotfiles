@@ -1,8 +1,10 @@
-function addToPath () {
+#!/usr/bin/env zsh
+
+#function addToPath () {
     echo $1
     if  [[ "$PATH" != *"$1"* ]]
     then
         # PATH="${PATH:+"$PATH:"}$1"
         export PATH=$PATH:$1
     fi
-}
+#}

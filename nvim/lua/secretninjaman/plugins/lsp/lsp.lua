@@ -28,9 +28,9 @@ for _, lsp in ipairs(settings.lps_servers) do
       end
     end,
     before_init = function(_, config)
-      if lsp == "pyright" then
-        config.settings.python.pythonPath = utils.get_python_path(config.root_dir)
-      end
+      -- if lsp == "pyright" then
+      --   config.settings.python.pythonPath = utils.get_python_path(config.root_dir)
+      -- end
     end,
     -- root_dir = function()
     --   local dir = vim.fn.getcwd()
@@ -50,6 +50,8 @@ for _, lsp in ipairs(settings.lps_servers) do
     settings = lsp_servers[lsp],
   })
 end
+
+require("sg").setup({})
 
 -- require("fidget").setup({})
 require("inlay-hints").setup({

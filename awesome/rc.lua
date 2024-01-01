@@ -70,10 +70,10 @@ local function run_once(cmd_arr)
   end
 end
 
-run_once({ "alacritty", "unclutter -root" }) -- comma-separated entries
+run_once({ "wezterm" }) -- comma-separated entries
 
 awful.spawn.with_shell("picom")
-awful.spawn.with_shell("expressvpn connect")
+-- awful.spawn.with_shell("expressvpn connect")
 
 -- This function implements the XDG autostart specification
 --[[
@@ -90,26 +90,26 @@ awful.spawn.with_shell(
 -- {{{ Variable definitions
 
 local themes = {
-  "blackburn", -- 1
-  "copland", -- 2
-  "dremora", -- 3
-  "holo", -- 4
-  "multicolor", -- 5
-  "powerarrow", -- 6
+  "blackburn",       -- 1
+  "copland",         -- 2
+  "dremora",         -- 3
+  "holo",            -- 4
+  "multicolor",      -- 5
+  "powerarrow",      -- 6
   "powerarrow-dark", -- 7
-  "rainbow", -- 8
-  "steamburn", -- 9
-  "vertex", -- 10
+  "rainbow",         -- 8
+  "steamburn",       -- 9
+  "vertex",          -- 10
 }
 
 local chosen_theme = themes[6]
 local modkey = "Mod4"
 local altkey = "Mod1"
-local terminal = "alacritty"
-local vi_focus = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
+local terminal = "wezterm"
+local vi_focus = false  -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev = true -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor = os.getenv("EDITOR") or "nvim"
-local browser = "brave-browser"
+local browser = "thorium-browser"
 
 awful.util.terminal = terminal
 awful.util.tagnames = { "1", "2", "3", "4", "5" }
@@ -204,9 +204,9 @@ local myawesomemenu = {
       hotkeys_popup.show_help(nil, awful.screen.focused())
     end,
   },
-  { "Manual", string.format("%s -e man awesome", terminal) },
+  { "Manual",      string.format("%s -e man awesome", terminal) },
   { "Edit config", string.format("%s -e %s %s", terminal, editor, awesome.conffile) },
-  { "Restart", awesome.restart },
+  { "Restart",     awesome.restart },
   {
     "Quit",
     function()
@@ -298,7 +298,7 @@ root.buttons(mytable.join(
 -- {{{ Key bindings
 
 globalkeys = mytable.join(
-  -- Destroy all notifications
+-- Destroy all notifications
   awful.key({ "Control" }, "space", function()
     naughty.destroy_all_notifications()
   end, { description = "destroy all notifications", group = "hotkeys" }),
@@ -393,15 +393,15 @@ globalkeys = mytable.join(
     end
   end, { description = "cycle with previous/go back", group = "client" }),
 
-  -- Show/hide wibox
-  awful.key({ modkey }, "b", function()
-    for s in screen do
-      s.mywibox.visible = not s.mywibox.visible
-      if s.mybottomwibox then
-        s.mybottomwibox.visible = not s.mybottomwibox.visible
-      end
-    end
-  end, { description = "toggle wibox", group = "awesome" }),
+  -- -- Show/hide wibox
+  -- awful.key({ modkey }, "b", function()
+  --   for s in screen do
+  --     s.mywibox.visible = not s.mywibox.visible
+  --     if s.mybottomwibox then
+  --       s.mybottomwibox.visible = not s.mybottomwibox.visible
+  --     end
+  --   end
+  -- end, { description = "toggle wibox", group = "awesome" }),
 
   -- On-the-fly useless gaps change
   awful.key({ altkey, "Control" }, "+", function()
@@ -434,7 +434,6 @@ globalkeys = mytable.join(
   end, { description = "open a terminal", group = "launcher" }),
   awful.key({ modkey, "Control" }, "r", awesome.restart, { description = "reload awesome", group = "awesome" }),
   awful.key({ modkey, "Shift" }, "q", awesome.quit, { description = "quit awesome", group = "awesome" }),
-
   awful.key({ modkey, altkey }, "l", function()
     awful.tag.incmwfact(0.05)
   end, { description = "increase master width factor", group = "layout" }),
@@ -559,7 +558,7 @@ globalkeys = mytable.join(
   end, { description = "copy gtk to terminal", group = "hotkeys" }),
 
   -- User programs
-  awful.key({ modkey }, "q", function()
+  awful.key({ modkey }, "b", function()
     awful.spawn(browser)
   end, { description = "run browser", group = "launcher" }),
 
@@ -579,7 +578,7 @@ globalkeys = mytable.join(
   -- check https://github.com/DaveDavenport/rofi for more details
   -- rofi
   awful.key({ modkey }, "d", function()
-    os.execute(string.format("rofi -show %s -theme %s", "run", "dmenu"))
+    os.execute(string.format("rofi -show %s", "drun"))
   end, { description = "show rofi", group = "launcher" }),
 
   -- Prompt
@@ -595,7 +594,7 @@ globalkeys = mytable.join(
       history_path = awful.util.get_cache_dir() .. "/history_eval",
     })
   end, { description = "lua execute prompt", group = "awesome" })
-  --]]
+--]]
 )
 
 clientkeys = mytable.join(
@@ -728,7 +727,7 @@ awful.rules.rules = {
   {
     rule_any = {
       instance = {
-        "DTA", -- Firefox addon DownThemAll.
+        "DTA",   -- Firefox addon DownThemAll.
         "copyq", -- Includes session name in class.
         "pinentry",
       },
@@ -737,7 +736,7 @@ awful.rules.rules = {
         "Blueman-manager",
         "Gpick",
         "Kruler",
-        "MessageWin", -- kalarm.
+        "MessageWin",  -- kalarm.
         "Sxiv",
         "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
         "Wpa_gui",
@@ -751,9 +750,9 @@ awful.rules.rules = {
         "Event Tester", -- xev.
       },
       role = {
-        "AlarmWindow", -- Thunderbird's calendar.
+        "AlarmWindow",   -- Thunderbird's calendar.
         "ConfigManager", -- Thunderbird's about:config.
-        "pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
+        "pop-up",        -- e.g. Google Chrome's (detached) Developer Tools.
       },
     },
     properties = { floating = true },
@@ -768,7 +767,7 @@ awful.rules.rules = {
 
   {
     rule = {
-      class = "alacritty",
+      class = "wezterm",
     },
     properties = {
       maximized_vertical = true,
@@ -822,7 +821,7 @@ client.connect_signal("request::titlebars", function(c)
       buttons = buttons,
       layout = wibox.layout.fixed.horizontal,
     },
-    { -- Middle
+    {   -- Middle
       { -- Title
         align = "center",
         widget = awful.titlebar.widget.titlewidget(c),

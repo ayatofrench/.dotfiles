@@ -1,0 +1,26 @@
+{
+  "fish-foreign-env": {
+    "branch": "master",
+    "description": "Run foreign bash scripts and capture exported environment variables",
+    "homepage": "",
+    "owner": "oh-my-fish",
+    "repo": "plugin-foreign-env",
+    "rev": "dddd9213272a0ab848d474d0cbde12ad034e65bc",
+    "sha256": "00xqlyl3lffc5l0viin1nyp819wf81fncqyz87jx8ljjdhilmgbs",
+    "type": "tarball",
+    "url": "https://github.com/oh-my-fish/plugin-foreign-env/archive/dddd9213272a0ab848d474d0cbde12ad034e65bc.tar.gz",
+    "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+  },
+  "fish-fzf": {
+    "branch": "master",
+    "description": "Ef-🐟-ient fish keybindings for fzf",
+    "homepage": "",
+    "owner": "jethrokuan",
+    "repo": "fzf",
+    "rev": "24f4739fc1dffafcc0da3ccfbbd14d9c7d31827a",
+    "sha256": "0kz057nr07ybh0y06ww3p424rgk8pi84pnch9jzb040qqn9a8823",
+    "type": "tarball",
+    "url": "https://github.com/jethrokuan/fzf/archive/24f4739fc1dffafcc0da3ccfbbd14d9c7d31827a.tar.gz",
+    "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+  }
+}

@@ -24,6 +24,7 @@ local M = {
 
     local source_mapping = {
       buffer = "[Buffer]",
+      cody = "[Cody]",
       nvim_lsp = "[LSP]",
       nvim_lua = "[Lua]",
       path = "[Path]",
@@ -69,6 +70,7 @@ local M = {
       -- Installed sources:
 
       sources = {
+        { name = "cody" },
         { name = "nvim_lsp", keyword_length = 3 }, -- from language server
         -- {
         --   name = "codeium",

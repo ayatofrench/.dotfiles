@@ -1,11 +1,14 @@
 { config, pkgs, lib, ... }:
 
-{
+let
+  isDarwin = pkgs.stdenv.isDarwin;
+  isLinux = pkgs.stdenv.isLinux;
+in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "aj";
-  home.homeDirectory = "/home/aj";
-
+  # home.username = "aj";
+  # home.homeDirectory = "/home/aj";
+  #
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.
@@ -18,44 +21,44 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
+    asdf-vm
     bat
     btop
-    direnv
     eza
     fd
     fzf
-    go
+    tree
+    watch
+    git
     htop
     lazygit
     neofetch
     ripgrep
     stylua
+    src-cli
+    sqlite
     zellij
     zf
 
-    ## Rust
-    rustc
-    cargo
-
     # Fonts
-    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-  ];
+    recursive
+    (pkgs.nerdfonts.override { fonts = ["JetBrainsMono" "VictorMono"]; })
+  ] ++ (lib.optionals isDarwin  [
+    cachix
+    wezterm
+  ]) ++ (lib.optionals isLinux [
+    ## Rust
+#    rustc
+#    cargo
+    rustup
+    beam.packages.erlang.elixir
+    picom
+    p4
+    rofi
+    valgrind
+    zathura
+    xfce.xfce4-terminal
+  ]);
   
   programs = {
       home-manager.enable = true;
@@ -68,10 +71,10 @@
 
       go.enable = true;
 
-      starship = {
-          enable = true;
-          enableZshIntegration = true;
-      };
+      # starship = {
+      #     enable = true;
+      #     enableZshIntegration = true;
+      # };
 
       zoxide.enable = true;
       
@@ -90,12 +93,50 @@
           }];
           sessionVariables = { ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "underline"; };
           initExtra = ''
-              alias ls='echo; ${pkgs.exa}/bin/exa'
+              alias ls='echo; ${pkgs.eza}/bin/eza'
               ${builtins.readFile ./.zshrc}
           '';
           envExtra = ''
               export PATH="$PATH:/usr/local/bin"
           '';
+      };
+
+      fish = {
+        enable = true;
+        interactiveShellInit = lib.strings.concatStrings (lib.strings.intersperse "\n" ([
+          (builtins.readFile ./fish/config.fish)
+          "set -g SHELL ${pkgs.fish}/bin/fish"
+        ]));
+
+        # shellAliases = {
+        #   ga = "git add";
+        #   gc = "git commit";
+        #   gco = "git checkout";
+        #   gcp = "git cherry-pick";
+        #   gdiff = "git diff";
+        #   gl = "git prettylog";
+        #   gp = "git push";
+        #   gs = "git status";
+        #   gt = "git tag";
+        # } // (if isLinux then {
+        #   # Two decades of using a Mac has made this such a strong memory
+        #   # that I'm just going to keep it consistent.
+        #   pbcopy = "xclip";
+        #   pbpaste = "xclip -o";
+        # } else {});
+
+   
+   
+        # plugins = [
+        #   { name = "fish-fzf"; src = pkgs.fishPlugins.fish-fzf.src; }
+        # ];
+        plugins = map (n: {
+          name = n;
+          src  = pkgs.fishPlugins.${n}.src;
+        }) [
+          "fzf-fish"
+          "tide"
+        ];
       };
   };
 

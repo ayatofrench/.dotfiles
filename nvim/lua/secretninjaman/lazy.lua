@@ -34,7 +34,6 @@ return require("lazy").setup({
 
   -- Primeagen packages
   "ThePrimeagen/git-worktree.nvim",
-  "ThePrimeagen/harpoon",
   "ThePrimeagen/refactoring.nvim",
 
   "mbbill/undotree",
@@ -63,7 +62,14 @@ return require("lazy").setup({
 
   { "gruvbox-community/gruvbox", name = "gruvbox" },
   "folke/tokyonight.nvim",
-  { "rose-pine/neovim", name = "rose-pine" },
+  { "rose-pine/neovim",          name = "rose-pine" },
+  {
+    "craftzdog/solarized-osaka.nvim",
+    name = "solarized-osaka",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
   { "nvim-tree/nvim-web-devicons" },
 
   "ThePrimeagen/vim-be-good",

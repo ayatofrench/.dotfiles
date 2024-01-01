@@ -12,16 +12,19 @@ fi
 
 
 selected_name=$(basename "$selected" | tr . _)
-zellij_running=$(pgrep zellij)
+session_exists=$(zellij ls | grep $selected_name)
 
-echo $selected_name
+if [[ -n $session_exists ]]; then
+  zellij attach $selected_name
+  exit 0
+fi
 
 # /* if [[ -z $TMUX ]] && [[ -z $zellij_running ]]; then */
 # /*     zellij --session $selected_name -c $selected */
 # /*     exit 0 */
 # /* fi */
 
-zellij options --session-name $selected_name --default-cwd $selected
+zellij options --session-name $selected_name --default-cwd $selected --default-layout my_layout
 # zellij attach --create $selected_name
 # zellij run --cwd $selected -- nvim
 # /* if ! zellij has-session -t=$selected_name 2> /dev/null; then */
