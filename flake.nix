@@ -1,8 +1,7 @@
 {
-  description = "Home Manager configuration of aj";
+  description = "Home Manager configuration";
 
   inputs = {
-    # Specify the source of Home Manager and Nixpkgs.
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
@@ -17,15 +16,13 @@
   };
 
   outputs = { nixpkgs, home-manager, ... }:
+    # TODO: make this more modular
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       homeConfigurations."aj" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
-
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
         modules = [ 
           ./home.nix
           {
@@ -35,16 +32,13 @@
             };
           }
         ];
-
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
       };
 
       homeConfigurations."ayatofrench" = home-manager.lib.homeManagerConfiguration {
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
+        pkgs = nixpkgs.legacyPackages."x86_64-darwin";
         modules = [ 
           ./home.nix
+          ./darwin.nix
           {
             home = {
               username = "ayatofrench";
@@ -52,9 +46,6 @@
             };
           }
         ];
-
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
       };
     };
 }
