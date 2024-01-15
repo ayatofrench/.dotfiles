@@ -1,9 +1,14 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, outputs, ... }:
 
 let
   isDarwin = pkgs.stdenv.isDarwin;
   isLinux = pkgs.stdenv.isLinux;
 in {
+
+  nixpkgs.overlays = [
+    outputs.overlays.additions
+  ];
+
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
@@ -29,6 +34,7 @@ in {
     # Fonts
     recursive
     (pkgs.nerdfonts.override { fonts = ["JetBrainsMono" "VictorMono"]; })
+    pixelcode
   ] ++ (lib.optionals isDarwin  [
     cachix
   ]) ++ (lib.optionals isLinux [
@@ -134,13 +140,11 @@ in {
   };
    
   fonts.fontconfig.enable = true;
-  
-  xdg.configFile = with lib;
-      mkMerge [
-          {
-              "starship.toml".text = builtins.readFile ./starship.toml;
-          }
-      ];
+
+  xdg.configFile = {
+      "starship.toml".text = builtins.readFile ./starship.toml;
+      "ghostty/config".text = builtins.readFile ./ghostty.linux;
+  };
 
   home.sessionVariables = {
     EDITOR = "nvim";

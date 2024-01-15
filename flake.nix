@@ -15,14 +15,18 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, home-manager, ... } @ inputs:
     # TODO: make this more modular
     let
+      inherit (self) outputs;
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in {
+      # formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+      overlays = import ./overlays {inherit inputs;};
       homeConfigurations."aj" = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+        extraSpecialArgs = {inherit inputs outputs;};
         modules = [ 
           ./home.nix
           {
@@ -36,10 +40,12 @@
 
       homeConfigurations."ayatofrench" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-darwin";
+        extraSpecialArgs = {inherit inputs outputs;};
         modules = [ 
           ./home.nix
-          ./darwin.nix
+          # ./darwin.nix
           {
+            # nixpkgs.overlays = outputs.overlays.additions
             home = {
               username = "ayatofrench";
               homeDirectory = "/home/aj";

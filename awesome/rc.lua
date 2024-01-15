@@ -70,7 +70,7 @@ local function run_once(cmd_arr)
   end
 end
 
-run_once({ "wezterm" }) -- comma-separated entries
+run_once({ "ghostty -e fish" }) -- comma-separated entries
 
 awful.spawn.with_shell("picom")
 -- awful.spawn.with_shell("expressvpn connect")
@@ -90,23 +90,23 @@ awful.spawn.with_shell(
 -- {{{ Variable definitions
 
 local themes = {
-  "blackburn",       -- 1
-  "copland",         -- 2
-  "dremora",         -- 3
-  "holo",            -- 4
-  "multicolor",      -- 5
-  "powerarrow",      -- 6
+  "blackburn", -- 1
+  "copland", -- 2
+  "dremora", -- 3
+  "holo", -- 4
+  "multicolor", -- 5
+  "powerarrow", -- 6
   "powerarrow-dark", -- 7
-  "rainbow",         -- 8
-  "steamburn",       -- 9
-  "vertex",          -- 10
+  "rainbow", -- 8
+  "steamburn", -- 9
+  "vertex", -- 10
 }
 
 local chosen_theme = themes[6]
 local modkey = "Mod4"
 local altkey = "Mod1"
-local terminal = "wezterm"
-local vi_focus = false  -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
+local terminal = "ghostty -e fish"
+local vi_focus = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev = true -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor = os.getenv("EDITOR") or "nvim"
 local browser = "thorium-browser"
@@ -204,9 +204,9 @@ local myawesomemenu = {
       hotkeys_popup.show_help(nil, awful.screen.focused())
     end,
   },
-  { "Manual",      string.format("%s -e man awesome", terminal) },
+  { "Manual", string.format("%s -e man awesome", terminal) },
   { "Edit config", string.format("%s -e %s %s", terminal, editor, awesome.conffile) },
-  { "Restart",     awesome.restart },
+  { "Restart", awesome.restart },
   {
     "Quit",
     function()
@@ -298,7 +298,7 @@ root.buttons(mytable.join(
 -- {{{ Key bindings
 
 globalkeys = mytable.join(
--- Destroy all notifications
+  -- Destroy all notifications
   awful.key({ "Control" }, "space", function()
     naughty.destroy_all_notifications()
   end, { description = "destroy all notifications", group = "hotkeys" }),
@@ -418,12 +418,12 @@ globalkeys = mytable.join(
   awful.key({ modkey, "Shift" }, "r", function()
     lain.util.rename_tag()
   end, { description = "rename tag", group = "tag" }),
-  awful.key({ modkey, "Shift" }, "Left", function()
-    lain.util.move_tag(-1)
-  end, { description = "move tag to the left", group = "tag" }),
-  awful.key({ modkey, "Shift" }, "Right", function()
-    lain.util.move_tag(1)
-  end, { description = "move tag to the right", group = "tag" }),
+  -- awful.key({ modkey, "Shift" }, "Left", function()
+  --   lain.util.move_tag(-1)
+  -- end, { description = "move tag to the left", group = "tag" }),
+  -- awful.key({ modkey, "Shift" }, "Right", function()
+  --   lain.util.move_tag(1)
+  -- end, { description = "move tag to the right", group = "tag" }),
   awful.key({ modkey, "Shift" }, "d", function()
     lain.util.delete_tag()
   end, { description = "delete tag", group = "tag" }),
@@ -594,7 +594,7 @@ globalkeys = mytable.join(
       history_path = awful.util.get_cache_dir() .. "/history_eval",
     })
   end, { description = "lua execute prompt", group = "awesome" })
---]]
+  --]]
 )
 
 clientkeys = mytable.join(
@@ -727,7 +727,7 @@ awful.rules.rules = {
   {
     rule_any = {
       instance = {
-        "DTA",   -- Firefox addon DownThemAll.
+        "DTA", -- Firefox addon DownThemAll.
         "copyq", -- Includes session name in class.
         "pinentry",
       },
@@ -736,7 +736,7 @@ awful.rules.rules = {
         "Blueman-manager",
         "Gpick",
         "Kruler",
-        "MessageWin",  -- kalarm.
+        "MessageWin", -- kalarm.
         "Sxiv",
         "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
         "Wpa_gui",
@@ -750,9 +750,9 @@ awful.rules.rules = {
         "Event Tester", -- xev.
       },
       role = {
-        "AlarmWindow",   -- Thunderbird's calendar.
+        "AlarmWindow", -- Thunderbird's calendar.
         "ConfigManager", -- Thunderbird's about:config.
-        "pop-up",        -- e.g. Google Chrome's (detached) Developer Tools.
+        "pop-up", -- e.g. Google Chrome's (detached) Developer Tools.
       },
     },
     properties = { floating = true },
@@ -767,7 +767,7 @@ awful.rules.rules = {
 
   {
     rule = {
-      class = "wezterm",
+      class = "ghostty",
     },
     properties = {
       maximized_vertical = true,
@@ -821,7 +821,7 @@ client.connect_signal("request::titlebars", function(c)
       buttons = buttons,
       layout = wibox.layout.fixed.horizontal,
     },
-    {   -- Middle
+    { -- Middle
       { -- Title
         align = "center",
         widget = awful.titlebar.widget.titlewidget(c),
