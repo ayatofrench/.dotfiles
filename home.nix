@@ -14,7 +14,6 @@ in {
   home.packages = with pkgs; [
     asdf-vm
     bat
-    btop
     eza
     fd
     fzf
@@ -41,6 +40,7 @@ in {
     ## Rust
 #    rustc
 #    cargo
+    btop
     rustup
     beam.packages.erlang.elixir
     picom

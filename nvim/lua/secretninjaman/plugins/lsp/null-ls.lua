@@ -8,7 +8,7 @@ null_ls.setup({
     return vim.fn.getcwd()
   end,
   sources = {
-    formatting.black,
+    -- formatting.black,
     formatting.ruff,
     formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "2" } }),
     formatting.rustfmt,

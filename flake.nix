@@ -38,22 +38,20 @@
         ];
       };
 
-      darwinConfiguration."ayato.french" = darwin.lib.darwinSystem {
+      homeConfigurations."ayato.french" = home-manager.lib.homeManagerConfiguration {
         #inherit system;
         #inherit pkgs;
 
-        system = "x86_64-darwin";
         pkgs = nixpkgs.legacyPackages."x86_64-darwin";
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [ 
-          home-manager.darwinModules.home-manager
           ./home.nix
           # ./darwin.nix
           {
             # nixpkgs.overlays = outputs.overlays.additions
             home = {
               username = "ayato.french";
-              homeDirectory = "/home/ayato.french";
+              homeDirectory = "/Users/ayato.french";
             };
           }
         ];

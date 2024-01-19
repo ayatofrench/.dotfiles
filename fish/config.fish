@@ -24,11 +24,21 @@ end
 # turso
 if test -d "$HOME/.local/share/fnm"
   set -q PATH; or set PATH ''; set -gx PATH  "$HOME/.local/share/fnm" $PATH;
+  eval (fnm env)
+end
+
+# pnpm
+if test -d "$HOME/Library/pnpm"
+  set -q PATH; or set PATH ''; set -gx PATH  "$HOME/Library/pnpm" $PATH;
 end
 
 # Add ~/.local/bin
 if test -d "$HOME/.local/bin/scripts"
   set -q PATH; or set PATH ''; set -gx PATH  "$HOME/.local/bin/scripts" $PATH;
+end
+
+if test -d "$HOME/.asdf"
+  source ~/.asdf/asdf.fish
 end
 
 set -q PATH; or set PATH ''; set -gx PATH  "$HOME/.local/bin" $PATH;
@@ -119,6 +129,5 @@ funcsave fish_greeting
 #
 # ssh_agent_init
 
-eval (fnm env)
 eval (opam env)
 
