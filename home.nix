@@ -49,6 +49,7 @@ in {
     valgrind
     zathura
     xfce.xfce4-terminal
+    youtube-music
   ]);
   
   programs = {
