@@ -31,9 +31,10 @@ in {
     zf
 
     # Fonts
-    recursive
     (pkgs.nerdfonts.override { fonts = ["JetBrainsMono" "VictorMono"]; })
+    recursive
     pixelcode
+    commitmono
   ] ++ (lib.optionals isDarwin  [
     cachix
   ]) ++ (lib.optionals isLinux [
@@ -56,17 +57,12 @@ in {
       home-manager.enable = true;
 
       direnv = {
-        enable = true;
+        enable = isLinux;
         enableBashIntegration = true; # see note on other shells below
         nix-direnv.enable = true;
       };
 
       go.enable = true;
-
-      # starship = {
-      #     enable = true;
-      #     enableZshIntegration = true;
-      # };
 
       zoxide.enable = true;
       
