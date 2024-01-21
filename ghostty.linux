@@ -1,6 +1,6 @@
 command = /Users/ayato.french/.nix-profile/bin/fish
 font-size = 20
-font-family = "Pixel Code"
+font-family = "CommitMono"
 adjust-underline-thickness = -50%
 #background-opacity = 0.95
 #background-blur-radius = 20

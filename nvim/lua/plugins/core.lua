@@ -1,4 +1,4 @@
-return require("lazy").setup({
+return {
   install = {
     missing = true,
   },
@@ -28,7 +28,6 @@ return require("lazy").setup({
 
   -- "MunifTanjim/prettier.nvim",
   -- "windwp/nvim-ts-autotag",
-  "slim-template/vim-slim",
 
   "tjdevries/cyclist.vim",
 
@@ -39,12 +38,12 @@ return require("lazy").setup({
   "mbbill/undotree",
 
   -- mini nvim modules
-  {
-    "echasnovski/mini.starter",
-    config = function()
-      require("mini.starter").setup({})
-    end,
-  },
+  -- {
+  --   "echasnovski/mini.starter",
+  --   config = function()
+  --     require("mini.starter").setup({})
+  --   end,
+  -- },
   {
     "echasnovski/mini.surround",
     config = function()
@@ -60,19 +59,5 @@ return require("lazy").setup({
   },
   -- Colorscheme section
 
-  { "gruvbox-community/gruvbox", name = "gruvbox" },
-  "folke/tokyonight.nvim",
-  { "rose-pine/neovim",          name = "rose-pine" },
-  {
-    "craftzdog/solarized-osaka.nvim",
-    name = "solarized-osaka",
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  },
-  { "nvim-tree/nvim-web-devicons" },
-
   "ThePrimeagen/vim-be-good",
-
-  { import = "secretninjaman.plugins" },
-})
+}

@@ -11,11 +11,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.g.mapleader = " "
-
 require("secretninjaman.set")
+require("lazy").setup("plugins")
 require("secretninjaman.globals")
-require("secretninjaman.lazy")
 require("secretninjaman.keymap")
 
 vim.opt.rtp:append("~/personal/lsp-debug-tools.nvim")

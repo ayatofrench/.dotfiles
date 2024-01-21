@@ -9,11 +9,11 @@ null_ls.setup({
   end,
   sources = {
     -- formatting.black,
-    formatting.ruff,
-    formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "2" } }),
+    -- formatting.ruff,
+    -- formatting.stylua.with({ extra_args = { "--indent-type", "Spaces", "--indent-width", "2" } }),
     formatting.rustfmt,
-    formatting.gofmt,
-    formatting.goimports,
+    -- formatting.gofmt,
+    -- formatting.goimports,
     formatting.prettier.with({
       extra_filetypes = { "astro" },
     }),

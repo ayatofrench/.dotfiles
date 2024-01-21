@@ -42,6 +42,7 @@ local M = {
         --   -- the default case_mode is "smart_case"
         -- },
         file_browser = {
+          theme = "ivy",
           -- hijack_netrw = true,
           hidden = true,
           respect_gitignore = false,

@@ -90,6 +90,7 @@ M.mason_tools = {
   "ruff",
   "misspell",
   "shellcheck",
+  "shfmt",
   "yamllint",
 }
 
