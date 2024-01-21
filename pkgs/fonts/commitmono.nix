@@ -6,12 +6,12 @@ stdenvNoCC.mkDerivation rec {
 
   src = fetchzip {
     url = "https://github.com/eigilnikolajsen/commit-mono/releases/download/v${version}/CommitMono-${version}.zip";
-    sha256 = "sha256-4FYCESbYQeolM+8ugEALCS24yjeMMec4tJH1OaLTmAQ=";
+    sha256 = "sha256-JTyPgWfbWq+lXQU/rgnyvPG6+V3f+FB5QUkd+I1oFKE=";
+    stripRoot = false;
   };
 
   installPhase = ''
     install -D -t $out/share/fonts/opentype/ $(find $src -type f -name '*.otf')
-    install -D -t $out/share/fonts/truetype/ $(find $src -type f -name '*.ttf')
   '';
 
 
