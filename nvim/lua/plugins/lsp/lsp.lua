@@ -21,6 +21,7 @@ local M = {
     local lsp_servers = require("plugins.lsp.servers")
 
     local nvim_lsp = require("lspconfig")
+    local lsp_configs = require("lspconfig.configs")
     local inlay = require("inlay-hints")
 
     require("mason").setup()
@@ -58,7 +59,29 @@ local M = {
       })
     end
 
-    require("sg").setup({})
+    local lexical_config = {
+      filetypes = { "elixir", "eelixir", "heex" },
+      cmd = { "/home/aj/dev/lexical/_build/dev/package/lexical/bin/start_lexical.sh" },
+      settings = {},
+    }
+
+    if not lsp_configs.lexical then
+      lsp_configs.lexical = {
+        default_config = {
+          filetypes = lexical_config.filetypes,
+          cmd = lexical_config.cmd,
+          root_dir = function(fname)
+            return nvim_lsp.util.root_pattern("mix.exs", ".git")(fname) or vim.loop.os_homedir()
+          end,
+          -- optional settings
+          settings = lexical_config.settings,
+        },
+      }
+    end
+
+    nvim_lsp.lexical.setup({})
+
+    -- require("sg").setup({})
 
     -- require("fidget").setup({})
     require("inlay-hints").setup({

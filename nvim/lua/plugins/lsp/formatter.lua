@@ -23,6 +23,7 @@ M = {
       astro = { { "prettierd", "prettier" } },
       go = { "gofmt", "goimports" },
       nix = { "alejandra" },
+      elixir = { "mix format" },
     },
     formatters = {
       shfmt = {

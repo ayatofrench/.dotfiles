@@ -47,7 +47,7 @@ M.lps_servers = {
   "clangd",
   -- "cmake",
   "cssls",
-  "elixirls",
+  -- "elixirls",
   "html",
   "jsonls",
   "rust_analyzer",

@@ -68,6 +68,11 @@ if test -d "/opt/homebrew"
     source /opt/homebrew/opt/asdf/libexec/asdf.fish
 end
 
+if test -d "$HOME/.modular"
+  set -gx MODULAR_HOME "$HOME/.modular"
+  set -q PATH; or set PATH ''; set -gx PATH "$MODULAR_HOME/pkg/packages.modular.com_mojo/bin" $PATH;
+end
+
 # Hammerspoon
 if test -d "/Applications/Hammerspoon.app"
     set -q PATH; or set PATH ''; set -gx PATH "/Applications/Hammerspoon.app/Contents/Frameworks/hs" $PATH;

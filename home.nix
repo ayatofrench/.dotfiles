@@ -44,7 +44,7 @@ in {
     asdf-vm
     btop
     rustup
-    beam.packages.erlang.elixir
+    beam.packages.erlang.elixir_1_16
     picom
     p4
     rofi

@@ -4,6 +4,7 @@ local function colorMyPencils()
   -- local color = settings.theme or "rose-pine"
   local color = "solarized-osaka"
   vim.cmd.colorscheme(color)
+  -- vim.api.nvim_set_hl(0, "Normal", { bg = "#111111" })
   vim.api.nvim_set_hl(0, "Normal", { bg = require("solarized-osaka.colors").default.bg })
   -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
