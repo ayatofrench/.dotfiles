@@ -46,7 +46,7 @@ local M = {
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<C-e>"] = cmp.mapping.close(),
-        ["<CR>"] = cmp.mapping.confirm({
+        ["<C-y>"] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         }),
@@ -70,7 +70,7 @@ local M = {
       -- Installed sources:
 
       sources = {
-        { name = "cody" },
+        -- { name = "cody" },
         { name = "nvim_lsp", keyword_length = 3 }, -- from language server
         -- {
         --   name = "codeium",

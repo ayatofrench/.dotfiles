@@ -1,8 +1,6 @@
-command = /Users/ayato.french/.nix-profile/bin/fish
-font-size = 20
-font-family = "CommitMono"
+font-size = 22
+font-family = "JetBrainsMono Nerd Font"
 adjust-underline-thickness = -50%
-#background-opacity = 0.95
-#background-blur-radius = 20
-shell-integration = fish
+background-opacity = 0.95
+background-blur-radius = 20
 gtk-titlebar = false

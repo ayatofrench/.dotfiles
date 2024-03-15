@@ -39,7 +39,7 @@ then
 fi
 export PATH
 
-source ~/.zsh_profile
+# source ~/.zsh_profile
 
 alias la="ls -a"
 alias ll="ls -alh"
@@ -52,22 +52,22 @@ alias gl="git log --oneline -n 10"
 alias vim="nvim"
 
 # go
-export PATH="$HOME/go/bin:$PATH"
-
-# turso
-export PATH="$HOME/.turso:$PATH"
+# export PATH="$HOME/go/bin:$PATH"
+#
+# # turso
+# export PATH="$HOME/.turso:$PATH"
  
 # fnm
-export PATH="/home/aj/.local/share/fnm:$PATH"
-eval "`fnm env`"
+#export PATH="/home/aj/.local/share/fnm:$PATH"
+#eval "`fnm env`"
 
-export FLYCTL_INSTALL="$HOME/.fly"
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
+# export FLYCTL_INSTALL="$HOME/.fly"
+# export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-export PATH="$HOME/.cargo/bin:$PATH"
+# export BUN_INSTALL="$HOME/.bun"
+# export PATH="$BUN_INSTALL/bin:$PATH"
+#
+# export PATH="$HOME/.cargo/bin:$PATH"
 
 ## Autocomplete
 # append completions to fpath
@@ -76,7 +76,7 @@ fpath=(${ASDF_DIR}/completions $fpath)
 autoload -Uz compinit && compinit
 
 # . "$HOME/.asdf/asdf.sh"
-. $(dirname $(dirname $(readlink -f $(which asdf))))/share/asdf-vm/asdf.sh
+#. $(dirname $(dirname $(readlink -f $(which asdf))))/share/asdf-vm/asdf.sh
 
-eval "$(opam env)"
-eval "$(direnv hook zsh)"
+#eval "$(opam env)"
+#eval "$(direnv hook zsh)"

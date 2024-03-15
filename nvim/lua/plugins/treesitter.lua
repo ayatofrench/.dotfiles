@@ -28,7 +28,7 @@ local M = {
     "RRethy/nvim-treesitter-endwise",
     "mfussenegger/nvim-ts-hint-textobject",
     "windwp/nvim-ts-autotag",
-    "romgrk/nvim-treesitter-context",
+    -- "romgrk/nvim-treesitter-context",
     "nvim-treesitter/playground",
   },
   config = function()

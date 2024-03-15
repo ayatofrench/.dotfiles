@@ -20,7 +20,7 @@ local M = {
     -- Not sure why the global doesn't work here vim.g.codeium_enabled = CODEIUM_ACTIVE
     vim.g.codeium_enabled = false
 
-    vim.keymap.set("i", "<c-g>", function()
+    vim.keymap.set("i", "<c-i>", function()
       return vim.fn["codeium#Accept"]()
     end, { expr = true })
     vim.keymap.set("i", "<c-;>", function()

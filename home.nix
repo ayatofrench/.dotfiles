@@ -12,7 +12,6 @@ in {
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
-    asdf-vm
     bat
     eza
     fd
@@ -35,12 +34,14 @@ in {
     recursive
     pixelcode
     commitmono
+    zedmono
   ] ++ (lib.optionals isDarwin  [
     cachix
   ]) ++ (lib.optionals isLinux [
     ## Rust
 #    rustc
 #    cargo
+    asdf-vm
     btop
     rustup
     beam.packages.erlang.elixir
@@ -64,7 +65,7 @@ in {
 
       go.enable = true;
 
-      zoxide.enable = true;
+      zoxide.enable = isLinux;
       
       zsh = {
           enable = true;
@@ -93,7 +94,17 @@ in {
         enable = true;
         interactiveShellInit = lib.strings.concatStrings (lib.strings.intersperse "\n" ([
           (builtins.readFile ./fish/config.fish)
-          "set -g SHELL ${pkgs.fish}/bin/fish"
+          "
+            if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+              fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+            end
+
+            if test -e /nix/var/nix/profiles/default/etc/profile.d/nix.sh
+              fenv source /nix/var/nix/profiles/default/etc/profile.d/nix.sh
+            end
+
+            set -g SHELL ${pkgs.fish}/bin/fish
+          "
         ]));
 
         # shellAliases = {
@@ -119,6 +130,16 @@ in {
         }) [
           "fzf-fish"
           "tide"
+        ] ++ [
+          {
+            name = "foreign-env";
+            src = pkgs.fetchFromGitHub {
+                owner = "oh-my-fish";
+                repo = "plugin-foreign-env";
+                rev = "dddd9213272a0ab848d474d0cbde12ad034e65bc";
+                sha256 = "00xqlyl3lffc5l0viin1nyp819wf81fncqyz87jx8ljjdhilmgbs";
+              };
+            }
         ];
       };
   };

@@ -17,6 +17,14 @@ M.copy_relative_path = function()
   vim.notify('Copied "' .. path .. '" to the clipboard!')
 end
 
+M.new_scratch = function()
+  vim.api.nvim_command("tabnew")
+  vim.api.nvim_create_buf(false, true)
+  vim.opt_local.buftype = "nofile"
+  vim.opt_local.bufhidden = "hide"
+  vim.opt_local.swapfile = false
+end
+
 -- move over a closing element in insert mode
 M.escapePair = function()
   local closers = { ")", "]", "}", ">", "'", '"', "`", "," }

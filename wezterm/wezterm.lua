@@ -39,6 +39,7 @@ config.colors = {
 -- config.font = wezterm.font("Iosevka Comfy")
 -- config.font = wezterm.font("Hack Nerd Font")
 config.font = wezterm.font("JetBrainsMono Nerd Font")
+-- config.font = wezterm.font("Zed Mono")
 -- config.font = wezterm.font("VictorMono Nerd Font")
 config.font_size = 20
 

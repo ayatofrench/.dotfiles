@@ -1,12 +1,15 @@
 local M = {}
 
 local function bind(op, outer_opts)
-  outer_opts = outer_opts or { noremap = true }
+  outer_opts = vim.tbl_extend("force", { noremap = true, silent = true }, outer_opts or {})
+
   return function(lhs, rhs, opts)
     opts = vim.tbl_extend("force", outer_opts, opts or {})
     vim.keymap.set(op, lhs, rhs, opts)
   end
 end
+
+local nnoremap = bind("n")
 
 local wk = require("which-key")
 local cmp = require("cmp")
@@ -19,6 +22,10 @@ vim.keymap.set("o", "m", "<C-U>lua require('tsht').nodes()<CR>", { silent = true
 vim.keymap.set("x", "m", function()
   require("tsht").nodes()
 end, { silent = true, noremap = true })
+
+nnoremap("<leader>e", function()
+  require("oil").toggle_float()
+end)
 
 -- Normal mode, no <leader> prefix
 
@@ -91,7 +98,7 @@ wk.register({
   },
 
   m = {
-    c = { "<cmd>lua require('secretninjaman.plugins.lsp.utils').toggle_codeium()<cr>", "Toggle format on save" },
+    c = { "<cmd>lua require('plugins.lsp.utils').toggle_codeium()<cr>", "Toggle format on save" },
   },
 
   -- window
@@ -232,14 +239,11 @@ wk.register({
   n = {
 
     name = "+next",
-
     e = { "<cmd>silent lua vim.lsp.diagnostic.goto_next()<cr>", "error" },
-
     q = { "<cmd>cnext<cr>", "quickfix item" },
-
     t = { "<cmd>lua require('trouble').next({skip_groups = true, jump = true})<cr>", "trouble" },
-
     c = { "<cmd>lua require('gitsigns.actions').next_hunk()<CR>", "change" },
+    s = { "<cmd>lua require('secretninjaman.utils.helpers').new_scratch()<CR>", "new sractch pad" },
   },
 
   -- previous

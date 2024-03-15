@@ -2,9 +2,9 @@ local settings = require("secretninjaman.settings")
 
 local function colorMyPencils()
   -- local color = settings.theme or "rose-pine"
-  local color = "rose-pine"
+  local color = "solarized-osaka"
   vim.cmd.colorscheme(color)
-  -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+  vim.api.nvim_set_hl(0, "Normal", { bg = require("solarized-osaka.colors").default.bg })
   -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
@@ -21,9 +21,6 @@ local M = {
     priority = 1000,
     lazy = false,
     name = "rose-pine",
-    config = function()
-      colorMyPencils()
-    end,
   },
   {
     "catppuccin/nvim",
@@ -45,6 +42,9 @@ local M = {
   {
     "craftzdog/solarized-osaka.nvim",
     name = "solarized-osaka",
+    config = function()
+      colorMyPencils()
+    end,
     -- lazy = false,
     -- priority = 1000,
     -- config = colorMyPencils(),
