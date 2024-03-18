@@ -66,7 +66,19 @@ in {
       go.enable = true;
 
       zoxide.enable = isLinux;
-      
+
+      tmux = {
+          enable = true;
+          terminal = "tmux-256color";
+          plugins = with pkgs; [
+            tmuxPlugins.catppuccin
+          ];
+          extraConfig = ''
+          ${builtins.readFile ./tmux/.tmux.conf}
+          '';
+
+      };
+
       zsh = {
           enable = true;
           enableAutosuggestions = true;
@@ -162,9 +174,11 @@ in {
   xdg.configFile = {
       "starship.toml".text = builtins.readFile ./starship.toml;
       "ghostty/config".text = builtins.readFile ./ghostty.linux;
+      "tmux/tmux.conf".text = builtins.readFile ./tmux/.tmux.conf;
   };
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    TERM = "ghostty";
   };
 }
