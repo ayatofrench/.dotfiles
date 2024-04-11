@@ -20,6 +20,7 @@ M = {
       python = { "ruff_format" },
       javascript = { { "prettierd", "prettier" } },
       typescript = { { "prettierd", "prettier" } },
+      typescriptreact = { { "prettierd", "prettier" } },
       astro = { { "prettierd", "prettier" } },
       go = { "gofmt", "goimports" },
       nix = { "alejandra" },
