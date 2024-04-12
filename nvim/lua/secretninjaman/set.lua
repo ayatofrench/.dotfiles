@@ -49,4 +49,6 @@ vim.opt.colorcolumn = "100"
 
 vim.opt.clipboard = "unnamedplus"
 
+vim.opt.conceallevel = 2
+
 -- vim.lsp.set_log_level("trace")
