@@ -5,11 +5,12 @@ return {
     "williamboman/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
     "folke/neodev.nvim",
-    -- "j-hui/fidget.nvim",
+    "mfussenegger/nvim-jdtls",
+    { "j-hui/fidget.nvim", opt = {} },
 
     "stevearc/conform.nvim",
-
     "mfussenegger/nvim-lint",
+
     "simrat39/inlay-hints.nvim", -- Schema information
     "b0o/SchemaStore.nvim",
   },
@@ -146,12 +147,10 @@ return {
       "ruff",
       "prettierd",
       "eslint_d",
+      "jdtls",
     }
 
     vim.list_extend(ensure_installed, servers_to_install)
-    -- require("mason-lspconfig").setup({
-    --   ensure_installed = settings.lps_servers,
-    -- })
     require("mason-tool-installer").setup({
       ensure_install = ensure_installed,
     })

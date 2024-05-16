@@ -12,6 +12,8 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 
+-- Add lazy to the `runtimepath`, this allows us to `require` it.
+---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({ import = "ext/plugins" }, {

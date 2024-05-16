@@ -111,14 +111,15 @@ return {
     dependencies = {
       "norcalli/nvim-colorizer.lua",
     },
+    priority = 1000,
+    lazy = false,
     config = function()
-      colorMyPencils()
+      -- colorMyPencils()
+      vim.cmd.colorscheme("gruvbuddy")
     end,
   },
   {
     "rose-pine/neovim",
-    priority = 1000,
-    lazy = false,
     name = "rose-pine",
   },
   {

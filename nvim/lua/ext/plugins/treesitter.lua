@@ -30,6 +30,16 @@ return {
     "windwp/nvim-ts-autotag",
     -- "romgrk/nvim-treesitter-context",
     "nvim-treesitter/playground",
+
+    {
+      "https://github.com/apple/pkl-neovim",
+      lazy = true,
+      event = {
+        "BufReadPre *.pkl",
+        "BufReadPre *.pcf",
+        "BufReadPre PklProject",
+      },
+    },
   },
   config = function()
     local ensure_installed = {
@@ -53,6 +63,7 @@ return {
       "norg",
       -- "odin",
       "ocaml",
+      "pkl",
       "proto",
       "python",
       "regex",

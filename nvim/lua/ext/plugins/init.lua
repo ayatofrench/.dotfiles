@@ -23,7 +23,6 @@ return {
     "folke/which-key.nvim",
     lazy = true,
   },
-  -- Colorscheme section
 
   "ThePrimeagen/vim-be-good",
 }

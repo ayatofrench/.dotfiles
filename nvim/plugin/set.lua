@@ -29,7 +29,7 @@ opt.incsearch = true
 opt.termguicolors = true
 
 opt.scrolloff = 8
-opt.smoothscroll = true
+-- opt.smoothscroll = true
 opt.signcolumn = "yes"
 opt.isfname:append("@-@")
 
@@ -55,4 +55,4 @@ opt.clipboard = "unnamedplus"
 opt.conceallevel = 2
 
 -- Don't have `o` add a comment
-opt.formatoptions:remove "o"
+opt.formatoptions:remove("o")
