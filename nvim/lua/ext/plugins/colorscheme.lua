@@ -1,4 +1,4 @@
-local settings = require("secretninjaman.settings")
+-- local settings = require("secretninjaman.settings")
 
 local function colorMyPencils()
   -- local color = settings.theme or "rose-pine"
@@ -98,7 +98,7 @@ local function colorMyPencils()
   -- end, 10)
 end
 
-local M = {
+return {
   {
     "nvim-tree/nvim-web-devicons",
     config = function()
@@ -148,5 +148,3 @@ local M = {
     -- end,
   },
 }
-
-return M

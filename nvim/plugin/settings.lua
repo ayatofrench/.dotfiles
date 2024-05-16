@@ -4,43 +4,6 @@ M.nvim_workspace = os.getenv("NVIM_WORKSPACE") or "personal"
 
 M.theme = "solarized-osaka"
 
-M.treesitter_parsers = {
-  "astro",
-  "bash",
-  "c",
-  "cmake",
-  "cpp",
-  "comment",
-  "dockerfile",
-  "elixir",
-  "fish",
-  "go",
-  "graphql",
-  -- "help",
-  "html",
-  "javascript",
-  "json",
-  "lua",
-  "markdown",
-  "norg",
-  -- "odin",
-  "ocaml",
-  "proto",
-  "python",
-  "regex",
-  "ruby",
-  "rust",
-  "scss",
-  "sql",
-  "svelte",
-  "toml",
-  "tsx",
-  "typescript",
-  "vim",
-  "yaml",
-  "zig",
-}
-
 M.lps_servers = {
   -- LSP
   "astro",

@@ -30,4 +30,5 @@ return {
       end)
     end,
   },
+  "lewis6991/gitsigns.nvim",
 }

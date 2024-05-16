@@ -149,15 +149,15 @@ wk.register({
 
   -- go
 
-  g = {
-    name = "+go",
-    D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "declaration" },
-    d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "definition" },
-    i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "implementation" },
-    t = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "type definition" },
-    j = { "<cmd>lua vim.diagnostic.goto_next<CR>", "go to next error" },
-    k = { "<cmd>lua vim.diagnostic.goto_prev<CR>", "go to prev error" },
-  },
+  -- g = {
+  --   name = "+go",
+  --   D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "declaration" },
+  --   d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "definition" },
+  --   i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "implementation" },
+  --   t = { "<cmd>lua vim.lsp.buf.type_definition()<CR>", "type definition" },
+  --   j = { "<cmd>lua vim.diagnostic.goto_next<CR>", "go to next error" },
+  --   k = { "<cmd>lua vim.diagnostic.goto_prev<CR>", "go to prev error" },
+  -- },
 
   -- show
 
@@ -184,8 +184,6 @@ wk.register({
 
     e = { "<cmd>lua vim.diagnostic.open_float()<CR>", "line errors" },
 
-    h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "hover" },
-
     i = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "signature_help" },
 
     l = { "<cmd>Flog<CR>", "git log" },
@@ -195,8 +193,6 @@ wk.register({
     s = { "<cmd>G<CR>", "git status" },
 
     t = { "<cmd>TodoTrouble<CR>", "todos" },
-
-    r = { "<cmd>lua vim.lsp.buf.references()<CR>", "lsp references" },
   },
 
   -- run
@@ -208,19 +204,6 @@ wk.register({
     R = { "<cmd>lua require('spectre').open()<CR><bar><cmd>wincmd T<CR>", "search & replace" },
 
     w = { "<cmd>lua require('spectre').open_visual({select_word=true})<CR><bar><cmd>wincmd T<CR>", "replace word" },
-
-    a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "code action" },
-
-    r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "rename" },
-  },
-
-  -- terminal
-
-  t = {
-
-    name = "+terminal",
-
-    c = { "<cmd>T clear<CR>", "clear" },
   },
 
   -- diff
@@ -279,12 +262,6 @@ autocmd("TextYankPost", {
       higroup = "IncSearch",
       timeout = 40,
     })
-  end,
-})
-
-autocmd({ "BufWritePost" }, {
-  callback = function()
-    require("lint").try_lint()
   end,
 })
 

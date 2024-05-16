@@ -6,6 +6,7 @@ local M = {
     "hrsh7th/cmp-nvim-lua",
     "hrsh7th/cmp-path",
     "hrsh7th/cmp-buffer",
+    "onsails/lspkind-nvim",
 
     -- "hrsh7th/cmp-nvim-lsp-signature-help",
 

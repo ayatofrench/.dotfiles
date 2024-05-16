@@ -1,4 +1,4 @@
-local settings = require("secretninjaman.settings")
+-- local settings = require("secretninjaman.settings")
 -- Treesitter Plugin Setup
 
 -- require('nvim-treesitter.configs').setup {
@@ -19,7 +19,7 @@ local settings = require("secretninjaman.settings")
 --   }
 -- }
 
-local M = {
+return {
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   event = "BufReadPost",
@@ -32,8 +32,44 @@ local M = {
     "nvim-treesitter/playground",
   },
   config = function()
+    local ensure_installed = {
+      "astro",
+      "bash",
+      "c",
+      "cmake",
+      "cpp",
+      "comment",
+      "dockerfile",
+      "elixir",
+      "fish",
+      "go",
+      "graphql",
+      -- "help",
+      "html",
+      "javascript",
+      "json",
+      "lua",
+      "markdown",
+      "norg",
+      -- "odin",
+      "ocaml",
+      "proto",
+      "python",
+      "regex",
+      "ruby",
+      "rust",
+      "scss",
+      "sql",
+      "svelte",
+      "toml",
+      "tsx",
+      "typescript",
+      "vim",
+      "yaml",
+      "zig",
+    }
     require("nvim-treesitter.configs").setup({
-      ensure_installed = settings.treesitter_parsers,
+      ensure_installed = ensure_installed,
       ignore_install = {}, -- List of parsers to ignore installing
       highlight = {
         enable = true, -- false will disable the whole extension
@@ -79,5 +115,3 @@ local M = {
     require("nvim-ts-autotag").setup()
   end,
 }
-
-return M
