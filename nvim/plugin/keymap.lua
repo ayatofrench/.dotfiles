@@ -69,14 +69,14 @@ wk.register({
 
   o = {
     name = "+open",
-    f = { "<cmd>lua t.find_files()<CR>", "file" },
-    e = { "<cmd>lua t_ext.file_browser.file_browser()<CR>", "file explorer" },
-    r = { "<cmd>lua t.oldfiles()<CR>", "recent" },
-    b = { "<cmd>lua t.buffers()<CR>", "buffer" },
-    p = { "<cmd>Telescope project<CR>", "project" },
-    gb = { "<cmd>lua t.git_branches()<CR>", "git branch" },
-
-    gc = { "<cmd>lua t.git_commits()<CR>", "git commit" },
+    -- f = { "<cmd>lua t.find_files()<CR>", "file" },
+    -- e = { "<cmd>lua t_ext.file_browser.file_browser()<CR>", "file explorer" },
+    -- r = { "<cmd>lua t.oldfiles()<CR>", "recent" },
+    -- b = { "<cmd>lua t.buffers()<CR>", "buffer" },
+    -- p = { "<cmd>Telescope project<CR>", "project" },
+    -- gb = { "<cmd>lua t.git_branches()<CR>", "git branch" },
+    --
+    -- gc = { "<cmd>lua t.git_commits()<CR>", "git commit" },
   },
 
   -- find
@@ -85,16 +85,16 @@ wk.register({
 
     name = "+find",
 
-    f = { "<cmd>lua t.current_buffer_fuzzy_find()<CR>", "in file" },
+    -- f = { "<cmd>lua t.current_buffer_fuzzy_find()<CR>", "in file" },
     -- for syntax documentation see https://docs.rs/regex/1.5.4/regex/#syntax
-    d = { "<cmd>lua t.live_grep()<CR>", "in directory" },
-    w = { "<cmd>lua t.grep_string()<CR>", "word" },
-    s = { "<cmd>lua t.lsp_document_symbols()<CR>", "document symbols" },
-    S = { "<cmd>lua t.lsp_workspace_symbols()<CR>", "workspace symbols" },
-    q = { "<cmd>lua t.quickfix()<CR>", "in quickfix list" },
-    h = { "<cmd>lua t.help_tags()<CR>", "in help" },
-    r = { "<cmd>lua t.lsp_references()<CR>", "references" },
-    t = { "<cmd>lua t_ext.todo.todo()<CR>", "todos" },
+    -- d = { "<cmd>lua t.live_grep()<CR>", "in directory" },
+    -- w = { "<cmd>lua t.grep_string()<CR>", "word" },
+    -- s = { "<cmd>lua t.lsp_document_symbols()<CR>", "document symbols" },
+    -- S = { "<cmd>lua t.lsp_workspace_symbols()<CR>", "workspace symbols" },
+    -- q = { "<cmd>lua t.quickfix()<CR>", "in quickfix list" },
+    -- h = { "<cmd>lua t.help_tags()<CR>", "in help" },
+    -- r = { "<cmd>lua t.lsp_references()<CR>", "references" },
+    -- t = { "<cmd>lua t_ext.todo.todo()<CR>", "todos" },
   },
 
   m = {
