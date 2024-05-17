@@ -6,52 +6,22 @@ return {
       save_on_toggle = true,
     },
   },
-  keys = {
-    {
-      "<leader>a",
-      function()
-        require("harpoon"):list():append()
-      end,
-    },
-    {
-      "<C-e>",
-      function()
-        require("harpoon").ui:toggle_quick_menu(require("harpoon"):list())
-      end,
-    },
-    {
-      "<C-h>",
-      function()
-        require("harpoon"):list():select(1)
-      end,
-    },
+  config = function()
+    local harpoon = require("harpoon")
 
-    {
-      "<C-j>",
-      function()
-        require("harpoon"):list():select(2)
-      end,
-    },
+    harpoon:setup()
 
-    {
-      "<C-k>",
-      function()
-        require("harpoon"):list():select(3)
-      end,
-    },
+    vim.keymap.set("n", "<leader>a", function()
+      harpoon:list():add()
+    end)
+    vim.keymap.set("n", "<c-e>", function()
+      harpoon.ui:toggle_quick_menu(require("harpoon"):list())
+    end)
 
-    {
-      "<C-l>",
-      function()
-        require("harpoon"):list():select(4)
-      end,
-    },
-
-    {
-      "<C-'",
-      function()
-        require("harpoon"):list():select(5)
-      end,
-    },
-  },
+    for idx, key in ipairs({ "h", "j", "k", "l", "'" }) do
+      vim.keymap.set("n", string.format("<c-%s>", key), function()
+        harpoon:list():select(idx)
+      end)
+    end
+  end,
 }

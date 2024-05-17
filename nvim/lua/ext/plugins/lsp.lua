@@ -15,49 +15,10 @@ return {
     "b0o/SchemaStore.nvim",
   },
   config = function()
+    local data = assert(vim.fn.stdpath("data")) --[[@as string]]
     require("neodev").setup()
 
-    -- local settings = require("secretninjaman.settings")
-    -- local utils = require("plugins.lsp.utils")
-    -- local lsp_servers = require("plugins.lsp.servers")
-
     local lspconfig = require("lspconfig")
-    -- local lsp_configs = require("lspconfig.configs")
-    -- local inlay = require("inlay-hints")
-    -- LSP
-    -- "astro",
-    -- "clangd",
-    -- -- "cmake",
-    -- "cssls",
-    -- -- "elixirls",
-    -- "html",
-    -- "jsonls",
-    -- "rust_analyzer",
-    -- "gopls",
-    -- -- "denols",
-    -- "tsserver",
-    -- -- "denols",
-    -- "svelte",
-    -- "prismals",
-    -- "tailwindcss",
-    -- -- "solargraph",
-    -- "eslint",
-    -- -- "sqlls",
-    -- "yamlls",
-    -- "taplo",
-    -- "vimls",
-    -- "ols",
-    -- -- Formatter
-    -- "black",
-    -- "prettier",
-    -- "stylua",
-    -- Linter
-    -- "rubocop",
-    -- "eslint_d",
-    -- "shellcheck",
-    -- "tflint",
-    -- "yamllint",
-
     local servers = {
       astro = true,
       bashls = true,
@@ -113,7 +74,7 @@ return {
 
       lexical = {
         filetypes = { "elixir", "eelixir", "heex" },
-        cmd = { "/home/aj/.local/share/nvim/mason/bin/lexical", "server" },
+        cmd = { data .. "/mason/bin/lexical", "server" },
         root_dir = require("lspconfig.util").root_pattern({ "mix.exs" }),
       },
 
@@ -172,24 +133,6 @@ return {
       }, config)
 
       lspconfig[name].setup(config)
-
-      -- nvim_lsp[lsp].setup({
-      --   on_attach = function(client, bufnr)
-      --     -- utils.lsp_on_attach(client)
-      --
-      --     if lsp == "lua_ls" then
-      --       inlay.on_attach(client, bufnr)
-      --     end
-      --   end,
-      --   before_init = function(_, config)
-      --     -- if lsp == "pyright" then
-      --     --   config.settings.python.pythonPath = utils.get_python_path(config.root_dir)
-      --     -- end
-      --   end,
-      --   capabilities = capabilities,
-      --   flags = { debounce_text_changes = 150 },
-      --   settings = lsp_servers[lsp],
-      -- })
     end
 
     local disable_semantic_tokens = {
@@ -260,72 +203,5 @@ return {
         require("lint").try_lint()
       end,
     })
-
-    -- local lexical_config = {
-    --   cmd = { "/home/aj/dev/lexical/_build/dev/package/lexical/bin/start_lexical.sh" },
-    --   settings = {},
-    -- }
-    --
-    -- if not lsp_configs.lexical then
-    --   lsp_configs.lexical = {
-    --     default_config = {
-    --       filetypes = lexical_config.filetypes,
-    --       cmd = lexical_config.cmd,
-    --       root_dir = function(fname)
-    --         return nvim_lsp.util.root_pattern("mix.exs", ".git")(fname) or vim.loop.os_homedir()
-    --       end,
-    --       -- optional settings
-    --       settings = lexical_config.settings,
-    --     },
-    --   }
-    -- end
-
-    -- nvim_lsp.lexical.setup({})
-
-    -- require("sg").setup({})
-
-    -- require("fidget").setup({})
-    -- require("inlay-hints").setup({
-    --   -- renderer to use
-    --   -- possible options are dynamic, eol, virtline and custom
-    --   -- renderer = "inlay-hints/render/dynamic",
-    --   renderer = "inlay-hints/render/eol",
-    --
-    --   hints = {
-    --     parameter = {
-    --       show = true,
-    --       highlight = "whitespace",
-    --     },
-    --     type = {
-    --       show = true,
-    --       highlight = "Whitespace",
-    --     },
-    --   },
-    --
-    --   -- Only show inlay hints for the current line
-    --   only_current_line = false,
-    --
-    --   eol = {
-    --     -- whether to align to the extreme right or not
-    --     right_align = false,
-    --
-    --     -- padding from the right if right_align is true
-    --     right_align_padding = 7,
-    --
-    --     parameter = {
-    --       separator = ", ",
-    --       format = function(hints)
-    --         return string.format(" <- (%s)", hints)
-    --       end,
-    --     },
-    --
-    --     type = {
-    --       separator = ", ",
-    --       format = function(hints)
-    --         return string.format(" => %s", hints)
-    --       end,
-    --     },
-    --   },
-    -- })
   end,
 }
