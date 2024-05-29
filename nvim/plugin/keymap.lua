@@ -9,34 +9,20 @@ local function bind(op, outer_opts)
   end
 end
 
-local nnoremap = bind("n")
-
 local wk = require("which-key")
-local cmp = require("cmp")
-t = require("telescope.builtin")
-t_ext = require("telescope").extensions
--- h_mark = require("harpoon.mark")
--- h_ui = require("harpoon.ui")
+
+-- m = {
+--   c = { "<cmd>lua require('plugins.lsp.utils').toggle_codeium()<cr>", "Toggle format on save" },
+-- },
+
+vim.keymap.set("n", "<leader><c-r>", function()
+  require("utils.helpers").copy_relative_path()
+end)
 
 vim.keymap.set("o", "m", "<C-U>lua require('tsht').nodes()<CR>", { silent = true })
 vim.keymap.set("x", "m", function()
   require("tsht").nodes()
 end, { silent = true, noremap = true })
-
-nnoremap("<leader>e", function()
-  require("oil").toggle_float()
-end)
-
--- Normal mode, no <leader> prefix
-
-wk.register({
-  ["gd"] = { "<cmd>lua vim.lsp.buf.definition()<CR>", "go to definition" },
-  -- ["<C-e>"] = { "<cmd>lua h_ui.toggle_quick_menu()<CR>", "harpoon ui toggle" },
-  -- ["<C-j>"] = { "<cmd>lua h_ui.nav_file(1)<CR>", "harpoon ui toggle" },
-  -- ["<C-k>"] = { "<cmd>lua h_ui.nav_file(2)<CR>", "harpoon ui toggle" },
-  -- ["<C-l>"] = { "<cmd>lua h_ui.nav_file(3)<CR>", "harpoon ui toggle" },
-  -- ["<C-;>"] = { "<cmd>lua h_ui.nav_file(4)<CR>", "harpoon ui toggle" },
-})
 
 -- Normal mode, <leader> prefix
 
@@ -59,47 +45,6 @@ wk.register({
   --   name = "+create",
   --   t = { "<cmd>tabnew<cr>", "new tab" },
   -- },
-
-  c = {
-    name = "copy",
-    r = { "<cmd>lua require('secretninjaman.utils.helpers').copy_relative_path()<CR>", "copy relative path" },
-  },
-
-  -- open
-
-  o = {
-    name = "+open",
-    -- f = { "<cmd>lua t.find_files()<CR>", "file" },
-    -- e = { "<cmd>lua t_ext.file_browser.file_browser()<CR>", "file explorer" },
-    -- r = { "<cmd>lua t.oldfiles()<CR>", "recent" },
-    -- b = { "<cmd>lua t.buffers()<CR>", "buffer" },
-    -- p = { "<cmd>Telescope project<CR>", "project" },
-    -- gb = { "<cmd>lua t.git_branches()<CR>", "git branch" },
-    --
-    -- gc = { "<cmd>lua t.git_commits()<CR>", "git commit" },
-  },
-
-  -- find
-
-  f = {
-
-    name = "+find",
-
-    -- f = { "<cmd>lua t.current_buffer_fuzzy_find()<CR>", "in file" },
-    -- for syntax documentation see https://docs.rs/regex/1.5.4/regex/#syntax
-    -- d = { "<cmd>lua t.live_grep()<CR>", "in directory" },
-    -- w = { "<cmd>lua t.grep_string()<CR>", "word" },
-    -- s = { "<cmd>lua t.lsp_document_symbols()<CR>", "document symbols" },
-    -- S = { "<cmd>lua t.lsp_workspace_symbols()<CR>", "workspace symbols" },
-    -- q = { "<cmd>lua t.quickfix()<CR>", "in quickfix list" },
-    -- h = { "<cmd>lua t.help_tags()<CR>", "in help" },
-    -- r = { "<cmd>lua t.lsp_references()<CR>", "references" },
-    -- t = { "<cmd>lua t_ext.todo.todo()<CR>", "todos" },
-  },
-
-  m = {
-    c = { "<cmd>lua require('plugins.lsp.utils').toggle_codeium()<cr>", "Toggle format on save" },
-  },
 
   -- window
 
@@ -179,8 +124,6 @@ wk.register({
 
       "git diff",
     },
-
-    D = { "<cmd>NeoTreeShow<CR>", "directory buffer" },
 
     e = { "<cmd>lua vim.diagnostic.open_float()<CR>", "line errors" },
 

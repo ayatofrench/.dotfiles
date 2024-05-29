@@ -1,34 +1,23 @@
-local lspkind = require("lspkind")
-lspkind.init({})
+vim.opt.completeopt = { "menu", "menuone", "noselect" }
+vim.opt.shortmess:append("c")
 
+local lspkind = require("lspkind")
 local cmp = require("cmp")
 
-local source_mapping = {
-  buffer = "[Buffer]",
-  cody = "[Cody]",
-  nvim_lsp = "[LSP]",
-  nvim_lua = "[Lua]",
-  path = "[Path]",
-}
-
 cmp.setup({
-  -- Enable LSP snippets
-  snippet = {
-    expand = function(args)
-      require("luasnip").lsp_expand(args.body)
-    end,
+  sources = {
+    { name = "nvim_lsp" },
+    { name = "path" },
+    { name = "buffer" },
   },
 
   mapping = cmp.mapping.preset.insert({
-    ["<C-n>"] = cmp.mapping.select_next_item(),
-    ["<C-p>"] = cmp.mapping.select_prev_item(),
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.close(),
+    ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+    ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
     ["<C-y>"] = cmp.mapping.confirm({
-      behavior = cmp.ConfirmBehavior.Replace,
+      behavior = cmp.ConfirmBehavior.Insert,
       select = true,
+      { "i", "c" },
     }),
     -- Add tab support
     ["<Tab>"] = cmp.mapping(function(fallback)
@@ -46,49 +35,54 @@ cmp.setup({
       end
     end, { "i", "s" }),
   }),
-
-  -- Installed sources:
-
-  sources = {
-    -- { name = "cody" },
-    { name = "nvim_lsp", keyword_length = 3 }, -- from language server
-    -- {
-    --   name = "codeium",
-    --   entry_filter = function()
-    --     return CODEIUM_ACTIVE
-    --   end,
-    -- },
-    { name = "nvim_lsp_signature_help" }, -- display function signatures with current parameter emphasized
-    { name = "nvim_lua", keyword_length = 2 }, -- complete neovim's Lua runtime API such vim.lsp.*
-    { name = "buffer", keyword_length = 2 }, -- source current buffer
-    { name = "luasnip" }, -- nvim-cmp source for vim-vsnip
-    { name = "calc" }, -- source for math calculation
-    { name = "path" }, -- file paths
+  formatting = {
+    format = lspkind.cmp_format({}),
   },
 
-  -- window = {
-  --     completion = cmp.config.window.bordered(),
-  --     documentation = cmp.config.window.bordered(),
-  -- },
-
-  formatting = {
-    fields = { "menu", "abbr", "kind" },
-    format = lspkind.cmp_format({
-      menu = source_mapping,
-    }),
-    -- format = function(entry, item)
-    --   local menu_icon = {
-    --     nvim_lsp = "λ",
-    --     codeium = "λ",
-    --     luasnip = "⋗",
-    --     buffer = "Ω",
-    --     path = "🖫",
-    --   }
-    --   item.menu = menu_icon[entry.source.name]
-    --   item.kind = lspkind.presets.default[item.kind]
-    --   local menu = source_mapping[entry.source.name]
-    --   item.menu = menu
-    --   return item
-    -- end,
+  -- Enable LSP snippets
+  snippet = {
+    expand = function(args)
+      require("luasnip").lsp_expand(args.body)
+    end,
   },
 })
+
+cmp.setup.filetype({ "sql" }, {
+  sources = {
+    { name = "vim-dadbod-completion" },
+    { name = "buffer" },
+  },
+})
+
+local ls = require("luasnip")
+require("luasnip.loaders.from_vscode").lazy_load()
+ls.config.set_config({
+  history = false,
+  updateevents = "TextChanged,TextChangedI",
+})
+
+for _, ft_path in ipairs(vim.api.nvim_get_runtime_file("lua/ext/snippets/*.lua", true)) do
+  loadfile(ft_path)()
+end
+
+vim.keymap.set({ "i", "s" }, "<c-k>", function()
+  if ls.expand_or_jumpable() then
+    ls.expand_or_jump()
+  end
+end, { silent = true })
+
+vim.keymap.set({ "i", "s" }, "<c-j>", function()
+  if ls.jumpable(-1) then
+    ls.jump(-1)
+  end
+end, { silent = true })
+
+-- vim.keymap.set("i", "<c-l>", function()
+--   if ls.choice_active() then
+--     ls.change_choice(1)
+--   end
+-- end)
+--
+-- vim.keymap.set("i", "<c-u>", require("luasnip.extras.select_choice"))
+
+-- vim.keymap.set("n", "<leader><leader>s

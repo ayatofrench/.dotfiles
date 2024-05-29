@@ -44,10 +44,6 @@ opt.isfname:append("@-@")
 
 opt.updatetime = 100
 
--- Don't pass messages to |ins-completion-menu|.
-
-opt.shortmess:append("c")
-
 opt.colorcolumn = "100"
 
 opt.clipboard = "unnamedplus"
