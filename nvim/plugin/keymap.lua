@@ -19,6 +19,8 @@ vim.keymap.set("n", "<leader><c-r>", function()
   require("utils.helpers").copy_relative_path()
 end)
 
+vim.keymap.set("n", "<c-f>", "<cmd>!tmux neww tmux-sessionizer<CR>", { silent = true })
+
 vim.keymap.set("o", "m", "<C-U>lua require('tsht').nodes()<CR>", { silent = true })
 vim.keymap.set("x", "m", function()
   require("tsht").nodes()
