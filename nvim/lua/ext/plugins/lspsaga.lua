@@ -1,9 +1,8 @@
 local M = {
-  "glepnir/lspsaga.nvim",
+  "nvimdev/lspsaga.nvim",
   dependencies = {
-    { "nvim-tree/nvim-web-devicons" },
-    --Please make sure you install markdown and markdown_inline parser
-    { "nvim-treesitter/nvim-treesitter" },
+    "nvim-tree/nvim-web-devicons",
+    "nvim-treesitter/nvim-treesitter",
   },
   config = function()
     require("lspsaga").setup({})

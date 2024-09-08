@@ -72,11 +72,17 @@ return {
         -- TODO: Check if i still need the filtypes stuff i had before
       },
 
-      lexical = {
+      elixirls = {
         filetypes = { "elixir", "eelixir", "heex" },
-        cmd = { data .. "/mason/bin/lexical", "server" },
+        cmd = { data .. "/mason/bin/elixir-ls" },
         root_dir = require("lspconfig.util").root_pattern({ "mix.exs" }),
       },
+
+      -- lexical = {
+      --   filetypes = { "elixir", "eelixir", "heex" },
+      --   cmd = { data .. "/mason/bin/lexical", "server" },
+      --   root_dir = require("lspconfig.util").root_pattern({ "mix.exs" }),
+      -- },
 
       clangd = {
         -- TODO: Could include cmd, but not sure those were all relevant flags.
@@ -162,7 +168,7 @@ return {
     })
 
     require("lint").linters_by_ft = {
-      javascript = { "eslint_d", "eslint" },
+      javascript = { "eslint" },
       python = { "ruff" },
     }
 
@@ -170,10 +176,10 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         python = { "ruff_format" },
-        javascript = { { "prettierd", "prettier" } },
-        typescript = { { "prettierd", "prettier" } },
-        typescriptreact = { { "prettierd", "prettier" } },
-        astro = { { "prettierd", "prettier" } },
+        javascript = { "prettierd", "prettier", stop_after_first = true },
+        typescript = { "prettierd", "prettier", stop_after_first = true },
+        typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+        astro = { "prettierd", "prettier", stop_after_first = true },
         go = { "gofmt", "goimports" },
         nix = { "alejandra" },
         elixir = { "mix format" },
