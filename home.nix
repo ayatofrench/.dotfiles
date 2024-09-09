@@ -48,12 +48,14 @@ in {
     picom
     p4
     rofi
-    valgrind
+    nodejs_20
+    nodejs_20.pkgs.pnpm
+    valgrindm
     zathura
     xfce.xfce4-terminal
     youtube-music
   ]);
-  
+
   programs = {
       home-manager.enable = true;
 

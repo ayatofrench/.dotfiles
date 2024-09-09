@@ -20,6 +20,7 @@ M.setup = function()
     "json",
     "lua",
     "markdown",
+    "markdown_inline",
     "norg",
     -- "odin",
     "ocaml",

@@ -7,19 +7,25 @@ return {
       {
         "<leader>vs",
         "<cmd>:venvselect<cr>",
-        -- key mapping for directly retrieve from cache. you may set autocmd if you prefer the no hand approach
-        -- "<leader>vs",
-        -- "<cmd>:venvselectcached<cr>",
       },
     },
   },
   {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+  },
+  {
     "folke/trouble.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { "nvim-tree/nvim-web-devicons", "folke/todo-comments.nvim" },
+    keys = {
+      { "<leader>st", "<cmd>Trouble todo<cr>", desc = "Todo Trouble" },
+    },
     opts = {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
+      win = {
+        position = "right",
+        size = 0.4,
+      },
     },
   },
   {

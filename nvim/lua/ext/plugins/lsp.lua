@@ -28,7 +28,7 @@ return {
       svelte = true,
       templ = true,
       cssls = true,
-      tsserver = true,
+      ts_ls = true,
       pyright = true,
       eslint = true,
       html = true,
