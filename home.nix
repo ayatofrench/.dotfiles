@@ -12,7 +12,6 @@ in {
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
   home.packages = with pkgs; [
-    asdf-vm
     bat
     eza
     fd
@@ -31,44 +30,57 @@ in {
     zf
 
     # Fonts
-    recursive
     (pkgs.nerdfonts.override { fonts = ["JetBrainsMono" "VictorMono"]; })
+    recursive
     pixelcode
+    commitmono
+    zedmono
   ] ++ (lib.optionals isDarwin  [
     cachix
   ]) ++ (lib.optionals isLinux [
     ## Rust
 #    rustc
 #    cargo
+    asdf-vm
     btop
     rustup
-    beam.packages.erlang.elixir
+    beam.packages.erlang.elixir_1_16
     picom
     p4
     rofi
-    valgrind
+    nodejs_20
+    nodejs_20.pkgs.pnpm
+    valgrindm
     zathura
     xfce.xfce4-terminal
+    youtube-music
   ]);
-  
+
   programs = {
       home-manager.enable = true;
 
       direnv = {
-        enable = true;
+        enable = isLinux;
         enableBashIntegration = true; # see note on other shells below
         nix-direnv.enable = true;
       };
 
       go.enable = true;
 
-      # starship = {
-      #     enable = true;
-      #     enableZshIntegration = true;
-      # };
+      zoxide.enable = isLinux;
 
-      zoxide.enable = true;
-      
+      tmux = {
+          enable = true;
+          terminal = "tmux-256color";
+          plugins = with pkgs; [
+            tmuxPlugins.catppuccin
+          ];
+          extraConfig = ''
+          ${builtins.readFile ./tmux/.tmux.conf}
+          '';
+
+      };
+
       zsh = {
           enable = true;
           enableAutosuggestions = true;
@@ -96,7 +108,17 @@ in {
         enable = true;
         interactiveShellInit = lib.strings.concatStrings (lib.strings.intersperse "\n" ([
           (builtins.readFile ./fish/config.fish)
-          "set -g SHELL ${pkgs.fish}/bin/fish"
+          "
+            if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+              fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+            end
+
+            if test -e /nix/var/nix/profiles/default/etc/profile.d/nix.sh
+              fenv source /nix/var/nix/profiles/default/etc/profile.d/nix.sh
+            end
+
+            set -g SHELL ${pkgs.fish}/bin/fish
+          "
         ]));
 
         # shellAliases = {
@@ -122,6 +144,16 @@ in {
         }) [
           "fzf-fish"
           "tide"
+        ] ++ [
+          {
+            name = "foreign-env";
+            src = pkgs.fetchFromGitHub {
+                owner = "oh-my-fish";
+                repo = "plugin-foreign-env";
+                rev = "dddd9213272a0ab848d474d0cbde12ad034e65bc";
+                sha256 = "00xqlyl3lffc5l0viin1nyp819wf81fncqyz87jx8ljjdhilmgbs";
+              };
+            }
         ];
       };
   };
@@ -144,9 +176,11 @@ in {
   xdg.configFile = {
       "starship.toml".text = builtins.readFile ./starship.toml;
       "ghostty/config".text = builtins.readFile ./ghostty.linux;
+      "tmux/tmux.conf".text = builtins.readFile ./tmux/.tmux.conf;
   };
 
   home.sessionVariables = {
     EDITOR = "nvim";
+    TERM = "ghostty";
   };
 }

@@ -18,6 +18,10 @@
       path: scripts/
     ~/.Xresources:
       path: .Xresources
+    ~/.yabairc:
+      path: yabairc
+    ~/.hammerspoon:
+      path: hammerspoon/ 
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

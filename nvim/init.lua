@@ -1,3 +1,5 @@
+vim.g.mapleader = " "
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -9,13 +11,13 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
+
+-- Add lazy to the `runtimepath`, this allows us to `require` it.
+---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
-vim.g.mapleader = " "
-
-require("secretninjaman.set")
-require("secretninjaman.globals")
-require("secretninjaman.lazy")
-require("secretninjaman.keymap")
-
-vim.opt.rtp:append("~/personal/lsp-debug-tools.nvim")
+require("lazy").setup({ import = "ext/plugins" }, {
+  change_detection = {
+    notify = false,
+  },
+})

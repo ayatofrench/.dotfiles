@@ -42,7 +42,7 @@
         #inherit system;
         #inherit pkgs;
 
-        pkgs = nixpkgs.legacyPackages."x86_64-darwin";
+        pkgs = nixpkgs.legacyPackages."aarch64-darwin";
         extraSpecialArgs = {inherit inputs outputs;};
         modules = [ 
           ./home.nix
