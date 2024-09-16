@@ -116,6 +116,8 @@ set --universal --erase fish_greeting
 function fish_greeting; end
 funcsave fish_greeting
 
+bind \cf 'tmux-sessionizer'
+
 #
 # function sshagent_findsockets
 # 	find /tmp -uid (id -u) -type s -name agent.\* 2>/dev/null
