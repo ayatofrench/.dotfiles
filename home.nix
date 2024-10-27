@@ -96,7 +96,7 @@ in {
 
     zsh = {
       enable = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       plugins = [
         {
           name = "zsh-history-substring-search";
@@ -176,7 +176,10 @@ in {
   };
 
   home.file = {
-    ".xinitrc".source = .dotfiles/bspwm/xinitrc
+    ".xinitrc" = {
+      executable = true;
+      source = ./bspwm/xinitrc;
+    };
   };
 
   fonts.fontconfig.enable = true;
