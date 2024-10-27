@@ -22,7 +22,7 @@ M.setup = function()
     "markdown",
     "markdown_inline",
     "norg",
-    -- "odin",
+    "odin",
     "ocaml",
     "pkl",
     "proto",

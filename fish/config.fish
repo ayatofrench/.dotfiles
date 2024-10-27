@@ -105,8 +105,16 @@ if test -d "$HOME/.local/bin/scripts"
   set -q PATH; or set PATH ''; set -gx PATH  "$HOME/.local/bin/scripts" $PATH;
 end
 
+if test -d "$HOME/.local/nvim"
+  set -q PATH; or set PATH ''; set -gx PATH "$HOME/.local/nvim/bin" $PATH;
+end
+
 if test -d "$HOME/.asdf/asdf.fish"
   source ~/.asdf/asdf.fish
+end
+
+if test -d "$HOME/.fly/bin"
+  set -q PATH; or set PATH ''; set -gx PATH "$HOME/.fly/bin" $PATH;
 end
 
 set -q PATH; or set PATH ''; set -gx PATH  "$HOME/.local/bin" $PATH;
