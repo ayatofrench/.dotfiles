@@ -70,7 +70,7 @@ end
 
 if test -d "$HOME/.modular"
   set -gx MODULAR_HOME "$HOME/.modular"
-  set -q PATH; or set PATH ''; set -gx PATH "$MODULAR_HOME/pkg/packages.modular.com_mojo/bin" $PATH;
+  set -q PATH; or set PATH ''; set -gx PATH "$MODULAR_HOME/bin" $PATH;
 end
 
 # Hammerspoon
