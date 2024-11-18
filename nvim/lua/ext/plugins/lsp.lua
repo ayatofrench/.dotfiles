@@ -159,6 +159,7 @@ return {
 
         vim.keymap.set("n", "<space>cr", vim.lsp.buf.rename, { buffer = 0 })
         vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, { buffer = 0 })
+        vim.keymap.set("n", "<space>ce", vim.diagnostic.open_float, { buffer = 0 })
 
         local filetype = vim.bo[bufnr].filetype
         if disable_semantic_tokens[filetype] then
@@ -170,6 +171,7 @@ return {
     require("lint").linters_by_ft = {
       javascript = { "eslint" },
       python = { "ruff" },
+      dockerfile = { "hadolint" },
     }
 
     require("conform").setup({
