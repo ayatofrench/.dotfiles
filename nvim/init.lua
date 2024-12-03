@@ -20,4 +20,7 @@ require("lazy").setup({ import = "ext/plugins" }, {
   change_detection = {
     notify = false,
   },
+  rocks = {
+    enabled = false,
+  },
 })

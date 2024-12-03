@@ -6,22 +6,24 @@
 - clean: ['~']
 
 - link:
-    ~/.config/awesome:
+    #~/.config/awesome:
     ~/.config/nvim: 
-    ~/.config/wezterm:
-    ~/.tmux.conf:
-      path: tmux/.tmux.conf
-    ~/.alacritty.yml:
-      path: alacritty.yml
-    ~/.config/zellij:
+    ~/.config/nixpkgs/config.nix:
+      path: config.nix
+    #~/.config/wezterm:
+    #~/.tmux.conf:
+    #  path: tmux/.tmux.conf
+    #~/.alacritty.yml:
+    #  path: alacritty.yml
+    #~/.config/zellij:
     ~/.local/bin/scripts:
       path: scripts/
     ~/.Xresources:
       path: .Xresources
-    ~/.yabairc:
-      path: yabairc
-    ~/.hammerspoon:
-      path: hammerspoon/ 
+    #~/.yabairc:
+    #  path: yabairc
+    #~/.hammerspoon:
+    #  path: hammerspoon/ 
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

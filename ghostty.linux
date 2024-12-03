@@ -10,8 +10,8 @@ gtk-titlebar = false
 # foreground = #CAD3F5
 
 # Selection Colors
-selection-background = #24273A
-selection-foreground = #F4DBD6
+# selection-background = #24273A
+# selection-foreground = #F4DBD6
 
 # Cursor Colors
 # cursor-color = #F4DBD6

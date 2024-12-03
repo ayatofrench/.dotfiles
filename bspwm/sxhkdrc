@@ -4,15 +4,18 @@
 
 # terminal emulator
 super + Return
-	urxvt
+	ghostty -e fish
 
 # program launcher
-super + @space
-	dmenu_run
+super + d
+	rofi -show drun
 
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
+
+super + shift + s
+  flameshot screen --path /home/aj/Pictures
 
 #
 # bspwm hotkeys

@@ -12,25 +12,29 @@ in {
     outputs.overlays.additions
   ];
 
+  nixpkgs.config.allowUnfree = true;
+
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
   home.packages = with pkgs;
     [
+      # Tools
       bat
       eza
       fd
       fzf
+      zf
       tree
       watch
-      git
+      #git
       htop
-      lazygit
       neofetch
       ripgrep
-      src-cli
+      #src-cli
       sqlite
-      zellij
-      zf
+      gh
+      pipx
+      #zellij
 
       # Formatters
       alejandra
@@ -56,7 +60,14 @@ in {
       xfce.xfce4-terminal
 
       # Apps
+      asciinema
+      asciinema-agg
       brave
+      discord
+      flameshot
+      kooha
+      tailscale
+      telegram-desktop
       youtube-music
       zathura
       # mullvad
@@ -66,8 +77,10 @@ in {
       bspwm
       sxhkd
       picom
-      lightdm
       rofi
+      dmenu
+      feh
+      polybar
     ]);
 
   programs = {
@@ -136,22 +149,28 @@ in {
           "
       ]);
 
-      # shellAliases = {
-      #   ga = "git add";
-      #   gc = "git commit";
-      #   gco = "git checkout";
-      #   gcp = "git cherry-pick";
-      #   gdiff = "git diff";
-      #   gl = "git prettylog";
-      #   gp = "git push";
-      #   gs = "git status";
-      #   gt = "git tag";
-      # } // (if isLinux then {
-      #   # Two decades of using a Mac has made this such a strong memory
-      #   # that I'm just going to keep it consistent.
-      #   pbcopy = "xclip";
-      #   pbpaste = "xclip -o";
-      # } else {});
+      shellAliases =
+        {
+          ga = "git add";
+          gc = "git commit";
+          gco = "git checkout";
+          gcp = "git cherry-pick";
+          gdiff = "git diff";
+          gl = "git prettylog";
+          gp = "git push";
+          gs = "git status";
+          gt = "git tag";
+        }
+        // (
+          if isLinux
+          then {
+            # Two decades of using a Mac has made this such a strong memory
+            # that I'm just going to keep it consistent.
+            # pbcopy = "xclip";
+            # pbpaste = "xclip -o";
+          }
+          else {}
+        );
 
       plugins =
         map (n: {
@@ -188,12 +207,30 @@ in {
     "starship.toml".text = builtins.readFile ./starship.toml;
     "ghostty/config".text = builtins.readFile ./ghostty.linux;
     "tmux/tmux.conf".text = builtins.readFile ./tmux/.tmux.conf;
-    "bspwm/bspwmrc".text = builtins.readFile ./bspwm/bspwmrc;
-    "sxhkd/sxhkdrc".text = builtins.readFile ./bspwm/sxhkdrc;
+    "bspwm/bspwmrc" = {
+      executable = true;
+      source = ./bspwm/bspwmrc;
+    };
+    "sxhkd/sxhkdrc" = {
+      executable = true;
+      source = ./bspwm/sxhkdrc;
+    };
+    "polybar/config.ini" = {
+      source = ./polybar/config.ini;
+    };
+    "polybar/launch.sh" = {
+      executable = true;
+      source = ./polybar/launch.sh;
+    };
   };
 
   home.sessionVariables = {
+    LANG = "en_US.UTF-8";
+    LC_CTYPE = "en_US.UTF-8";
+    LC_ALL = "en_US.UTF-8";
     EDITOR = "nvim";
     TERM = "ghostty";
   };
+
+  home.language.base = "en_US.UTF-8";
 }

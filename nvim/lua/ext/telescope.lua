@@ -2,7 +2,6 @@ local data = assert(vim.fn.stdpath("data")) --[[@as string]]
 
 require("telescope").setup({
   extensions = {
-    ["zf-native"] = {},
     wrap_results = {},
     history = {
       path = vim.fs.joinpath(data, "telescope_history.sqlite3"),
