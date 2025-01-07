@@ -70,6 +70,7 @@ in {
       telegram-desktop
       youtube-music
       zathura
+      syncthing
       # mullvad
       # mullvad-vpn
 

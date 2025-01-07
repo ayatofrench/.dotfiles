@@ -1,21 +1,13 @@
+theme = GruvboxDarkHard
+cursor-style = block
 font-size = 16
 font-family = "Berkeley Mono"
 adjust-underline-thickness = -50%
 background-opacity = 0.95
 background-blur-radius = 20
+gtk-adwaita = false
 gtk-titlebar = false
-
-# Background & Foreground Colors
-# background = #24273A
-# foreground = #CAD3F5
-
-# Selection Colors
-# selection-background = #24273A
-# selection-foreground = #F4DBD6
-
-# Cursor Colors
-# cursor-color = #F4DBD6
-# cursor-text = #24273A 
-
 window-padding-balance = true
-window-padding-x = 0
+window-padding-x = 1
+confirm-close-surface = false
+copy-on-select = clipboard

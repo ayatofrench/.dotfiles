@@ -41,8 +41,12 @@ M.setup = function()
     "zig",
   }
 
-  require("nvim-treesitter").setup({
+  require("nvim-treesitter.configs").setup({
     ensure_installed = ensure_installed,
+    sync_install = false,
+    auto_install = true,
+    modules = {},
+    ignore_install = {},
     highlight = {
       enable = true, -- false will disable the whole extension
       disable = {}, -- list of language that will be disabled

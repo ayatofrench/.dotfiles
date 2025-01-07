@@ -89,11 +89,9 @@ if test -d "$HOME/.turso"
   set -q PATH; or set PATH ''; set -gx PATH  "$HOME/.turso" $PATH;
 end
 
-# turso
-# if test -d "$HOME/.local/share/fnm"
-#   set -q PATH; or set PATH ''; set -gx PATH  "$HOME/.local/share/fnm" $PATH;
-#   eval (fnm env)
-# end
+if test -d "$HOME/go/bin"
+  set -q PATH; or set PATH ''; set -gx PATH "$HOME/go/bin" $PATH;
+end
 
 # pnpm
 if test -d "$HOME/Library/pnpm"
