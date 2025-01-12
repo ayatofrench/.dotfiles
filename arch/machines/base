@@ -8,6 +8,7 @@ bluez-utils
 btrfs-progs
 dialog
 efibootmgr
+emacs
 git
 grub
 grub-btrfs
@@ -17,6 +18,7 @@ linux
 linux-firmware
 linux-headers
 man-db
+minijinja-cli-bin
 neovim
 network-manager-applet
 networkmanager
@@ -36,6 +38,7 @@ pipewire-jack
 pipewire-pulse
 reflector
 rsync
+tailscale
 timeshift
 timeshift-autosnap
 vim

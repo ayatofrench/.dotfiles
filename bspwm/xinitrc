@@ -16,7 +16,7 @@ fi
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 
 nvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[fan:0]/GPUTargetFanSpeed=45"
-feh $HOME/bg/norway.jpeg --bg-fill --no-fehbg
+feh $HOME/wallpapers/desktop.jpg --bg-fill --no-fehbg
 xsetroot -cursor_name left_ptr
 picom &
 exec bspwm

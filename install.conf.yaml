@@ -14,6 +14,9 @@
     ~/.Xresources:
       path: .Xresources
     ~/.config/emacs:
+    ~/wallpapers:
+    ~/.config/fish/fish_variables:
+      path: fish/fish_variables
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]

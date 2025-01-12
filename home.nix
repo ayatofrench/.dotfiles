@@ -66,7 +66,6 @@ in {
       discord
       flameshot
       kooha
-      tailscale
       telegram-desktop
       youtube-music
       zathura
@@ -205,7 +204,6 @@ in {
   fonts.fontconfig.enable = true;
 
   xdg.configFile = {
-    "starship.toml".text = builtins.readFile ./starship.toml;
     "ghostty/config".text = builtins.readFile ./ghostty.linux;
     "tmux/tmux.conf".text = builtins.readFile ./tmux/.tmux.conf;
     "bspwm/bspwmrc" = {
