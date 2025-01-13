@@ -91,11 +91,11 @@ M.setup = function()
   local syntax_on = {
     elixir = true,
     go = true,
-    -- typescript = true,
+    typescript = true,
     typescriptreact = true,
     javascript = true,
     javascriptreact = true,
-    -- astro = true,
+    astro = true,
     python = true,
     pkl = true,
   }
