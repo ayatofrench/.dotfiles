@@ -13,7 +13,7 @@
       path: scripts/
     ~/.Xresources:
       path: .Xresources
-    ~/.config/emacs:
+    ~/.config/doom:
     ~/wallpapers:
     ~/.config/fish/fish_variables:
       path: fish/fish_variables
