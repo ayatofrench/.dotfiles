@@ -5,6 +5,7 @@
   outputs,
   ...
 }: let
+  inherit (lib) getExe readFile;
   isDarwin = pkgs.stdenv.isDarwin;
   isLinux = pkgs.stdenv.isLinux;
 in {
@@ -30,10 +31,12 @@ in {
       htop
       neofetch
       ripgrep
+      jujutsu
       #src-cli
       sqlite
       gh
       pipx
+      zoxide
       #zellij
 
       # Formatters
@@ -93,8 +96,6 @@ in {
     };
 
     go.enable = true;
-
-    zoxide.enable = isLinux;
 
     tmux = {
       enable = true;
@@ -192,6 +193,34 @@ in {
           }
         ];
     };
+
+    starship = {
+      enable = true;
+      # No because we are doing it at build time instead of the way
+      # this retarded module does it. Why the hell do you generate
+      # the config every time the shell is launched?
+      enableNushellIntegration = false;
+
+      settings = {
+        # vcs.disabled = false;
+
+        command_timeout = 100;
+        scan_timeout = 20;
+
+        cmd_duration.show_notifications = true;
+
+        # package.disabled = config.isServer;
+
+        character.error_symbol = "";
+        character.success_symbol = "";
+      };
+    };
+
+    nushell = {
+      enable = true;
+      configFile.text = readFile ./nushell/config.nu;
+      envFile.text = readFile ./nushell/environment.nu;
+    };
   };
 
   home.file = {
@@ -221,6 +250,12 @@ in {
       executable = true;
       source = ./polybar/launch.sh;
     };
+    "nushell/zoxide.nu".source = pkgs.runCommand "zoxide.nu" {} ''
+      ${getExe pkgs.zoxide} init nushell --cmd cd > $out
+    '';
+    "nushell/starship.nu".source = pkgs.runCommand "starship.nu" {} ''
+      ${getExe pkgs.starship} init nu > $out
+    '';
   };
 
   home.sessionVariables = {
@@ -229,6 +264,7 @@ in {
     LC_ALL = "en_US.UTF-8";
     EDITOR = "nvim";
     TERM = "ghostty";
+    SHELL = "${getExe pkgs.nushell}";
   };
 
   home.language.base = "en_US.UTF-8";

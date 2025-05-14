@@ -112,7 +112,6 @@ return {
       "norcalli/nvim-colorizer.lua",
     },
     priority = 1000,
-    lazy = false,
     config = function()
       -- colorMyPencils()
       vim.cmd.colorscheme("gruvbuddy")
@@ -130,13 +129,11 @@ return {
     -- vim.cmd.colorscheme("solarized-osaka")
   },
   {
-    "gruvbox-community/gruvbox",
-    -- priority = 1000,
+    "ellisonleao/gruvbox.nvim",
     name = "gruvbox",
+    priority = 1000,
     -- config = function()
-    --   -- require("nvim-web-devicons").setup()
-    --   -- vim.cmd.colorscheme("gruvbox")
-    --   colorMyPencils()
+    --   vim.cmd.colorscheme("gruvbox")
     -- end,
   },
   {

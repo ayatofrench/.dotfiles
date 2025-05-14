@@ -28,9 +28,10 @@ return {
       svelte = true,
       templ = true,
       cssls = true,
-      tsserver = true,
-      pyright = true,
-      eslint = true,
+      ts_ls = true,
+      -- pyright = false,
+      basedpyright = true,
+      -- eslint = true,
       html = true,
       tailwindcss = true,
       ols = true,
@@ -72,17 +73,17 @@ return {
         -- TODO: Check if i still need the filtypes stuff i had before
       },
 
-      elixirls = {
-        filetypes = { "elixir", "eelixir", "heex" },
-        cmd = { data .. "/mason/bin/elixir-ls" },
-        root_dir = require("lspconfig.util").root_pattern({ "mix.exs" }),
-      },
-
-      -- lexical = {
+      -- elixirls = {
       --   filetypes = { "elixir", "eelixir", "heex" },
-      --   cmd = { data .. "/mason/bin/lexical", "server" },
+      --   cmd = { data .. "/mason/bin/elixir-ls" },
       --   root_dir = require("lspconfig.util").root_pattern({ "mix.exs" }),
       -- },
+
+      lexical = {
+        filetypes = { "elixir", "eelixir", "heex" },
+        cmd = { data .. "/mason/bin/lexical", "server" },
+        root_dir = require("lspconfig.util").root_pattern({ "mix.exs" }),
+      },
 
       clangd = {
         -- TODO: Could include cmd, but not sure those were all relevant flags.
@@ -178,9 +179,9 @@ return {
       formatters_by_ft = {
         lua = { "stylua" },
         python = { "ruff_format" },
-        javascript = { "prettierd", "prettier", stop_after_first = true },
-        typescript = { "prettierd", "prettier", stop_after_first = true },
-        typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+        -- javascript = { "prettierd", "prettier", stop_after_first = true },
+        -- typescript = { "prettierd", "prettier", stop_after_first = true },
+        -- typescriptreact = { "prettierd", "prettier", stop_after_first = true },
         astro = { "prettierd", "prettier", stop_after_first = true },
         go = { "gofmt", "goimports" },
         nix = { "alejandra" },
