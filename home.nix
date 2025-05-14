@@ -24,20 +24,19 @@ in {
       eza
       fd
       fzf
-      zf
+      gh
+      htop
+      jujutsu
+      neofetch
+      pipx
+      ripgrep
+      sqlite
       tree
       watch
-      #git
-      htop
-      neofetch
-      ripgrep
-      jujutsu
-      #src-cli
-      sqlite
-      gh
-      pipx
+      yazi
+      zf
       zoxide
-      #zellij
+      fish
 
       # Formatters
       alejandra
@@ -138,15 +137,13 @@ in {
       interactiveShellInit = lib.strings.concatStrings (lib.strings.intersperse "\n" [
         (builtins.readFile ./fish/config.fish)
         "
-            if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-              fenv source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+            if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+              source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
             end
 
-            if test -e /nix/var/nix/profiles/default/etc/profile.d/nix.sh
-              fenv source /nix/var/nix/profiles/default/etc/profile.d/nix.sh
+            if test -e /nix/var/nix/profiles/default/etc/profile.d/nix.fish
+              source /nix/var/nix/profiles/default/etc/profile.d/nix.fish
             end
-
-            set -g SHELL ${pkgs.fish}/bin/fish
           "
       ]);
 
@@ -264,7 +261,7 @@ in {
     LC_ALL = "en_US.UTF-8";
     EDITOR = "nvim";
     TERM = "ghostty";
-    SHELL = "${getExe pkgs.nushell}";
+    SHELL = "${pkgs.nushell}/bin/nu";
   };
 
   home.language.base = "en_US.UTF-8";

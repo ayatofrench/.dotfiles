@@ -112,10 +112,10 @@ return {
       "norcalli/nvim-colorizer.lua",
     },
     priority = 1000,
-    config = function()
-      -- colorMyPencils()
-      vim.cmd.colorscheme("gruvbuddy")
-    end,
+    -- config = function()
+    --   -- colorMyPencils()
+    --   vim.cmd.colorscheme("gruvbox")
+    -- end,
   },
   {
     "rose-pine/neovim",
@@ -144,5 +144,27 @@ return {
     -- config = colorMyPencils(),
     --   vim.cmd.colorscheme("solarized-osaka")
     -- end,
+  },
+  {
+    "blazkowolf/gruber-darker.nvim",
+    opts = {
+      invert = {
+        tabline = true,
+      },
+    },
+  },
+  {
+    "sainnhe/gruvbox-material",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      -- Optionally configure and load the colorscheme
+      -- directly inside the plugin declaration.
+      vim.g.gruvbox_material_enable_italic = true
+      vim.g.gruvbox_material_background = "hard"
+      vim.g.gruvbox_material_foreground = "original"
+      vim.g.gruvbox_material_ui_contrast = "high"
+      vim.cmd.colorscheme("gruvbox-material")
+    end,
   },
 }
