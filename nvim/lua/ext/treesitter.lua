@@ -24,7 +24,7 @@ M.setup = function()
     "norg",
     "odin",
     "ocaml",
-    "pkl",
+    --   "pkl",
     "proto",
     "python",
     "regex",
@@ -97,7 +97,7 @@ M.setup = function()
     javascriptreact = true,
     astro = true,
     python = true,
-    pkl = true,
+    --    pkl = true,
   }
 
   vim.api.nvim_create_autocmd("FileType", {
