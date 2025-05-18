@@ -29,6 +29,14 @@ return {
       templ = true,
       cssls = true,
       ts_ls = true,
+      nushell = true,
+      nil_ls = {
+        settings = {
+          formatting = {
+            command = { "nixfmt" },
+          },
+        },
+      },
       -- pyright = false,
       basedpyright = true,
       -- eslint = true,
@@ -184,7 +192,7 @@ return {
         -- typescriptreact = { "prettierd", "prettier", stop_after_first = true },
         astro = { "prettierd", "prettier", stop_after_first = true },
         go = { "gofmt", "goimports" },
-        nix = { "alejandra" },
+        -- nix = { "alejandra" },
         elixir = { "mix format" },
       },
       formatters = {
