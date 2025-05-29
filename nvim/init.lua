@@ -16,6 +16,7 @@ vim.opt.rtp = vim.opt.rtp ^ lazypath
 require "settings"
 require "keymaps"
 require "lsp"
+require "terminal"
 
 -- @type LazySpec
 local plugins = 'plugins'

@@ -20,6 +20,12 @@ if ('/opt/homebrew' | path type) == 'dir' {
   $env.INFOPATH = $env.INFOPATH? | prepend '/opt/homebrew/share/info'
 }
 
+if ($'($env.HOME)/.cargo' | path type) == 'dir' {
+  $env.PATH = $env.PATH? | append [
+    $'($env.HOME)/.cargo/bin'
+  ]
+}
+
 let shims_dir = (
   if ( $env | get --ignore-errors ASDF_DATA_DIR | is-empty ) {
     $env.HOME | path join '.asdf'

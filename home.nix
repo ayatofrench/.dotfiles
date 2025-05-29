@@ -21,6 +21,7 @@ in {
     [
       # Tools
       bat
+      btop
       eza
       fd
       fzf
@@ -37,13 +38,17 @@ in {
       zf
       zoxide
       fish
+      hyperfine
+      oxlint
+      lua-language-server
+      vtsls
 
       # Formatters
       alejandra
       stylua
 
       # Fonts
-      (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
+      pkgs.nerd-fonts.jetbrains-mono
       pixelcode
     ]
     ++ (lib.optionals isDarwin [
@@ -52,7 +57,6 @@ in {
     ++ (lib.optionals isLinux [
       # Global dev tools
       asdf-vm
-      btop
       distrobox
       nodejs_20
       nodejs_20.pkgs.pnpm
@@ -253,6 +257,7 @@ in {
     "nushell/starship.nu".source = pkgs.runCommand "starship.nu" {} ''
       ${getExe pkgs.starship} init nu > $out
     '';
+    "nushell/tmux-sessionizer.nu".text = builtins.readFile ./nushell/tmux-sessionizer.nu;
   };
 
   home.sessionVariables = {

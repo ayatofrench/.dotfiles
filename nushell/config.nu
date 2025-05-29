@@ -37,5 +37,19 @@ $env.config.completions = {
   }
 }
 
+$env.config.keybindings = [
+  {
+    name: tmux_sessionizer
+    modifier: control
+    keycode: char_f
+    mode: [ emacs vi_normal vi_insert ]
+    event: {
+      send: executehostcommand
+      cmd: "tmux-sessionizer"
+    }
+  }
+]
+
 source ~/.config/nushell/zoxide.nu
 source ~/.config/nushell/starship.nu
+source ~/.config/nushell/tmux-sessionizer.nu
