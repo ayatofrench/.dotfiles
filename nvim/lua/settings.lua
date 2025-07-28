@@ -30,3 +30,4 @@ opt.colorcolumn = "100"
 opt.clipboard = "unnamedplus"
 opt.conceallevel = 2
 opt.formatoptions:remove("o")
+-- vim.o.hidden = 
