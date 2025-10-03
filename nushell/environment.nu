@@ -18,11 +18,24 @@ if ('/opt/homebrew' | path type) == 'dir' {
   ]
   $env.MANPATH = $env.MANPATH? | prepend '/opt/homebrew/share/man'
   $env.INFOPATH = $env.INFOPATH? | prepend '/opt/homebrew/share/info'
+  $env.LLVM_CONFIG = '/opt/homebrew/opt/llvm@20/bin/llvm-config'
 }
 
 if ($'($env.HOME)/.cargo' | path type) == 'dir' {
   $env.PATH = $env.PATH? | append [
     $'($env.HOME)/.cargo/bin'
+  ]
+}
+
+if ($'($env.HOME)/tools/Odin' | path type) == 'dir' {
+  $env.PATH = $env.PATH? | append [
+    $'($env.HOME)/tools/Odin'
+  ]
+}
+
+if ($'($env.HOME)/.local/bin' | path type) == 'dir' {
+  $env.PATH = $env.PATH? | append [
+    $'($env.HOME)/.local/bin'
   ]
 }
 

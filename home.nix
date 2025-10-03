@@ -42,6 +42,8 @@ in {
       oxlint
       lua-language-server
       vtsls
+      rustup
+      typst
 
       # Formatters
       alejandra
@@ -60,7 +62,6 @@ in {
       distrobox
       nodejs_20
       nodejs_20.pkgs.pnpm
-      rustup
       tree-sitter
       valgrind
       xfce.xfce4-terminal
@@ -103,9 +104,6 @@ in {
     tmux = {
       enable = true;
       terminal = "tmux-256color";
-      plugins = with pkgs; [
-        tmuxPlugins.catppuccin
-      ];
       extraConfig = ''
         ${builtins.readFile ./tmux/.tmux.conf}
       '';
@@ -130,9 +128,6 @@ in {
       initExtra = ''
         alias ls='echo; ${pkgs.eza}/bin/eza'
         ${builtins.readFile ./.zshrc}
-      '';
-      envExtra = ''
-        export PATH="$PATH:/usr/local/bin"
       '';
     };
 
@@ -180,7 +175,6 @@ in {
           src = pkgs.fishPlugins.${n}.src;
         }) [
           "fzf-fish"
-          "tide"
         ]
         ++ [
           {

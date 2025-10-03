@@ -11,8 +11,7 @@ return {
     "stevearc/conform.nvim",
     "mfussenegger/nvim-lint",
 
-    "simrat39/inlay-hints.nvim", -- Schema information
-    "b0o/SchemaStore.nvim",
+    "simrat39/inlay-hints.nvim", -- Schema information "b0o/SchemaStore.nvim",
   },
   config = function()
     local data = assert(vim.fn.stdpath("data")) --[[@as string]]

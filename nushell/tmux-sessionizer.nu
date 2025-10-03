@@ -15,15 +15,20 @@ export def tmux-sessionizer [] {
   let expanded_path = ($selected | path expand)
   let tmux_running = (ps | where name =~ 'tmux' | is-not-empty)
 
-  if not $tmux_running and ($env | get -i TMUX | is-empty) {
-    tmux new-session -ds $selected_name -c $expanded_path
+  if ($selected_name | is-empty) {
     return
-  } 
-
-  if (tmux has-session -t=$"($selected_name)" | complete | get exit_code) == 1 {
-    tmux new-session -ds $selected_name -c $expanded_path
   }
 
-  tmux switch-client -t $selected_name
+  if (tmux has-session -t=$"($selected_name)" | complete | get exit_code) == 1 {
+    print "does not have session"
+    tmux new-session -ds $"($selected_name)" -c $"($expanded_path)"
+    tmux select-window -t $"($selected_name):1"
+  }
+
+  if not $tmux_running and ($env | get -i TMUX | is-empty) {
+    tmux attach
+  } 
+
+  tmux switch-client -t $"($selected_name)"
 }
 
