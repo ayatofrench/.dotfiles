@@ -1,8 +1,11 @@
 return {
 	{
 		"dmtrKovalenko/fff.nvim",
-		build = "cargo build --release",
+		build = function()
+			require("fff.download").download_or_build_binary()
+		end,
 		opts = {},
+		lazy = false,
 		keys = {
 			{
 				"ff", -- try it if you didn't it is a banger keybinding for a picker

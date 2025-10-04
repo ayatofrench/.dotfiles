@@ -1,6 +1,6 @@
 export def tmux-sessionizer [] {
   let selected = try {
-      fd . $'($env.HOME)/personal' $'($env.HOME)/work/va' $'($env.HOME)/work' $'($env.HOME)' --min-depth 1 --max-depth 1 -H --type d 
+      fd . $'($env.HOME)/personal' $'($env.HOME)/projects' $'($env.HOME)/work/va' $'($env.HOME)/work' $'($env.HOME)' --min-depth 1 --max-depth 1 -H --type d 
       | each {|p| 
           $p | str replace --all $env.HOME '~'
         } 
@@ -11,12 +11,16 @@ export def tmux-sessionizer [] {
     return
   }
 
-  let selected_name = ($selected | path basename)
+  mut selected_name = ($selected | path basename)
   let expanded_path = ($selected | path expand)
   let tmux_running = (ps | where name =~ 'tmux' | is-not-empty)
 
   if ($selected_name | is-empty) {
     return
+  }
+
+  if ($selected_name | str starts-with ".") {
+    $selected_name = ($selected_name | str replace "." "_")
   }
 
   if (tmux has-session -t=$"($selected_name)" | complete | get exit_code) == 1 {
@@ -25,7 +29,7 @@ export def tmux-sessionizer [] {
     tmux select-window -t $"($selected_name):1"
   }
 
-  if not $tmux_running and ($env | get -i TMUX | is-empty) {
+  if not $tmux_running and ($env | get -o TMUX | is-empty) {
     tmux attach
   } 
 

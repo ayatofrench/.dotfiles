@@ -41,9 +41,12 @@ in {
       hyperfine
       oxlint
       lua-language-server
+      vscode-langservers-extracted
       vtsls
       rustup
+      tinymist
       typst
+      typstyle
 
       # Formatters
       alejandra
@@ -51,6 +54,7 @@ in {
 
       # Fonts
       pkgs.nerd-fonts.jetbrains-mono
+      pkgs.nerd-fonts.caskaydia-mono
       pixelcode
     ]
     ++ (lib.optionals isDarwin [
@@ -65,6 +69,7 @@ in {
       tree-sitter
       valgrind
       xfce.xfce4-terminal
+      vscode-langservers-extracted
 
       # Apps
       asciinema
@@ -81,13 +86,12 @@ in {
       # mullvad-vpn
 
       # Desktop setup
-      bspwm
-      sxhkd
       picom
       rofi
       dmenu
       feh
       polybar
+      fuzzel
     ]);
 
   programs = {

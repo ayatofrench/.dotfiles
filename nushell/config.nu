@@ -20,7 +20,7 @@ $env.config.completions = {
     enable:      true
     max_results: 100
     completer:   {|tokens: list<string>|
-      let expanded = scope aliases | where name == $tokens.0 | get --ignore-errors expansion.0
+      let expanded = scope aliases | where name == $tokens.0 | get --optional expansion.0
 
       mut expanded_tokens = if $expanded != null and $tokens.0 != "cd" {
         $expanded | split row " " | append ($tokens | skip 1)
