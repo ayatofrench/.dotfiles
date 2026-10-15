@@ -1,0 +1,112 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+readonly REPO="dmmulroy/.dotfiles"
+readonly REF="${DMMULROY_SKILLS_REF:-main}"
+readonly SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+readonly DEFAULT_DEST="$(cd -- "$SCRIPT_DIR/.." && pwd)/.agents/skills"
+readonly DEST="${DMMULROY_SKILLS_DEST:-$DEFAULT_DEST}"
+
+# Curated upstream set. Keep direct skill dependencies here too.
+DEFAULT_SKILLS=(
+  bro
+  codebase-design
+  domain-modeling
+  grilling
+  handoff
+  improve-codebase-architecture
+  implement
+  writing-great-skills
+)
+
+usage() {
+  cat <<'EOF'
+Usage: sync-dmmulroy-skills [--check|--dry-run|--list] [skill ...]
+
+Syncs a curated set of skills from dmmulroy/.dotfiles. Passing skill names
+replaces the curated set for that run.
+
+Environment:
+  DMMULROY_SKILLS_REF   Git ref to sync (default: main)
+  DMMULROY_SKILLS_DEST  Destination skills directory
+EOF
+}
+
+mode=sync
+case "${1:-}" in
+  --check|--dry-run|--list)
+    mode="${1#--}"
+    shift
+    ;;
+  -h|--help)
+    usage
+    exit 0
+    ;;
+esac
+
+if (($#)); then
+  skills=("$@")
+else
+  skills=("${DEFAULT_SKILLS[@]}")
+fi
+
+if [[ "$mode" == list ]]; then
+  printf '%s\n' "${skills[@]}"
+  exit 0
+fi
+
+for skill in "${skills[@]}"; do
+  if [[ ! "$skill" =~ ^[a-z0-9][a-z0-9-]*$ ]]; then
+    printf 'Invalid skill name: %s\n' "$skill" >&2
+    exit 2
+  fi
+done
+
+for command in curl tar rsync; do
+  command -v "$command" >/dev/null || {
+    printf 'Required command not found: %s\n' "$command" >&2
+    exit 127
+  }
+done
+
+tmp_dir="$(mktemp -d)"
+trap 'rm -rf "$tmp_dir"' EXIT
+
+archive_url="https://github.com/$REPO/archive/$REF.tar.gz"
+printf 'Fetching %s at %s...\n' "$REPO" "$REF"
+curl -fsSL "$archive_url" | tar -xz -C "$tmp_dir"
+source_root="$(find "$tmp_dir" -mindepth 1 -maxdepth 1 -type d -print -quit)/home/.agents/skills"
+
+status=0
+mkdir -p "$DEST"
+for skill in "${skills[@]}"; do
+  source_dir="$source_root/$skill"
+  destination_dir="$DEST/$skill"
+
+  if [[ ! -f "$source_dir/SKILL.md" ]]; then
+    printf 'Skill not found upstream: %s\n' "$skill" >&2
+    exit 3
+  fi
+
+  case "$mode" in
+    check)
+      if [[ ! -d "$destination_dir" ]] || ! diff -qr "$source_dir" "$destination_dir" >/dev/null; then
+        printf 'outdated  %s\n' "$skill"
+        status=1
+      else
+        printf 'current   %s\n' "$skill"
+      fi
+      ;;
+    dry-run)
+      printf '\n[%s]\n' "$skill"
+      rsync -ani --delete "$source_dir/" "$destination_dir/"
+      ;;
+    sync)
+      mkdir -p "$destination_dir"
+      rsync -a --delete "$source_dir/" "$destination_dir/"
+      printf 'synced    %s\n' "$skill"
+      ;;
+  esac
+done
+
+exit "$status"

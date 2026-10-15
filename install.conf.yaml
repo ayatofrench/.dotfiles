@@ -17,6 +17,215 @@
     ~/wallpapers:
     ~/.config/fish/fish_variables:
       path: fish/fish_variables
+    ~/.pi/agent/agents:
+      path: pi/agent/agents
+      force: true
+    ~/.pi/agent/extensions:
+      path: pi/agent/extensions
+      force: true
+    ~/.pi/agent/prompts:
+      path: pi/agent/prompts
+      force: true
+    ~/.pi/agent/vendor/pi-subagent:
+      path: pi/agent/vendor/pi-subagent
+    ~/.pi/agent/bin/subagent:
+      path: pi/agent/vendor/pi-subagent/subagent.ts
+    ~/.agents/skills:
+      path: .agents/skills
+      force: true
+    ~/.claude/agents/comment-sicko.md:
+      path: pstack/hosts/claude/agents/comment-sicko.md
+    ~/.claude/skills/poteto-mode:
+      path: .claude/skills/poteto-mode
+      force: true
+    ~/.claude/skills/principle-attack-the-premise:
+      path: .agents/skills/principle-attack-the-premise
+      force: true
+    ~/.claude/skills/principle-boundary-discipline:
+      path: .agents/skills/principle-boundary-discipline
+      force: true
+    ~/.claude/skills/principle-build-the-lever:
+      path: .agents/skills/principle-build-the-lever
+      force: true
+    ~/.claude/skills/principle-encode-lessons-in-structure:
+      path: .agents/skills/principle-encode-lessons-in-structure
+      force: true
+    ~/.claude/skills/principle-exhaust-the-design-space:
+      path: .agents/skills/principle-exhaust-the-design-space
+      force: true
+    ~/.claude/skills/principle-experience-first:
+      path: .agents/skills/principle-experience-first
+      force: true
+    ~/.claude/skills/principle-explain-the-number:
+      path: .agents/skills/principle-explain-the-number
+      force: true
+    ~/.claude/skills/principle-fix-root-causes:
+      path: .agents/skills/principle-fix-root-causes
+      force: true
+    ~/.claude/skills/principle-foundational-thinking:
+      path: .agents/skills/principle-foundational-thinking
+      force: true
+    ~/.claude/skills/principle-guard-the-context-window:
+      path: .agents/skills/principle-guard-the-context-window
+      force: true
+    ~/.claude/skills/principle-laziness-protocol:
+      path: .agents/skills/principle-laziness-protocol
+      force: true
+    ~/.claude/skills/principle-make-operations-idempotent:
+      path: .agents/skills/principle-make-operations-idempotent
+      force: true
+    ~/.claude/skills/principle-migrate-callers-then-delete-legacy-apis:
+      path: .agents/skills/principle-migrate-callers-then-delete-legacy-apis
+      force: true
+    ~/.claude/skills/principle-minimize-reader-load:
+      path: .agents/skills/principle-minimize-reader-load
+      force: true
+    ~/.claude/skills/principle-model-the-domain:
+      path: .agents/skills/principle-model-the-domain
+      force: true
+    ~/.claude/skills/principle-never-block-on-the-human:
+      path: .agents/skills/principle-never-block-on-the-human
+      force: true
+    ~/.claude/skills/principle-outcome-oriented-execution:
+      path: .agents/skills/principle-outcome-oriented-execution
+      force: true
+    ~/.claude/skills/principle-prove-it-works:
+      path: .agents/skills/principle-prove-it-works
+      force: true
+    ~/.claude/skills/principle-redesign-from-first-principles:
+      path: .agents/skills/principle-redesign-from-first-principles
+      force: true
+    ~/.claude/skills/principle-separate-before-serializing-shared-state:
+      path: .agents/skills/principle-separate-before-serializing-shared-state
+      force: true
+    ~/.claude/skills/principle-sequence-verifiable-units:
+      path: .agents/skills/principle-sequence-verifiable-units
+      force: true
+    ~/.claude/skills/principle-subtract-before-you-add:
+      path: .agents/skills/principle-subtract-before-you-add
+      force: true
+    ~/.claude/skills/principle-test-behavior-not-implementation:
+      path: .agents/skills/principle-test-behavior-not-implementation
+      force: true
+    ~/.claude/skills/principle-type-system-discipline:
+      path: .agents/skills/principle-type-system-discipline
+      force: true
+    ~/.claude/skills/pstack-architect:
+      path: .claude/skills/pstack-architect
+      force: true
+    ~/.claude/skills/pstack-arena:
+      path: .claude/skills/pstack-arena
+      force: true
+    ~/.claude/skills/pstack-automate-me:
+      path: .claude/skills/pstack-automate-me
+      force: true
+    ~/.claude/skills/pstack-benchmark-checklist:
+      path: .claude/skills/pstack-benchmark-checklist
+      force: true
+    ~/.claude/skills/pstack-blast-radius:
+      path: .claude/skills/pstack-blast-radius
+      force: true
+    ~/.claude/skills/pstack-bro:
+      path: .claude/skills/pstack-bro
+      force: true
+    ~/.claude/skills/pstack-correct:
+      path: .claude/skills/pstack-correct
+      force: true
+    ~/.claude/skills/pstack-create-verification-skill:
+      path: .claude/skills/pstack-create-verification-skill
+      force: true
+    ~/.claude/skills/pstack-figure-it-out:
+      path: .claude/skills/pstack-figure-it-out
+      force: true
+    ~/.claude/skills/pstack-how:
+      path: .claude/skills/pstack-how
+      force: true
+    ~/.claude/skills/pstack-in-your-own-words:
+      path: .claude/skills/pstack-in-your-own-words
+      force: true
+    ~/.claude/skills/pstack-interrogate:
+      path: .claude/skills/pstack-interrogate
+      force: true
+    ~/.claude/skills/pstack-ketchup:
+      path: .claude/skills/pstack-ketchup
+      force: true
+    ~/.claude/skills/pstack-maintain-verification-skill:
+      path: .claude/skills/pstack-maintain-verification-skill
+      force: true
+    ~/.claude/skills/pstack-make-bot-ui:
+      path: .claude/skills/pstack-make-bot-ui
+      force: true
+    ~/.claude/skills/pstack-no-comments:
+      path: .claude/skills/pstack-no-comments
+      force: true
+    ~/.claude/skills/poteto-help:
+      path: .claude/skills/poteto-help
+      force: true
+    ~/.claude/skills/pstack-recall:
+      path: .claude/skills/pstack-recall
+      force: true
+    ~/.claude/skills/pstack-reflect:
+      path: .claude/skills/pstack-reflect
+      force: true
+    ~/.claude/skills/pstack-setup-pstack:
+      path: .claude/skills/pstack-setup-pstack
+      force: true
+    ~/.claude/skills/pstack-show-me-your-work:
+      path: .claude/skills/pstack-show-me-your-work
+      force: true
+    ~/.claude/skills/pstack-swarm:
+      path: .claude/skills/pstack-swarm
+      force: true
+    ~/.claude/skills/pstack-tdd:
+      path: .claude/skills/pstack-tdd
+      force: true
+    ~/.claude/skills/pstack-teach:
+      path: .claude/skills/pstack-teach
+      force: true
+    ~/.claude/skills/pstack-technical-writing:
+      path: .claude/skills/pstack-technical-writing
+      force: true
+    ~/.claude/skills/pstack-typescript-best-practices:
+      path: .claude/skills/pstack-typescript-best-practices
+      force: true
+    ~/.claude/skills/pstack-unslop:
+      path: .claude/skills/pstack-unslop
+      force: true
+    ~/.claude/skills/pstack-why:
+      path: .claude/skills/pstack-why
+      force: true
+    ~/.claude/skills/vulcan-deploy:
+      path: .claude/skills/vulcan-deploy
+      force: true
+    ~/.pi/agent/mcp.json:
+      path: pi/agent/mcp.json
+    ~/.pi/agent/settings.json:
+      path: pi/agent/settings.json
+      force: true
+    ~/.pi/agent/package.json:
+      path: pi/agent/package.json
+      force: true
+    ~/.pi/agent/package-lock.json:
+      path: pi/agent/package-lock.json
+      force: true
+    ~/.pi/agent/pi-deep-system.md:
+      path: pi/agent/pi-deep-system.md
+      force: true
+    ~/.pi/agent-browser/SKILL.md:
+      path: pi/agent-browser/SKILL.md
+      force: true
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
+  - command: >-
+      /bin/bash -lc 'cd pi/agent && PATH="$HOME/.local/share/mise/shims:$PATH" npm ci'
+    description: Installing pi agent dependencies
+  - command: >-
+      /bin/bash -lc 'cd pi/agent/extensions/web-tools && PATH="$HOME/.local/share/mise/shims:$PATH" npm ci'
+    description: Installing pi web-tools dependencies
+  - command: >-
+      /bin/bash -lc 'cd pi/agent/extensions/fff-native && PATH="$HOME/.local/share/mise/shims:$PATH" npm ci'
+    description: Installing pi fff-native dependencies
+  - command: >-
+      /bin/bash -lc 'cd .agents/skills/web-browser/scripts && PATH="$HOME/.local/share/mise/shims:$PATH" npm ci'
+    description: Installing pi web-browser helper dependencies

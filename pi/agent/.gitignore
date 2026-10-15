@@ -1,0 +1,8 @@
+.DS_Store
+.pi/
+auth.json
+mcp-cache.json
+mcp-npx-cache.json
+node_modules/
+sessions/
+**/node_modules/

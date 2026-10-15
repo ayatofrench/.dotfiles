@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PR Review Packet — {{PR_NUMBER}}</title>
+  <style>
+    :root { --bg:#0d1117; --surface:#161b22; --text:#e6edf3; --muted:#8b949e; --border:#30363d; --ok:#3fb950; --warn:#d29922; --danger:#f85149; }
+    * { box-sizing:border-box; }
+    body { margin:0; padding:24px; font:14px/1.5 -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif; background:var(--bg); color:var(--text); }
+    .layout { display:grid; grid-template-columns:minmax(0,1fr) 320px; gap:20px; }
+    .card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:14px; }
+    h1,h2,h3 { margin:0 0 10px; }
+    h1 { font-size:24px; }
+    h2 { font-size:18px; margin-top:18px; }
+    .callouts { display:grid; gap:10px; }
+    .callout { border-left:4px solid var(--warn); padding:10px; background:rgba(210,153,34,.12); border-radius:8px; }
+    .verdict.ok { border-left-color:var(--ok); background:rgba(63,185,80,.12); }
+    .verdict.no-go { border-left-color:var(--danger); background:rgba(248,81,73,.12); }
+    .gallery { display:grid; gap:12px; }
+    figure { margin:0; }
+    img { width:100%; border:1px solid var(--border); border-radius:8px; display:block; }
+    figcaption { color:var(--muted); margin-top:6px; }
+    table { width:100%; border-collapse:collapse; margin-top:8px; }
+    th, td { border-bottom:1px solid var(--border); text-align:left; padding:8px; vertical-align:top; }
+    th { color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.04em; }
+    .muted { color:var(--muted); }
+    @media (max-width: 1100px) { .layout { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <main>
+      <!-- 1) EXECUTIVE CALLOUTS (must be first) -->
+      <section class="card">
+        <h1>PR #{{PR_NUMBER}} — {{PR_TITLE}}</h1>
+        <div class="callouts">
+          <div class="callout verdict {{VERDICT_CLASS}}">
+            <strong>Verdict:</strong> {{VERDICT}} · <strong>{{GO_NO_GO}}</strong>
+          </div>
+          <div class="callout">
+            <strong>Verdict scope:</strong> Local review workspace candidate patch (single-scope). Push/sync/merge steps are procedural follow-ups.
+          </div>
+          <div class="callout">
+            <strong>Verification strategy:</strong> {{VERIFICATION_STRATEGY}} ·
+            <strong>Browser required:</strong> {{BROWSER_REQUIRED}}
+          </div>
+          <div class="callout"><strong>Top callout 1:</strong> {{CALLOUT_1}}</div>
+          <div class="callout"><strong>Top callout 2:</strong> {{CALLOUT_2}}</div>
+        </div>
+      </section>
+
+      <!-- 3) EVIDENCE INDEX (above fold) -->
+      <section class="card">
+        <h2>Evidence Index (Conditional)</h2>
+        <p class="muted">If browser is required, render screenshot/video gallery here. If not required, render non-browser verification artifacts.</p>
+        <div class="gallery">
+          <figure>
+            <img src="{{SHOT_1_SRC}}" alt="S-1" />
+            <figcaption><strong>S-1 ({{SHOT_1_ISSUE}}):</strong> {{SHOT_1_ASSERTION}}</figcaption>
+          </figure>
+          <figure>
+            <img src="{{SHOT_2_SRC}}" alt="S-2" />
+            <figcaption><strong>S-2 ({{SHOT_2_ISSUE}}):</strong> {{SHOT_2_ASSERTION}}</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- 3+) MAIN REVIEW CONTENT -->
+      <section class="card">
+        <h2>Findings Summary (Local Candidate State)</h2>
+        <table>
+          <thead><tr><th>Issue</th><th>Priority</th><th>Status</th><th>Impact</th><th>Owner</th></tr></thead>
+          <tbody>
+            <tr><td>{{ISSUE_1}}</td><td>{{P1}}</td><td>{{FIXED}}</td><td>{{IMPACT_1}}</td><td>{{OWNER_1}}</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Final section must match review.ts callout process -->
+      <section class="card">
+        <h2>Human Reviewer Callouts (Non-Blocking)</h2>
+        <p class="muted">Include only applicable callouts (no yes/no lines). If none apply, render: <code>- (none)</code>.</p>
+        <ul>
+          <li><strong>This change adds a database migration:</strong> {{CALLOUT_DB_MIGRATION}}</li>
+          <li><strong>This change introduces a new dependency:</strong> {{CALLOUT_NEW_DEPENDENCY}}</li>
+          <li><strong>This change changes a dependency (or the lockfile):</strong> {{CALLOUT_DEP_OR_LOCKFILE}}</li>
+          <li><strong>This change modifies auth/permission behavior:</strong> {{CALLOUT_AUTH_PERMISSION}}</li>
+          <li><strong>This change introduces backwards-incompatible public schema/API/contract changes:</strong> {{CALLOUT_BREAKING_CONTRACT}}</li>
+          <li><strong>This change includes irreversible or destructive operations:</strong> {{CALLOUT_DESTRUCTIVE}}</li>
+          <li><strong>This change adds or removes feature flags:</strong> {{CALLOUT_FEATURE_FLAGS}}</li>
+          <li><strong>This change changes configuration defaults:</strong> {{CALLOUT_CONFIG_DEFAULTS}}</li>
+        </ul>
+      </section>
+    </main>
+
+    <!-- Metadata + stats must be side/secondary -->
+    <aside class="card">
+      <h3>Metadata & Run Stats</h3>
+      <div class="muted">Repo</div><div>{{REPO}}</div>
+      <div class="muted">PR</div><div>{{PR_LINK}}</div>
+      <div class="muted">Base → Head</div><div>{{BASE_HEAD}}</div>
+      <div class="muted">Commits</div><div>{{COMMITS}}</div>
+      <div class="muted">Timestamp</div><div>{{TIMESTAMP_UTC}}</div>
+      <div class="muted">Agent</div><div>{{AGENT}}</div>
+      <div class="muted">Duration</div><div>{{DURATION}}</div>
+      <div class="muted">Retries</div><div>{{RETRIES}}</div>
+      <div class="muted">Tests</div><div>{{TEST_SUMMARY}}</div>
+    </aside>
+  </div>
+</body>
+</html>

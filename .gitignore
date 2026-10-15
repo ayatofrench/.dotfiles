@@ -1,2 +1,5 @@
 /nvim/plugin/packer_compiled.lua
 */emacs/elpa
+/.cache/pstack-updates/
+/reference/.pstack-update-*/
+/reference/.pstack-update.lock/

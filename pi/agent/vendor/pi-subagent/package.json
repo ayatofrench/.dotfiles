@@ -1,0 +1,30 @@
+{
+  "name": "@ayatofrench/pi-subagent",
+  "description": "Persistent Pi subagents managed through Rex",
+  "scripts": {
+    "test": "node --test *.test.ts",
+    "check": "tsc"
+  },
+  "version": "0.1.0",
+  "private": true,
+  "keywords": [
+    "pi-package"
+  ],
+  "type": "module",
+  "bin": {
+    "subagent": "./subagent.ts"
+  },
+  "pi": {
+    "extensions": [
+      "./index.ts"
+    ]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-tui": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "typescript": "~5.9.3"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "repository": "https://github.com/ayatofrench/pi-subagent",
+  "revision": "c651997eb634353e13ffcb11ebcd73440dc93928",
+  "upstream": "https://github.com/earendil-works/pi-subagent",
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "4d56952b0fb13bf8f9b6c13a6d4c34a075bac3af447636a1df4335d7576e2f97"
+    },
+    {
+      "path": "README.md",
+      "sha256": "ea13cc8b913e3f0253dd832fdc8db071c97fbcdffde14244ab73897602bd2b18"
+    },
+    {
+      "path": "index.ts",
+      "sha256": "28a5e89a43fdfb2b17b2c084d851548083e26dfa974923c2c0fc2c4bdb395a62"
+    },
+    {
+      "path": "lifecycle.test.ts",
+      "sha256": "8ab26519c1c42e65056b7d193a107d1928650c049db017da0576d2e4d2a2a7cb"
+    },
+    {
+      "path": "package-lock.json",
+      "sha256": "f248c52c392637366eb12870fce0885d13b813c12ad23fe28693459935ce6f21"
+    },
+    {
+      "path": "package.json",
+      "sha256": "75c6071d258a5f6b3cecd24c7279355475405cea1c497102cbf90257958b80b9"
+    },
+    {
+      "path": "rex.test.ts",
+      "sha256": "77f199166a0d8cef5a1c7c78fda5e1d4aace4eab94e1294281499e59df49fe4f"
+    },
+    {
+      "path": "rex.ts",
+      "sha256": "54b3f6603ec70d53b91e2be2f7e602e9d33c38f8bf1608661ddb5a4e85c0b287"
+    },
+    {
+      "path": "shared.test.ts",
+      "sha256": "1d8965f67591f01d85b385af12f3b8c544c5a3be469230cb04a9c025f12e7f27"
+    },
+    {
+      "path": "shared.ts",
+      "sha256": "95eda7edcc3f83cdd84696da3e48987f29e6af990aea4882baefd71a3d33acf6"
+    },
+    {
+      "path": "skills/subagent/SKILL.md",
+      "sha256": "03f59dbfb25d4d96936c8a67195d37299d72e72c645a3975703f3210bad19c18"
+    },
+    {
+      "path": "subagent.ts",
+      "sha256": "6a073ca7b482e622b5442b3ac981f86efaed5b97a74c5167407e3611a51c377f"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "0b7716aff8d552762f7b95a307ab9b3dccfd57f740daee0441dfe702797adadf"
+    }
+  ]
+}
